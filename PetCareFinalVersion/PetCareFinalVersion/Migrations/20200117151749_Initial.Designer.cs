@@ -9,8 +9,8 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200117112358_Inital")]
-    partial class Inital
+    [Migration("20200117151749_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,10 +42,17 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -67,26 +74,6 @@ namespace PetCareFinalVersion.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("PetCareFinalVersion.Models.AnimalImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Animal_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Animal_id");
-
-                    b.ToTable("AnimalImages");
-                });
-
             modelBuilder.Entity("PetCareFinalVersion.Models.Association", b =>
                 {
                     b.Property<int>("Id")
@@ -103,9 +90,8 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
-                    b.Property<string>("FoundationDate")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<DateTime>("FoundationDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Iban")
                         .IsRequired()
@@ -127,7 +113,7 @@ namespace PetCareFinalVersion.Migrations
                     b.ToTable("Associations");
                 });
 
-            modelBuilder.Entity("PetCareFinalVersion.Models.Post", b =>
+            modelBuilder.Entity("PetCareFinalVersion.Models.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,13 +122,28 @@ namespace PetCareFinalVersion.Migrations
                     b.Property<int>("Association_id")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DateEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DateInit")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -158,27 +159,64 @@ namespace PetCareFinalVersion.Migrations
 
                     b.HasIndex("Association_id");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("PetCareFinalVersion.Models.PostImage", b =>
+            modelBuilder.Entity("PetCareFinalVersion.Models.LostAnimalPost", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Post_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Url")
+                    b.Property<string>("Contact")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Post_id");
+                    b.ToTable("LostAnimalPosts");
+                });
 
-                    b.ToTable("PostImages");
+            modelBuilder.Entity("PetCareFinalVersion.Models.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Association_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Association_id");
+
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.User", b =>
@@ -203,9 +241,6 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Token")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -220,15 +255,6 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCareFinalVersion.Models.AnimalImage", b =>
-                {
-                    b.HasOne("PetCareFinalVersion.Models.Animal", "Animal")
-                        .WithMany("Images")
-                        .HasForeignKey("Animal_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("PetCareFinalVersion.Models.Association", b =>
                 {
                     b.HasOne("PetCareFinalVersion.Models.User", "User")
@@ -238,20 +264,20 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCareFinalVersion.Models.Post", b =>
+            modelBuilder.Entity("PetCareFinalVersion.Models.Event", b =>
                 {
                     b.HasOne("PetCareFinalVersion.Models.Association", "Association")
-                        .WithMany("Posts")
+                        .WithMany("Events")
                         .HasForeignKey("Association_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCareFinalVersion.Models.PostImage", b =>
+            modelBuilder.Entity("PetCareFinalVersion.Models.Post", b =>
                 {
-                    b.HasOne("PetCareFinalVersion.Models.Post", "Post")
-                        .WithMany("Images")
-                        .HasForeignKey("Post_id")
+                    b.HasOne("PetCareFinalVersion.Models.Association", "Association")
+                        .WithMany("Posts")
+                        .HasForeignKey("Association_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

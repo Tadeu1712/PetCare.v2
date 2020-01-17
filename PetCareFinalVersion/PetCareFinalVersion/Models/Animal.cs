@@ -31,6 +31,9 @@ namespace PetCareFinalVersion.Models
         public int Weight { get; set; }
 
         [Required]
+        public string Size { get; set; }
+
+        [Required]
         [MaxLength(50)]
         public string Status { get; set; }
 
@@ -43,7 +46,7 @@ namespace PetCareFinalVersion.Models
         public  Association Association { get; set; }
 
 
-        public ICollection<AnimalImage> Images { get; set; }
+        public string Image { get; set; }
 
 
     }

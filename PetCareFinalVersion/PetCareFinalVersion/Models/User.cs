@@ -24,7 +24,6 @@ namespace PetCareFinalVersion.Models
         [Required]
         public bool Admin { get; set; }
         
-        public string Token { get; set; }
     }
 
 

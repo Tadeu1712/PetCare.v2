@@ -17,15 +17,14 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
 
         public static PostFactory Instance => mInstance;
 
-        public override IPost CreatePost(string aTitle, string aDescription, string aType, int Association_id)
+        public override IPost CreatePost(string aTitle, string aDescription, int Association_id)
         {
 
             var Post = new Post()
             {
                 Title = aTitle,
                 Description = aDescription,
-                Date = new DateTime(),
-                Type = aType,
+                //Date = new DateTime(),
                 Association_id = Association_id
             };
 

@@ -25,7 +25,7 @@ namespace PetCareFinalVersion.Models
         [MaxLength(255)]
         public string Description { get; set; }
         [Required]
-        public string FoundationDate { get; set; }
+        public DateTime FoundationDate { get; set; }
 
 
         [ForeignKey("User")]
@@ -33,6 +33,8 @@ namespace PetCareFinalVersion.Models
         public User User { get; set; }
 
         public ICollection<Post> Posts { get; set; }
+
+        public ICollection<Event> Events { get; set; }
 
         public ICollection<Animal> Animals { get; set; }
     }

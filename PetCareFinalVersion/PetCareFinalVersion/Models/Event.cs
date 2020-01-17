@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +6,7 @@ using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Models
 {
-    public class Post : IPost
+    public class Event : IPost
     {
 
         [Key]
@@ -24,7 +24,25 @@ namespace PetCareFinalVersion.Models
         [MaxLength(250)]
         public string Description { get; set; }
 
-        public string Image { get; set; }
+        [Required]
+        [MaxLength(250)]
+        public string Location{ get; set; }
+
+        [Required]
+        public DateTime DateInit { get; set; }
+
+        [Required]
+        public DateTime DateEnd { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string Type {get;set;}
+
+        [Required]
+        public decimal Price { get; set; }
+
+        [Required]
+        public  string Image{ get; set; }
 
 
     }

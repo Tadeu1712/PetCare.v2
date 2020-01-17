@@ -45,7 +45,6 @@ namespace PetCareFinalVersion.Controllers
                     var tokenString = GenerateJSONWebToken(aLogin);
 
 
-                    user.Token = tokenString;
                     _context.SaveChanges();
                     response = Ok(user);
                     return response;

@@ -4,10 +4,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetCareFinalVersion.Migrations
 {
-    public partial class Inital : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "LostAnimalPosts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Contact = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(maxLength: 250, nullable: false),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LostAnimalPosts", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -17,8 +33,7 @@ namespace PetCareFinalVersion.Migrations
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Email = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    Admin = table.Column<bool>(nullable: false),
-                    Token = table.Column<string>(nullable: true)
+                    Admin = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,7 +50,7 @@ namespace PetCareFinalVersion.Migrations
                     Adress = table.Column<string>(maxLength: 255, nullable: false),
                     PhoneNumber = table.Column<string>(maxLength: 9, nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: false),
-                    FoundationDate = table.Column<string>(nullable: false),
+                    FoundationDate = table.Column<DateTime>(nullable: false),
                     User_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -60,15 +75,44 @@ namespace PetCareFinalVersion.Migrations
                     Breed = table.Column<string>(maxLength: 50, nullable: false),
                     Age = table.Column<string>(nullable: false),
                     Weight = table.Column<int>(nullable: false),
+                    Size = table.Column<string>(nullable: false),
                     Status = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
-                    Association_id = table.Column<int>(nullable: false)
+                    Association_id = table.Column<int>(nullable: false),
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Animals", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Animals_Associations_Association_id",
+                        column: x => x.Association_id,
+                        principalTable: "Associations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Association_id = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 250, nullable: false),
+                    Location = table.Column<string>(maxLength: 250, nullable: false),
+                    DateInit = table.Column<DateTime>(nullable: false),
+                    DateEnd = table.Column<DateTime>(nullable: false),
+                    Type = table.Column<string>(maxLength: 50, nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    Image = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_Associations_Association_id",
                         column: x => x.Association_id,
                         principalTable: "Associations",
                         principalColumn: "Id",
@@ -84,8 +128,7 @@ namespace PetCareFinalVersion.Migrations
                     Association_id = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Type = table.Column<string>(maxLength: 50, nullable: false)
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -98,51 +141,6 @@ namespace PetCareFinalVersion.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "AnimalImages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Url = table.Column<string>(nullable: false),
-                    Animal_id = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AnimalImages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AnimalImages_Animals_Animal_id",
-                        column: x => x.Animal_id,
-                        principalTable: "Animals",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PostImages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Url = table.Column<string>(nullable: false),
-                    Post_id = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PostImages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PostImages_Posts_Post_id",
-                        column: x => x.Post_id,
-                        principalTable: "Posts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AnimalImages_Animal_id",
-                table: "AnimalImages",
-                column: "Animal_id");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Animals_Association_id",
                 table: "Animals",
@@ -154,9 +152,9 @@ namespace PetCareFinalVersion.Migrations
                 column: "User_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PostImages_Post_id",
-                table: "PostImages",
-                column: "Post_id");
+                name: "IX_Events_Association_id",
+                table: "Events",
+                column: "Association_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_Association_id",
@@ -167,13 +165,13 @@ namespace PetCareFinalVersion.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AnimalImages");
-
-            migrationBuilder.DropTable(
-                name: "PostImages");
-
-            migrationBuilder.DropTable(
                 name: "Animals");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "LostAnimalPosts");
 
             migrationBuilder.DropTable(
                 name: "Posts");

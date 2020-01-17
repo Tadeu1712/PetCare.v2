@@ -30,7 +30,7 @@ namespace PetCareFinalVersion.Patterns
                 Type = aType,
                 Weight = aWeight,
                 Breed = aBreed,
-                Association_id = aAssociationId
+                Association_id = aAssociationId,
             };
             Animal.Status= Animal.TransistionTo(new Adoption());
             

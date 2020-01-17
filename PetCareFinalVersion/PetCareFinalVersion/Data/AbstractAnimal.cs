@@ -30,7 +30,9 @@ namespace PetCareFinalVersion.Data
 
         public Association Association { get; set; }
 
-        private int Association_id { get; set; }
+        public int Association_id { get; set; }
+
+        public string Image { get; set; }
 
 
 

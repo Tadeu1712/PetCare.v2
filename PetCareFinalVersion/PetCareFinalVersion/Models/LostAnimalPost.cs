@@ -6,19 +6,18 @@ using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Models
 {
-    public class Post : IPost
+    public class LostAnimalPost : IPost
     {
 
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Association")]
-        public int Association_id { get; set; }
-        public Association Association { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string Title { get; set; }
+
+        [Required]
+        public string Contact { get; set; }
 
         [Required]
         [MaxLength(250)]

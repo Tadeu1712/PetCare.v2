@@ -67,7 +67,7 @@ namespace PetCareFinalVersion.Controllers
         {
 
             AbstractPostFactory factory = PostFactory.Instance;
-            var post = (Post)factory.CreatePostFromPostFactory(aPost.Title, aPost.Description, aPost.Type, aPost.Association_id);
+            var post = (Post)factory.CreatePostFromPostFactory(aPost.Title, aPost.Description, aPost.Association_id);
             try
             {
                 _context.Posts.Add(post);
