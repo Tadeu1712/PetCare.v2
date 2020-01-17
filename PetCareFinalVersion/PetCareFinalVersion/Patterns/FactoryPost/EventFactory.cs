@@ -4,23 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Models;
-using PetCareFinalVersion.Patterns.StateMachine;
+
 
 namespace PetCareFinalVersion.Patterns.FactoryPost
 {
-    public sealed class PostFactory : AbstractPostsFactory
+    public sealed class EventFactory : AbstractPostsFactory
     {
-        private static readonly PostFactory mInstance = new PostFactory();
+        private static readonly EventFactory mInstance = new EventFactory();
 
-        private PostFactory() { }
-        static PostFactory() { }
+        private EventFactory() { }
+        static EventFactory() { }
 
-        public static PostFactory Instance => mInstance;
-
+        public static EventFactory Instance => mInstance;
         public override IPost CreatePost(IPost aPost)
         {
-
-            var Post = new Post()
+            var Post = new Event()
             {
                 Title = aPost.Title,
                 Description = aPost.Description,
@@ -31,9 +29,3 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
         }
     }
 }
-
-
-
-
-
-

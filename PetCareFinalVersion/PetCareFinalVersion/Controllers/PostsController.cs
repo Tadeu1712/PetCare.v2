@@ -18,6 +18,8 @@ namespace PetCareFinalVersion.Controllers
     public class PostController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly AbstractPostsFactory post_factory = PostFactory.Instance;
+        private readonly AbstractPostsFactory event_factory = EventFactory.Instance;
 
         public PostController(AppDbContext aContext)
         {
@@ -62,20 +64,46 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody]Post aPost)
+        [HttpPost("create/post")]
+        public async Task<IActionResult> CreatePost([FromBody]Post aPost)
         {
 
-            AbstractPostFactory factory = PostFactory.Instance;
-            var post = (Post)factory.CreatePostFromPostFactory(aPost.Title, aPost.Description, aPost.Association_id);
+          
+            var post = (Post)post_factory.CreatePostFromPostFactory(aPost);
             try
             {
+                post.Association_id = aPost.Association_id;
                 _context.Posts.Add(post);
                 _context.SaveChanges();
 
                 return Ok(post);
             }
 
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [HttpPost("create/event")]
+        public async Task<IActionResult> CreateEvent([FromBody]Event aPost)
+        {
+            var post = (Event)event_factory.CreatePostFromPostFactory(aPost);
+            try
+            {
+                post.Location = aPost.Location;
+                post.Type = aPost.Type;
+                post.Price = aPost.Price;
+                post.DateEnd = aPost.DateEnd;
+                post.DateInit = aPost.DateInit;
+                post.Association_id = aPost.Association_id;
+                _context.Events.Add(post);
+                _context.SaveChanges();
+
+                return Ok(post);
+            }
             catch
             {
                 return BadRequest();

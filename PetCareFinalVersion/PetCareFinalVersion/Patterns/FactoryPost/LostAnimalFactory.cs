@@ -4,23 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Models;
-using PetCareFinalVersion.Patterns.StateMachine;
+
 
 namespace PetCareFinalVersion.Patterns.FactoryPost
 {
-    public sealed class PostFactory : AbstractPostsFactory
+   
+    public sealed class LostAnimalFactory : AbstractPostsFactory
     {
-        private static readonly PostFactory mInstance = new PostFactory();
+        private static readonly LostAnimalFactory mInstance = new LostAnimalFactory();
 
-        private PostFactory() { }
-        static PostFactory() { }
+        private LostAnimalFactory() { }
+        static LostAnimalFactory() { }
 
-        public static PostFactory Instance => mInstance;
+        public static LostAnimalFactory Instance => mInstance;
 
         public override IPost CreatePost(IPost aPost)
         {
 
-            var Post = new Post()
+            var Post = new LostAnimalPost()
             {
                 Title = aPost.Title,
                 Description = aPost.Description,
@@ -31,9 +32,3 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
         }
     }
 }
-
-
-
-
-
-

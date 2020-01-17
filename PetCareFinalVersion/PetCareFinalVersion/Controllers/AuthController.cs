@@ -14,6 +14,8 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using PetCareFinalVersion.Patterns.FactoryAssoc;
+
 namespace PetCareFinalVersion.Controllers
 {
     [Route("api/auth")]
@@ -22,6 +24,8 @@ namespace PetCareFinalVersion.Controllers
     {
         private readonly AppDbContext _context;
         private IConfiguration _config;
+        private readonly AbstractAssocFactory assoc_factory = AssociationFactory.Instance;
+
 
         // UserController Constructor
         public AuthController(AppDbContext context, IConfiguration config)
@@ -43,8 +47,6 @@ namespace PetCareFinalVersion.Controllers
                 if (user != null)
                 {
                     var tokenString = GenerateJSONWebToken(aLogin);
-
-
                     _context.SaveChanges();
                     response = Ok(user);
                     return response;
@@ -66,31 +68,16 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
         {
+            var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
+
             try
             {
-                var queryUser = new User()
-                {
-                    Name = aAssociation.User.Name,
-                    Email = aAssociation.User.Email,
-                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword(aAssociation.User.Password),
-                    Admin = false,
-                };
-
-
-                var queryAssociation = new Association()
-                {
-                    Iban = aAssociation.Iban,
-                    Adress = aAssociation.Adress,
-                    PhoneNumber = aAssociation.PhoneNumber,
-                    Description = aAssociation.Description,
-                    FoundationDate = aAssociation.FoundationDate,
-                    User = queryUser,
-                };
-
-                _context.Associations.Add(queryAssociation);
+              
+              _context.Associations.Add(newUser);
                 _context.SaveChanges();
 
-                return Ok(queryAssociation);
+                newUser.User.Password = null;
+                return Ok(newUser);
             }
             catch
             {

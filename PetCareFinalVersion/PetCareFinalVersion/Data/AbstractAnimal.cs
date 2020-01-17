@@ -26,6 +26,8 @@ namespace PetCareFinalVersion.Data
 
         public string Status { get; set; }
 
+        public string Size { get; set; }
+
         public string Description { get; set; }
 
         public Association Association { get; set; }
@@ -61,23 +63,6 @@ namespace PetCareFinalVersion.Data
         public string  StartAdopted()
         {
            return this._state.ToAdoption();
-        }
-
-
-
-        // Ricardo Crias-te esta função e nunca a usaste é realmente preciso?
-        public void SetParams(AbstractStatus state, string aName, string aAge, int aWeight, string aType, string aBreed, string aDescription, Association aAssociation)
-        {
-            this.Name = aName;
-            this.Age = aAge;
-            this.Breed = aBreed;
-            this.Weight = aWeight;
-            this.Type = aType;
-            this.Description = aDescription;
-            this.TransistionTo(state);
-            this.Association = aAssociation;
-            this.Association_id = aAssociation.Id;
-
         }
 
     }

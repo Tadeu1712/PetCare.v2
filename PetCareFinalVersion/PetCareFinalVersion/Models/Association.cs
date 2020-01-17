@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Models
 {
 
-    public class Association
+    public class Association : IUser
     {
 
        
