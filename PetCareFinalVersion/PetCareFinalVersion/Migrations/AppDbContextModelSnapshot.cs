@@ -248,7 +248,7 @@ namespace PetCareFinalVersion.Migrations
             modelBuilder.Entity("PetCareFinalVersion.Models.PostImage", b =>
                 {
                     b.HasOne("PetCareFinalVersion.Models.Post", "Post")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("Post_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

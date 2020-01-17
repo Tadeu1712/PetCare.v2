@@ -9,8 +9,8 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200117015832_Initial")]
-    partial class Initial
+    [Migration("20200117112358_Inital")]
+    partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,7 +250,7 @@ namespace PetCareFinalVersion.Migrations
             modelBuilder.Entity("PetCareFinalVersion.Models.PostImage", b =>
                 {
                     b.HasOne("PetCareFinalVersion.Models.Post", "Post")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("Post_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

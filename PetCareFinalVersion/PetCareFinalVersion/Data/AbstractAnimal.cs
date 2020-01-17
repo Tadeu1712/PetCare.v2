@@ -55,11 +55,15 @@ namespace PetCareFinalVersion.Data
         {
            return this._state.AdoptedTo();
         }
+
         public string  StartAdopted()
         {
            return this._state.ToAdoption();
         }
 
+
+
+        // Ricardo Crias-te esta função e nunca a usaste é realmente preciso?
         public void SetParams(AbstractStatus state, string aName, string aAge, int aWeight, string aType, string aBreed, string aDescription, Association aAssociation)
         {
             this.Name = aName;

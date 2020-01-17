@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PetCareFinalVersion.Data;
@@ -18,15 +19,19 @@ namespace PetCareFinalVersion.Models
         [Required]
         [MaxLength(50)]
         public string Title { get; set; }
+
         [Required]
         [MaxLength(250)]
         public string Description { get; set; }
+
         [Required]
         public DateTime Date { get; set; }
-       
+
         [Required]
         [MaxLength(50)]
         public string Type {get;set;}
+
+        public ICollection<PostImage> Images { get; set; }
 
     }
 }
