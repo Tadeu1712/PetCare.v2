@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PetCareFinalVersion.Models;
 using System.Text.Json;
@@ -14,6 +14,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+
 namespace PetCareFinalVersion.Controllers
 {
     [Route("api/auth")]
@@ -42,12 +43,11 @@ namespace PetCareFinalVersion.Controllers
                 var user = Auth.Login(aLogin.email, aLogin.pass, _context);
                 if (user != null)
                 {
-                    var tokenString = GenerateJSONWebToken(aLogin);
+                    var tokenString = Auth.GenerateJSONWebToken(user, _config);
+                    var createToken = new { token = tokenString };
 
-
-                    _context.SaveChanges();
-                    response = Ok(user);
-                    return response;
+               
+                    return  Ok(createToken);
                 }
                 else
                 {
@@ -60,6 +60,31 @@ namespace PetCareFinalVersion.Controllers
                 return BadRequest("Wrong email");
             }
         }
+
+        [HttpGet("values")]
+        [Authorize]
+
+        public ActionResult<IEnumerable<string>> Get()
+        {
+            var currentUser = HttpContext.User;
+            string email;
+            bool admin;
+            int id;
+
+            if (currentUser.HasClaim(c => c.Type == "id") && currentUser.HasClaim(c => c.Type == "admin"))
+            {
+                 id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                 admin = bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value);
+
+                return Ok(admin);
+
+            }
+
+            return BadRequest();
+        }
+
+
+
 
         [Produces("application/json")]
         [Consumes("application/json")]
@@ -97,20 +122,5 @@ namespace PetCareFinalVersion.Controllers
                 return BadRequest();
             }
         }
-
-        private string GenerateJSONWebToken(Login aLogin)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-                _config["Jwt:Issuer"],
-                null,
-                expires: DateTime.Now.AddMinutes(120),
-                signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
     }
 }
