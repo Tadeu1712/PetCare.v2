@@ -68,32 +68,6 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        [Produces("application/json")]
-        [Consumes("application/json")]
-        [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody]User aUser)
-        {
-            try
-            {
-
-                var queryUser = new User()
-                {
-                    Name = aUser.Name,
-                    Email = aUser.Email,
-                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword(aUser.Password),
-                    Admin = false,
-                };
-
-                _context.Users.Add(queryUser);
-                _context.SaveChanges();
-
-                return Ok(queryUser);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
 
         [Produces("application/json")]
         [Consumes("application/json")]
@@ -113,48 +87,6 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        [Produces("application/json")]
-        [Consumes("application/json")]
-        [AllowAnonymous]
-        [HttpPost("login")]
-        public async Task<IActionResult> LoginUser(Login aLogin)
-        {
-            try
-            {
-                IActionResult response = Unauthorized();
-                var user = Auth.Login(aLogin.email, aLogin.pass, _context);
-                if (user != null)
-                {
-                    var tokenString = GenerateJSONWebToken(aLogin);
-                    user.Token = tokenString;
-                    _context.SaveChanges();
-                    response = Ok(user);
-                    return response;
-                }
-                else
-                {
-                    return BadRequest("Wrong Password");
-                }
 
-            }
-            catch
-            {
-                return BadRequest("Wrong email");
-            }
-        }
-
-        private string GenerateJSONWebToken(Login aLogin)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Issuer"],
-              null,
-              expires: DateTime.Now.AddMinutes(120),
-              signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
     }
 }

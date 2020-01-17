@@ -76,43 +76,7 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        [Produces("application/json")]
-        [Consumes("application/json")]
-        [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody]Association aAssociation)
-        {
-            try
-            {
-                var queryUser = new User()
-                {
-                    Name = aAssociation.User.Name,
-                    Email = aAssociation.User.Email,
-                    Password = aAssociation.User.Password,
-                    Admin = false,
-                };
-
-
-                var queryAssociation = new Association()
-                {
-                    Iban = aAssociation.Iban,
-                    Adress = aAssociation.Adress,
-                    PhoneNumber = aAssociation.PhoneNumber,
-                    Description = aAssociation.Description,
-                    FoundationDate = aAssociation.FoundationDate,
-                    User = queryUser,
-                };
-
-                _context.Associations.Add(queryAssociation);
-                _context.SaveChanges();
-                
-                return Ok(queryAssociation);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
-
+ 
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
