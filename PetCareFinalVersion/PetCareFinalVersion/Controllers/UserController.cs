@@ -22,13 +22,11 @@ namespace PetCareFinalVersion.Controllers
     public class UserController : Controller
     {
         private readonly AppDbContext _context;
-        private IConfiguration _config;
 
         // UserController Constructor
         public UserController(AppDbContext context, IConfiguration config)
         {
             _context = context;
-            _config = config;
         }
 
         //Api que devolve todos os users em formato JSON

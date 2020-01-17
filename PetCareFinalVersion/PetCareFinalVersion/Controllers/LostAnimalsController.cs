@@ -19,6 +19,7 @@ namespace PetCareFinalVersion.Controllers
     public class LostAnimalsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly AbstractPostsFactory lost_factory = LostAnimalFactory.Instance;
 
         public LostAnimalsController(AppDbContext aContext)
         {
@@ -48,11 +49,11 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> Create([FromBody]LostAnimalPost aLostAnimalPost)
         {
 
-            IPost factory = PostFactory.Instance;
-            var lostAnimalPost = (LostAnimalPost)factory.CreatePostFromPostFactory(aLostAnimalPost);
+            var lostAnimalPost = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aLostAnimalPost);
             try
             {
-                _context.Posts.Add(lostAnimalPost);
+                lostAnimalPost.Contact = aLostAnimalPost.Contact;
+                _context.LostAnimalPosts.Add(lostAnimalPost);
                 _context.SaveChanges();
 
                 return Ok(lostAnimalPost);
