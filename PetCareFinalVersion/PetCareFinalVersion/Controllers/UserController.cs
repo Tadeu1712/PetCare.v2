@@ -3,6 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using PetCareFinalVersion.Models;
 using System.Text.Json;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using PetCareFinalVersion.Data;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using BCrypt;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -11,52 +22,71 @@ namespace PetCareFinalVersion.Controllers
     public class UserController : Controller
     {
         private readonly AppDbContext _context;
+        private IConfiguration _config;
 
-        public UserController(AppDbContext context)
+        // UserController Constructor
+        public UserController(AppDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
+        //Api que devolve todos os users em formato JSON
+        [Produces("application/json")]
         [HttpGet("all")]
-        public string allUsers()
+        public async Task<IActionResult> AllUsers()
         {
-            var json = _context.Users.ToList();
-            if (json == null){
-               
-            }
-            return JsonSerializer.Serialize(json);
-        }
-
-        [HttpGet("{id}")]
-        public string allUsers(int id)
-        {
-            var json = _context.Users.Find(id);
-
-            if(json == null)
+            try
             {
-                
+                var json = _context.Users.ToList();
+                if (json == null)
+                {
+
+                }
+                return Ok(json);
+            }
+            catch
+            {
+                return BadRequest();
             }
 
-            return JsonSerializer.Serialize(json);
         }
 
         [Produces("application/json")]
-        [Consumes("application/json")]
-        [HttpPost("create")]
-        public User CreateUser([FromBody] User obj)
+        [HttpGet("find/{id}")]
+        public async Task<IActionResult> User(int id)
         {
-              var queryUser = new User()
+            try
             {
-                Name = obj.Name,
-                Email = obj.Email,
-                Password = obj.Password,
-                Admin = true,
-            };
-            
-            _context.Users.Add(queryUser);
-            _context.SaveChanges();
-            return queryUser;
+                User query = _context.Users.Find(id);
+
+                return Ok(query);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
+
+
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                var user = _context.Users.Find(id);
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+                return Ok("Deleted " + id);
+            }
+            catch
+            {
+                return NotFound("User " + id + " not found!");
+            }
+        }
+
 
     }
 }
