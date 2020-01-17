@@ -9,13 +9,13 @@ namespace PetCareFinalVersion.Patterns
 {
     public abstract class AbstractAnimalFactory
     {
-        public AbstractAnimal CreateAnimalFromAnimalFactory(string aName, string aAge, int aWeight, string aType, string aBreed, string aDescription, int aAssociationId)
+        public AbstractAnimal CreateAnimalFromAnimalFactory(AbstractAnimal aAnimal)
         {
-            AbstractAnimal animal = CreateAnimal(aName,  aAge,  aWeight,  aType,  aBreed,  aDescription, aAssociationId );
+            AbstractAnimal animal = CreateAnimal(aAnimal);
             return animal;
 
         }
-        public abstract AbstractAnimal CreateAnimal(string aName, string aAge, int aWeight, string aType, string aBreed, string aDescription, int aAssociationId);
+        public abstract AbstractAnimal CreateAnimal(AbstractAnimal aAnimal);
     }
 }
 

@@ -20,6 +20,7 @@ namespace PetCareFinalVersion.Controllers
     public class AnimalController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly AbstractAnimalFactory animal_factory = AnimalFactory.Instance;
 
         public AnimalController(AppDbContext context)
         {
@@ -33,16 +34,14 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] Animal aAnimal)
         {
-            
-            AbstractAnimalFactory facto = AnimalFactory.Instance;
-            var x  =  (Animal)facto.CreateAnimalFromAnimalFactory( aAnimal.Name, aAnimal.Age, aAnimal.Weight, aAnimal.Type, aAnimal.Breed, aAnimal.Description, aAnimal.Association_id);
+            var animal  =  (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
             
               try
               {
                // x.Status = x.StartToAdoption();
-                 _context.Animals.Add(x);
+                 _context.Animals.Add(animal);
                  _context.SaveChanges();
-                  return Ok(x);
+                  return Ok(animal);
               }
               catch
               {

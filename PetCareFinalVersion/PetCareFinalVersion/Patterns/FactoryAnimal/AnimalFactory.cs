@@ -18,19 +18,19 @@ namespace PetCareFinalVersion.Patterns
 
         public static AnimalFactory Instance => mInstance;
 
-        public override AbstractAnimal CreateAnimal(string aName, string aAge, int aWeight, string aType, string aBreed,
-            string aDescription, int aAssociationId)
+        public override AbstractAnimal CreateAnimal(AbstractAnimal aAnimal)
         {
 
             var Animal = new Animal()
             {
-                Name = aName,
-                Description = aDescription,
-                Age = aAge,
-                Type = aType,
-                Weight = aWeight,
-                Breed = aBreed,
-                Association_id = aAssociationId,
+                Name = aAnimal.Name,
+                Description = aAnimal.Description,
+                Age = aAnimal.Age,
+                Type = aAnimal.Type,
+                Weight = aAnimal.Weight,
+                Size= aAnimal.Size,
+                Breed = aAnimal.Breed,
+                Association_id = aAnimal.Association_id,
             };
             Animal.Status= Animal.TransistionTo(new Adoption());
             

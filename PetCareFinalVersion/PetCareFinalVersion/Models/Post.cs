@@ -24,6 +24,7 @@ namespace PetCareFinalVersion.Models
         [MaxLength(250)]
         public string Description { get; set; }
 
+        [Required]
         public string Image { get; set; }
 
 
