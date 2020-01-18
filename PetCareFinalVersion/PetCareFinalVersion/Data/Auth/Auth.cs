@@ -14,14 +14,13 @@ namespace PetCareFinalVersion.Data
 {
     public static class Auth
     {
-
-        public static User Login(string aEmail, string aPass, AppDbContext _context)
+        //LOGIN
+        public static User Login(string aEmail, string aPassword, AppDbContext _context)
         {
 
             var user = _context.Users.Where(u => u.Email == aEmail).Single();
 
-
-            if (BCrypt.Net.BCrypt.EnhancedVerify(aPass, user.Password))
+            if (BCrypt.Net.BCrypt.EnhancedVerify(aPassword, user.Password))
             {
                 return user;
             }
@@ -31,6 +30,7 @@ namespace PetCareFinalVersion.Data
             }
         }
 
+        //CRIAÇÂO DA TOKEN
         public static string GenerateJSONWebToken(User aUser, IConfiguration _config)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

@@ -33,10 +33,7 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var json = _context.Posts.ToList();
-                if (json == null)
-                {
-
-                }
+                if (!json.Any()) return NotFound("Não tem posts registados");
                 return Ok(json);
             }
             catch

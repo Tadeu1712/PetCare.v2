@@ -9,6 +9,7 @@ using PetCareFinalVersion.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace PetCareFinalVersion.Controllers
@@ -24,18 +25,17 @@ namespace PetCareFinalVersion.Controllers
             _context = context;
         }
 
+        //DEVOLVER TODAS AS ASSOCIAÇÔES
         [Produces("application/json")]
         [HttpGet("all")]
-        public async Task<IActionResult> AllAssociations()
+      //  [Authorize]
+      public async Task<IActionResult> AllAssociations()
         {
             try
             {
-                var json = _context.Associations.ToList();
-                if (json == null)
-                {
-
-                }
-                return Ok(json);
+                var associationsList = _context.Associations.ToList();
+                if (!associationsList.Any()) return NotFound("Não tem associações registadas");
+                return Ok(associationsList);
             }
             catch
             {
@@ -44,42 +44,35 @@ namespace PetCareFinalVersion.Controllers
 
         }
 
+        //DEVOLVER UMA ASSOCIAÇÂO
         [Produces("application/json")]
         [HttpGet("find/{id}")]
+        //  [Authorize]
         public async Task<IActionResult> Association(int id)
         {
             try
             {
                 Association query = _context.Associations.Find(id);
                 query.User = _context.Users.Find(query.User_id);
-                try
-                {
-                    query.Posts = _context.Posts.Where(post => post.Association_id == id).ToList();
-                }
-                catch
-                {
-                    query.Posts = new Post[0];
-                }
-                try
-                {
-                    query.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
-                }
-                catch
-                {
-                    query.Animals = new Animal[0];
-                }
+                query.User.Password = null;
+                query.Posts = _context.Posts.Where(post => post.Association_id == id).ToList();
+                query.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
+                query.Events = _context.Events.Where(e => e.Association_id == id).ToList();
+
                 return Ok(query);
             }
             catch
             {
-                return BadRequest();
+                return NotFound($"Nao foi possivel encontrar a associação com o id {id}");
             }
         }
 
  
+        //ELIMINAR UMA ASSOCIAÇÂO
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
+        //  [Authorize]
         public async Task<IActionResult> DeleteAssociation(int id)
         {
             try
@@ -88,17 +81,19 @@ namespace PetCareFinalVersion.Controllers
                 _context.Users.Remove(association.User);
                 _context.Associations.Remove(association);
                 _context.SaveChanges();
-                return Ok("Deleted "+id);
+                return Ok($"Associação com o id {id} foi eliminada ");
             }
             catch
             {
-                return NotFound("Association "+id+" not found!");
+                return NotFound($"Nao foi possivel encontrar a associação com o id {id}");
             }
         }
 
+        //ATUALIZAR UMA ASSOCIAÇÂO
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
+        //  [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Association aAssociation)
         {
             try
@@ -109,7 +104,7 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound("Not Found!!!");
+                return NotFound($"Nao foi possivel encontrar a associação com o id {aAssociation.Id}");
             }
         }
     }

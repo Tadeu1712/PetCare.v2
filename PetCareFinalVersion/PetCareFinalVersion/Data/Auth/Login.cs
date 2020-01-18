@@ -8,15 +8,14 @@ namespace PetCareFinalVersion.Data
 {
     public class Login
     {
-        public User mUser { get; set; }
         public string email { get; set; }
-        public string pass { get; set; }
-        public Login(string aEmail, string aPass)
+        public string password { get; set; }
+
+        public Login(string aEmail, string aPassword)
         {
             email = aEmail;
-            pass = aPass;
+            password = aPassword;
         }
-
 
     }
 }

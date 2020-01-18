@@ -32,6 +32,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
+        //  [Authorize]
         public async Task<IActionResult> Create([FromBody] Animal aAnimal)
         {
             var animal  =  (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
@@ -53,13 +54,15 @@ namespace PetCareFinalVersion.Controllers
         // GET ALL ANIMALS 
         [Produces("application/json")]
         [HttpGet("all")]
+        //  [Authorize]
         public async Task<IActionResult> GetAllAnimals()
         {
             try
             {
                 var animals = _context.Animals.ToList();
-                if (animals == null) return NotFound();
-                else return Ok(animals);
+                if (!animals.Any()){ return NotFound("Não tem animais registados");}
+                
+                return Ok(animals);
             }
             catch
             {
@@ -70,6 +73,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("find/{id}")]
+        //  [Authorize]
         public async Task<IActionResult> GetAnimal(int id)
         {
             try
@@ -87,6 +91,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
+        //  [Authorize]
         public async Task<IActionResult> DeleteAnimal(int id)
         {
             try
@@ -105,6 +110,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
+        //  [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Animal aAnimal)
         {
             try

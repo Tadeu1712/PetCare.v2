@@ -14,7 +14,9 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using PetCareFinalVersion.Patterns.FactoryAssoc;
+using System.Text.Json.Serialization;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -34,6 +36,7 @@ namespace PetCareFinalVersion.Controllers
             _config = config;
         }
 
+        //LOGIN
         [Produces("application/json")]
         [Consumes("application/json")]
         [AllowAnonymous]
@@ -42,15 +45,15 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                IActionResult response = Unauthorized();
-                var user = Auth.Login(aLogin.email, aLogin.pass, _context);
+               
+                var user = Auth.Login(aLogin.email, aLogin.password, _context);
                 if (user != null)
                 {
+        
                     var tokenString = Auth.GenerateJSONWebToken(user, _config);
-                    var createToken = new { token = tokenString };
+                    var obj = new {data = user, token = tokenString};
 
-               
-                    return  Ok(createToken);
+                    return  Ok(obj);
                 }
                 else
                 {
@@ -64,36 +67,43 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        [HttpGet("values")]
+        //DEVOLVE O ATUAL -> UTILIZANDO A TOKEN
+        [HttpGet("actual")]
         [Authorize]
-
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IActionResult> GetActual()
         {
             var currentUser = HttpContext.User;
-            string email;
-            bool admin;
+           
             int id;
-
-            if (currentUser.HasClaim(c => c.Type == "id") && currentUser.HasClaim(c => c.Type == "admin"))
+          
+            if (currentUser.HasClaim(c => c.Type == "id"))
             {
-                 id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
-                 admin = bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value);
+                id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
 
-                return Ok(admin);
+                Association query = _context.Associations.Single(assoc => assoc.User_id == id);
+                query.User = _context.Users.Find(id);
+                query.User.Password = null;
+                query.Posts = _context.Posts.Where(post => post.Association_id == query.Id).ToList();
+                query.Animals = _context.Animals.Where(animal => animal.Association_id == query.Id).ToList();
+                query.Events = _context.Events.Where(e => e.Association_id == query.Id).ToList();
+
+                return Ok(query);
 
             }
 
             return BadRequest();
         }
 
-
-
-
+        //REGISTO
         [Produces("application/json")]
         [Consumes("application/json")]
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
         {
+            var user = _context.Users.Any(u => u.Email == aAssociation.User.Email);
+
+            if (user) return NotFound("Utilizador ja existente");
             var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
 
             try
@@ -104,11 +114,36 @@ namespace PetCareFinalVersion.Controllers
 
                 newUser.User.Password = null;
                 return Ok(newUser);
+               
             }
             catch
             {
                 return BadRequest();
             }
+            
+        }
+
+
+        // VAI SER APAGADO
+        //TESTE
+        [HttpGet("values")]
+        [Authorize]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+            var currentUser = HttpContext.User;
+            bool admin;
+            int id;
+            IActionResult response = Unauthorized();
+            if (currentUser.HasClaim(c => c.Type == "id") && currentUser.HasClaim(c => c.Type == "admin"))
+            {
+                id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                admin = bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value);
+
+                return Ok(id);
+
+            }
+
+            return BadRequest();
         }
     }
 }
