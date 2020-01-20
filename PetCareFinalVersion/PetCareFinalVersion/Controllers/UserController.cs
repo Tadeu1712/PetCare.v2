@@ -43,6 +43,7 @@ namespace PetCareFinalVersion.Controllers
                     var rs = new { success = false, message = "Nao existe utilizadores registados" };
                     return NotFound(rs);
                 }
+
                 return Ok(json);
             }
             catch

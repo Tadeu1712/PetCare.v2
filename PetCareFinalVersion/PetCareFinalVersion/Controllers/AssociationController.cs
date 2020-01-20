@@ -30,17 +30,20 @@ namespace PetCareFinalVersion.Controllers
         [HttpGet("all")]
       //  [Authorize]
       public async Task<IActionResult> AllAssociations()
-        {
+      {
+          object response;
             try
             {
                 var associationsList = await _context.Associations.ToListAsync();
                 if (!associationsList.Any())
                 {
-                    var rs = new { success = false, message = "Não tem associações registados" };
-                    return NotFound(rs);
+                    response = new { success = false, message = "Não tem associações registados" };
+                    return NotFound(response);
 
                 }
-                return Ok(associationsList);
+
+                response = new {success = true, data = associationsList};
+                return Ok(response);
             }
             catch
             {
@@ -55,6 +58,7 @@ namespace PetCareFinalVersion.Controllers
         //  [Authorize]
         public async Task<IActionResult> Association(int id)
         {
+            object response;
             try
             {
                 Association query = await _context.Associations.FindAsync(id);
@@ -64,12 +68,13 @@ namespace PetCareFinalVersion.Controllers
                 query.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
                 query.Events = _context.Events.Where(e => e.Association_id == id).ToList();
 
-                return Ok(query);
+                response = new {success = true, data = query};
+                return Ok(response);
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
-                return NotFound(rs);
+                response = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
+                return NotFound(response);
 
             }
         }
@@ -82,18 +87,20 @@ namespace PetCareFinalVersion.Controllers
         //  [Authorize]
         public async Task<IActionResult> DeleteAssociation(int id)
         {
+            object response;
             try
             {
                 var association = await _context.Associations.FindAsync(id);
                 _context.Users.Remove(association.User);
                 _context.Associations.Remove(association);
                 await _context.SaveChangesAsync();
-                return Ok($"Associação com o id {id} foi eliminada ");
+                response = new {success = true, message = $"Associação com o id {id} foi eliminada "};
+                return Ok(response);
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
-                return NotFound(rs);
+                response = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
+                return NotFound(response);
             }
         }
 
@@ -104,16 +111,18 @@ namespace PetCareFinalVersion.Controllers
         //  [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Association aAssociation)
         {
+            object response;
             try
             {
                 _context.Associations.Update(aAssociation);
                 await _context.SaveChangesAsync();
-                return Ok(aAssociation);
+                response = new {success = true, data = aAssociation};
+                return Ok(response);
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {aAssociation.Id}" };
-                return NotFound(rs);
+                response = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {aAssociation.Id}" };
+                return NotFound(response);
             }
         }
     }

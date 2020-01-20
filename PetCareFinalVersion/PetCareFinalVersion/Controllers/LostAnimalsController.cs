@@ -30,21 +30,23 @@ namespace PetCareFinalVersion.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> getAllLostAnimals()
         {
+            object response;
             try
             {
                 var lostAnimalsList = await _context.LostAnimalPosts.ToListAsync();
                 if (!lostAnimalsList.Any())
                 {
-                    var rs = new { success = false, message = "Nao existe animais perdidos" };
-                    return NotFound(rs);
+                    response = new { success = false, message = "Nao existe animais perdidos" };
+                    return NotFound(response);
                 }
 
-                var response = new {success= true, lostAnimals = lostAnimalsList };
+                response = new {success= true, data = lostAnimalsList };
 
                 return Ok(response);
             }
             catch
             {
+               
                 return BadRequest();
             }
 
@@ -63,7 +65,7 @@ namespace PetCareFinalVersion.Controllers
                 await _context.LostAnimalPosts.AddAsync(lostAnimalPost);
                 await _context.SaveChangesAsync();
 
-                 response = new { success = true, lostAnimalPost = lostAnimalPost };
+                 response = new { success = true, data = lostAnimalPost };
                 return Ok(response);
             }
 

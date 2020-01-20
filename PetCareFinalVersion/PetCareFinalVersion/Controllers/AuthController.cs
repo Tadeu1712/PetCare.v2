@@ -43,6 +43,7 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser(Login aLogin)
         {
+            object response;
             try
             {
                
@@ -51,21 +52,21 @@ namespace PetCareFinalVersion.Controllers
                 {
         
                     var tokenString = Auth.GenerateJSONWebToken(user, _config);
-                    var obj = new {data = user, token = tokenString};
+                    response = new {data = user, token = tokenString};
 
-                    return  Ok(obj);
+                    return  Ok(response);
                 }
                 else
                 {
-                    var rs = new { success = false, message = "Wrong password" };
-                    return NotFound(rs);
+                    response = new { success = false, message = "Wrong password" };
+                    return NotFound(response);
                 }
 
             }
             catch
             {
-                var rs = new { success = false, message = "Wrong email" };
-                return NotFound(rs);
+                response = new { success = false, message = "Wrong email" };
+                return NotFound(response);
             }
         }
 
@@ -75,7 +76,7 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> GetActual()
         {
             var currentUser = HttpContext.User;
-           
+            object response;
             int id;
           
             if (currentUser.HasClaim(c => c.Type == "id"))
@@ -89,12 +90,13 @@ namespace PetCareFinalVersion.Controllers
                 association.Animals = _context.Animals.Where(animal => animal.Association_id == association.Id).ToList();
                 association.Events = _context.Events.Where(e => e.Association_id == association.Id).ToList();
 
-                return Ok(association);
+                response = new {success = true, data = association};
+                return Ok(response);
 
             }
 
-            var rs = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
-            return NotFound(rs);
+            response = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
+            return NotFound(response);
         }
 
         //REGISTO
@@ -104,6 +106,7 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
         {
+            object response;
             var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
 
             try
@@ -113,13 +116,14 @@ namespace PetCareFinalVersion.Controllers
                await _context.SaveChangesAsync();
 
                 newUser.User.Password = null;
-                return Ok(newUser);
+                response = new {success = true, data = newUser};
+                return Ok(response);
                
             }
             catch
             {
-                var rs = new { success = false, message = "Nao foi possivel criar um novo registo" };
-                return NotFound(rs);
+                response = new { success = false, message = "Nao foi possivel criar um novo registo" };
+                return NotFound(response);
             }
             
         }

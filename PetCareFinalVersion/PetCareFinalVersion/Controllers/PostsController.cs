@@ -40,7 +40,7 @@ namespace PetCareFinalVersion.Controllers
                     return NotFound(response);
                 }
 
-                response = new {success = true, postList = postsList };
+                response = new {success = true, data = postsList };
                 return Ok(response);
             }
             catch
@@ -60,7 +60,7 @@ namespace PetCareFinalVersion.Controllers
                 Post post = await _context.Posts.FindAsync(id);
                 post.Association = await _context.Associations.FindAsync(post.Association_id);
 
-                response = new { success = true, post = post };
+                response = new { success = true, data = post };
                 return Ok(response);
             }
             catch
@@ -85,7 +85,7 @@ namespace PetCareFinalVersion.Controllers
                 await _context.Posts.AddAsync(post);
                 await _context.SaveChangesAsync();
 
-                response = new { sucess = true, post = post };
+                response = new { sucess = true, data = post };
                 return Ok(response);
             }
 
@@ -115,7 +115,7 @@ namespace PetCareFinalVersion.Controllers
                 await _context.Events.AddAsync(post);
                 await _context.SaveChangesAsync();
 
-                response = new { success = true, post = post };
+                response = new { success = true, data = post };
                 return Ok(response);
             }
             catch
@@ -182,8 +182,8 @@ namespace PetCareFinalVersion.Controllers
                 _context.Posts.Update(aPost);
                 await _context.SaveChangesAsync();
 
-                response = new { success = true, };
-                return Ok(aPost);
+                response = new { success = true, data = aPost };
+                return Ok(response);
             }
             catch
             {
