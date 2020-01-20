@@ -17,7 +17,7 @@ namespace PetCareFinalVersion.Migrations
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Contact = table.Column<string>(nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
-                    Image = table.Column<string>(nullable: true)
+                    Image = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,7 +106,7 @@ namespace PetCareFinalVersion.Migrations
                     DateEnd = table.Column<DateTime>(nullable: false),
                     Type = table.Column<string>(maxLength: 50, nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    Image = table.Column<string>(nullable: false)
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -128,7 +128,7 @@ namespace PetCareFinalVersion.Migrations
                     Association_id = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
-                    Image = table.Column<string>(nullable: true)
+                    Image = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -160,6 +160,12 @@ namespace PetCareFinalVersion.Migrations
                 name: "IX_Posts_Association_id",
                 table: "Posts",
                 column: "Association_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

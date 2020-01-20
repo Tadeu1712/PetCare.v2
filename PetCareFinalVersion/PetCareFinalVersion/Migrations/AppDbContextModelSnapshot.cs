@@ -132,7 +132,6 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Location")
@@ -176,6 +175,7 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
@@ -203,6 +203,7 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
@@ -228,7 +229,7 @@ namespace PetCareFinalVersion.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -240,6 +241,9 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
