@@ -30,15 +30,18 @@ namespace PetCareFinalVersion.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> getAllPosts()
         {
+            object response;
             try
             {
-                var json = _context.Posts.ToList();
-                if (!json.Any())
+                var postsList = await _context.Posts.ToListAsync();
+                if (!postsList.Any())
                 {
-                    var rs = new { success = false, message = "Nao existe posts registados" };
-                    return NotFound(rs);
-                } 
-                return Ok(json);
+                    response = new { success = false, message = "Não existem posts registados" };
+                    return NotFound(response);
+                }
+
+                response = new {success = true, postList = postsList };
+                return Ok(response);
             }
             catch
             {
@@ -51,16 +54,19 @@ namespace PetCareFinalVersion.Controllers
         [HttpGet("find/{id}")]
         public async Task<IActionResult> getPost(int id)
         {
+            object response;
             try
             {
-                Post query = _context.Posts.Find(id);
-                query.Association = _context.Associations.Find(query.Association_id);
-                return Ok(query);
+                Post post = await _context.Posts.FindAsync(id);
+                post.Association = await _context.Associations.FindAsync(post.Association_id);
+
+                response = new { success = true, post = post };
+                return Ok(response);
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao existe o post com o id {id}" };
-                return NotFound(rs);
+                response = new { success = false, message = $"Nao existe o post com o id {id}" };
+                return NotFound(response);
             }
         }
 
@@ -70,20 +76,23 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> CreatePost([FromBody]Post aPost)
         {
 
-          
+            object response;
+
             var post = (Post)post_factory.CreatePostFromPostFactory(aPost);
             try
             {
                 post.Association_id = aPost.Association_id;
-                _context.Posts.Add(post);
-                _context.SaveChanges();
+                await _context.Posts.AddAsync(post);
+                await _context.SaveChangesAsync();
 
-                return Ok(post);
+                response = new { sucess = true, post = post };
+                return Ok(response);
             }
 
             catch
             {
-                return BadRequest();
+                response = new { sucess = false , message = "Não foi possivel realizar a sua ação"};
+                return BadRequest(response);
             }
         }
 
@@ -92,6 +101,8 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("create/event")]
         public async Task<IActionResult> CreateEvent([FromBody]Event aPost)
         {
+            object response;
+
             var post = (Event)event_factory.CreatePostFromPostFactory(aPost);
             try
             {
@@ -101,28 +112,33 @@ namespace PetCareFinalVersion.Controllers
                 post.DateEnd = aPost.DateEnd;
                 post.DateInit = aPost.DateInit;
                 post.Association_id = aPost.Association_id;
-                _context.Events.Add(post);
-                _context.SaveChanges();
+                await _context.Events.AddAsync(post);
+                await _context.SaveChangesAsync();
 
-                return Ok(post);
+                response = new { success = true, post = post };
+                return Ok(response);
             }
             catch
             {
-                return BadRequest();
+                response = new { success = false, message = "Não foi possivel realizar o seu pedido" };
+                return BadRequest(response);
             }
         }
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("delete/post/{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {
+            object response;
             try
             {
-                var post = _context.Posts.Find(id);
+                var post = await _context.Posts.FindAsync(id);
                 _context.Posts.Remove(post);
-                _context.SaveChanges();
-                return Ok("Deleted " + id);
+                await _context.SaveChangesAsync();
+
+                response = new { success = true, message= $"O post com o id:{id} foi apagado" };
+                return Ok(response);
             }
             catch
             {
@@ -134,13 +150,39 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
+        [HttpDelete("delete/event/{id}")]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+            object response;
+            try
+            {
+                var post = await _context.Events.FindAsync(id);
+                _context.Events.Remove(post);
+                await _context.SaveChangesAsync();
+
+                response = new { success = true, message = $"O post com o id:{id} foi apagado" };
+                return Ok(response);
+            }
+            catch
+            {
+                var rs = new { success = false, message = $"Nao existe o post com o id {id}" };
+                return NotFound(rs);
+
+            }
+        }
+
+        [Produces("application/json")]
+        [Consumes("application/json")]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateAssociation([FromBody]Post aPost)
         {
+            object response;
             try
             {
                 _context.Posts.Update(aPost);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+                response = new { success = true, };
                 return Ok(aPost);
             }
             catch
@@ -149,6 +191,5 @@ namespace PetCareFinalVersion.Controllers
                 return NotFound(rs);
             }
         }
-
     }
 }

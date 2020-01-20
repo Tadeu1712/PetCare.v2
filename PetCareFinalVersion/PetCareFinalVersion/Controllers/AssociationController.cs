@@ -33,7 +33,7 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                var associationsList = _context.Associations.ToList();
+                var associationsList = await _context.Associations.ToListAsync();
                 if (!associationsList.Any())
                 {
                     var rs = new { success = false, message = "Não tem associações registados" };
@@ -57,8 +57,8 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                Association query = _context.Associations.Find(id);
-                query.User = _context.Users.Find(query.User_id);
+                Association query = await _context.Associations.FindAsync(id);
+                query.User = await _context.Users.FindAsync(query.User_id);
                 query.User.Password = null;
                 query.Posts = _context.Posts.Where(post => post.Association_id == id).ToList();
                 query.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
@@ -84,10 +84,10 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                var association = _context.Associations.Find(id);
+                var association = await _context.Associations.FindAsync(id);
                 _context.Users.Remove(association.User);
                 _context.Associations.Remove(association);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Ok($"Associação com o id {id} foi eliminada ");
             }
             catch
@@ -107,7 +107,7 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 _context.Associations.Update(aAssociation);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Ok(aAssociation);
             }
             catch

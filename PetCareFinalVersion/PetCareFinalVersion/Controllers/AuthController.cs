@@ -82,14 +82,14 @@ namespace PetCareFinalVersion.Controllers
             {
                 id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
 
-                Association query = _context.Associations.Single(assoc => assoc.User_id == id);
-                query.User = _context.Users.Find(id);
-                query.User.Password = null;
-                query.Posts = _context.Posts.Where(post => post.Association_id == query.Id).ToList();
-                query.Animals = _context.Animals.Where(animal => animal.Association_id == query.Id).ToList();
-                query.Events = _context.Events.Where(e => e.Association_id == query.Id).ToList();
+                Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                association.User = await _context.Users.FindAsync(id);
+                association.User.Password = null;
+                association.Posts = _context.Posts.Where(post => post.Association_id == association.Id).ToList();
+                association.Animals = _context.Animals.Where(animal => animal.Association_id == association.Id).ToList();
+                association.Events = _context.Events.Where(e => e.Association_id == association.Id).ToList();
 
-                return Ok(query);
+                return Ok(association);
 
             }
 
@@ -104,16 +104,13 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
         {
-            var user = _context.Users.Any(u => u.Email == aAssociation.User.Email);
-
-            if (user) return NotFound("Utilizador ja existente");
             var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
 
             try
             {
               
-              _context.Associations.Add(newUser);
-                _context.SaveChanges();
+              await _context.Associations.AddAsync(newUser);
+               await _context.SaveChangesAsync();
 
                 newUser.User.Password = null;
                 return Ok(newUser);

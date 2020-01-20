@@ -14,6 +14,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -36,7 +37,7 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                var json = _context.Users.ToList();
+                var json = await _context.Users.ToListAsync();
                 if (!json.Any())
                 {
                     var rs = new { success = false, message = "Nao existe utilizadores registados" };
@@ -57,7 +58,7 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                User query = _context.Users.Find(id);
+                User query = await _context.Users.FindAsync(id);
 
                 return Ok(query);
             }
@@ -75,9 +76,9 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                var user = _context.Users.Find(id);
+                var user = await _context.Users.FindAsync(id);
                 _context.Users.Remove(user);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return Ok("Deleted " + id);
             }
             catch

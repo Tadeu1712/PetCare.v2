@@ -32,14 +32,16 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                var lostAnimalsList = _context.LostAnimalPosts.ToList();
+                var lostAnimalsList = await _context.LostAnimalPosts.ToListAsync();
                 if (!lostAnimalsList.Any())
                 {
                     var rs = new { success = false, message = "Nao existe animais perdidos" };
                     return NotFound(rs);
                 }
-                
-                return Ok(lostAnimalsList);
+
+                var response = new {success= true, lostAnimals = lostAnimalsList };
+
+                return Ok(response);
             }
             catch
             {
@@ -53,20 +55,22 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]LostAnimalPost aLostAnimalPost)
         {
-
+            object response;
             var lostAnimalPost = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aLostAnimalPost);
             try
             {
                 lostAnimalPost.Contact = aLostAnimalPost.Contact;
-                _context.LostAnimalPosts.Add(lostAnimalPost);
-                _context.SaveChanges();
+                await _context.LostAnimalPosts.AddAsync(lostAnimalPost);
+                await _context.SaveChangesAsync();
 
-                return Ok(lostAnimalPost);
+                 response = new { success = true, lostAnimalPost = lostAnimalPost };
+                return Ok(response);
             }
 
             catch
             {
-                return BadRequest();
+                response = new { success = false };
+                return BadRequest(response);
             }
         }
 
