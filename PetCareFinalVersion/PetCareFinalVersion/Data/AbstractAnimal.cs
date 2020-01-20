@@ -14,29 +14,18 @@ namespace PetCareFinalVersion.Data
 
         private AbstractStatus _state = null;
 
-        public string Name { get; set; }
-
-        public string Type { get; set; }
-
-        public string Breed { get; set; }
-
-        public string Age { get; set; }
-
-        public int Weight { get; set; }
-
-        public string Status { get; set; }
-
-        public string Size { get; set; }
-
-        public string Description { get; set; }
-
-        public Association Association { get; set; }
-
-        public int Association_id { get; set; }
-
-        public string Image { get; set; }
-
-
+        public abstract int Id { get; set; }
+        public abstract string Name { get; set; }
+        public abstract string Type { get; set; }
+        public abstract string Breed { get; set; }
+        public abstract string Age { get; set; }
+        public abstract int Weight { get; set; }
+        public abstract string Status { get; set; }
+        public abstract string Size { get; set; }
+        public abstract string Description { get; set; }
+        public abstract Association Association { get; set; }
+        public abstract int Association_id { get; set; }
+        public abstract string Image { get; set; }
 
 
         //FUNÇÃO QUE PERMITE TRANSITAR DE ESTADO PARA OUTRO ESTADO

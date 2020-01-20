@@ -33,8 +33,13 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var lostAnimalsList = _context.LostAnimalPosts.ToList();
-                if (!lostAnimalsList.Any())return NotFound("Não tem animais perdidos");
-                else return Ok(lostAnimalsList);
+                if (!lostAnimalsList.Any())
+                {
+                    var rs = new { success = false, message = "Nao existe animais perdidos" };
+                    return NotFound(rs);
+                }
+                
+                return Ok(lostAnimalsList);
             }
             catch
             {

@@ -19,5 +19,6 @@ namespace PetCareFinalVersion.Data
 
          int User_id { get; set; }
          User User { get; set; }
+
     }
 }

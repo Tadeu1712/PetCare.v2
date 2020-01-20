@@ -20,7 +20,7 @@ namespace PetCareFinalVersion.Patterns.FactoryAssoc
 
         public override IUser CreateAssociation(IUser aAssociation)
         {
-            var queryUser = new User() 
+            var user = new User() 
             {
                 Name = aAssociation.User.Name,
                 Email = aAssociation.User.Email,
@@ -29,17 +29,17 @@ namespace PetCareFinalVersion.Patterns.FactoryAssoc
             };
 
 
-            var queryAssociation = new Association() 
+            var association = new Association() 
             {
                 Iban = aAssociation.Iban,
                 Adress = aAssociation.Adress,
                 PhoneNumber = aAssociation.PhoneNumber,
                 Description = aAssociation.Description,
                 FoundationDate = aAssociation.FoundationDate,
-                User = queryUser,
+                User = user,
             };
 
-            return queryAssociation;
+            return association;
         }
     }
 }

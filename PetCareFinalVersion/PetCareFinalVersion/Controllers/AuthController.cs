@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PetCareFinalVersion.Models;
 using System.Text.Json;
@@ -14,7 +14,9 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using PetCareFinalVersion.Patterns.FactoryAssoc;
+using System.Text.Json.Serialization;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -34,6 +36,7 @@ namespace PetCareFinalVersion.Controllers
             _config = config;
         }
 
+        //LOGIN
         [Produces("application/json")]
         [Consumes("application/json")]
         [AllowAnonymous]
@@ -42,32 +45,68 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                IActionResult response = Unauthorized();
-                var user = Auth.Login(aLogin.email, aLogin.pass, _context);
+               
+                var user = Auth.Login(aLogin.email, aLogin.password, _context);
                 if (user != null)
                 {
-                    var tokenString = GenerateJSONWebToken(aLogin);
-                    _context.SaveChanges();
-                    response = Ok(user);
-                    return response;
+        
+                    var tokenString = Auth.GenerateJSONWebToken(user, _config);
+                    var obj = new {data = user, token = tokenString};
+
+                    return  Ok(obj);
                 }
                 else
                 {
-                    return BadRequest("Wrong Password");
+                    var rs = new { success = false, message = "Wrong password" };
+                    return NotFound(rs);
                 }
 
             }
             catch
             {
-                return BadRequest("Wrong email");
+                var rs = new { success = false, message = "Wrong email" };
+                return NotFound(rs);
             }
         }
 
+        //DEVOLVE O ATUAL -> UTILIZANDO A TOKEN
+        [HttpGet("actual")]
+        [Authorize]
+        public async Task<IActionResult> GetActual()
+        {
+            var currentUser = HttpContext.User;
+           
+            int id;
+          
+            if (currentUser.HasClaim(c => c.Type == "id"))
+            {
+                id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+
+                Association query = _context.Associations.Single(assoc => assoc.User_id == id);
+                query.User = _context.Users.Find(id);
+                query.User.Password = null;
+                query.Posts = _context.Posts.Where(post => post.Association_id == query.Id).ToList();
+                query.Animals = _context.Animals.Where(animal => animal.Association_id == query.Id).ToList();
+                query.Events = _context.Events.Where(e => e.Association_id == query.Id).ToList();
+
+                return Ok(query);
+
+            }
+
+            var rs = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
+            return NotFound(rs);
+        }
+
+        //REGISTO
         [Produces("application/json")]
         [Consumes("application/json")]
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
         {
+            var user = _context.Users.Any(u => u.Email == aAssociation.User.Email);
+
+            if (user) return NotFound("Utilizador ja existente");
             var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
 
             try
@@ -78,26 +117,37 @@ namespace PetCareFinalVersion.Controllers
 
                 newUser.User.Password = null;
                 return Ok(newUser);
+               
             }
             catch
             {
-                return BadRequest();
+                var rs = new { success = false, message = "Nao foi possivel criar um novo registo" };
+                return NotFound(rs);
             }
+            
         }
 
-        private string GenerateJSONWebToken(Login aLogin)
+
+        // VAI SER APAGADO
+        //TESTE
+        [HttpGet("values")]
+        [Authorize]
+        public ActionResult<IEnumerable<string>> Get()
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var currentUser = HttpContext.User;
+            bool admin;
+            int id;
+            IActionResult response = Unauthorized();
+            if (currentUser.HasClaim(c => c.Type == "id") && currentUser.HasClaim(c => c.Type == "admin"))
+            {
+                id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                admin = bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value);
 
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-                _config["Jwt:Issuer"],
-                null,
-                expires: DateTime.Now.AddMinutes(120),
-                signingCredentials: credentials);
+                return Ok(id);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            }
+
+            return BadRequest();
         }
-
     }
 }
