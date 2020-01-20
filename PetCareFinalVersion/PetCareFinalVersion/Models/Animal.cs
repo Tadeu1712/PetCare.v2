@@ -39,7 +39,7 @@ namespace PetCareFinalVersion.Models
 
         [Required]
         [MaxLength(250)]
-        public string Description { get; set; }
+        public string  Description { get; set; }
 
         [ForeignKey("Association")]
         public int Association_id { get; set; }

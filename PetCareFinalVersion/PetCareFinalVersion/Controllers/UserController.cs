@@ -37,9 +37,10 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var json = _context.Users.ToList();
-                if (json == null)
+                if (!json.Any())
                 {
-
+                    var rs = new { success = false, message = "Nao existe utilizadores registados" };
+                    return NotFound(rs);
                 }
                 return Ok(json);
             }
@@ -81,7 +82,9 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound("User " + id + " not found!");
+                var rs = new { success = false, message = $"Nao foi possivel eliminar o utilizador com o id {id}" };
+                return NotFound(rs);
+           
             }
         }
 

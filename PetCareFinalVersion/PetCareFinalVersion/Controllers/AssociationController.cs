@@ -34,7 +34,12 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var associationsList = _context.Associations.ToList();
-                if (!associationsList.Any()) return NotFound("Não tem associações registadas");
+                if (!associationsList.Any())
+                {
+                    var rs = new { success = false, message = "Não tem associações registados" };
+                    return NotFound(rs);
+
+                }
                 return Ok(associationsList);
             }
             catch
@@ -63,7 +68,9 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound($"Nao foi possivel encontrar a associação com o id {id}");
+                var rs = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
+                return NotFound(rs);
+
             }
         }
 
@@ -85,7 +92,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound($"Nao foi possivel encontrar a associação com o id {id}");
+                var rs = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
+                return NotFound(rs);
             }
         }
 
@@ -104,7 +112,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound($"Nao foi possivel encontrar a associação com o id {aAssociation.Id}");
+                var rs = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {aAssociation.Id}" };
+                return NotFound(rs);
             }
         }
     }

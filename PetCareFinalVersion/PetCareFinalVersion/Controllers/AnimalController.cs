@@ -35,12 +35,11 @@ namespace PetCareFinalVersion.Controllers
         //  [Authorize]
         public async Task<IActionResult> Create([FromBody] Animal aAnimal)
         {
-            var animal  =  (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
+            var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
             
               try
               {
-               // x.Status = x.StartToAdoption();
-                 _context.Animals.Add(animal);
+                  _context.Animals.Add(animal);
                  _context.SaveChanges();
                   return Ok(animal);
               }
@@ -60,8 +59,12 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var animals = _context.Animals.ToList();
-                if (!animals.Any()){ return NotFound("Não tem animais registados");}
-                
+                if (!animals.Any())
+                {
+                    var rs = new { success = false,message = "Não tem animais registados" }; 
+                    return NotFound(rs);
+
+                }
                 return Ok(animals);
             }
             catch
@@ -84,7 +87,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound();
+                var rs = new { success = false, message = $"Animal com o id {id} nao encontrado!" };
+                return NotFound(rs);
             }
         }
 
@@ -103,7 +107,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound("Animal not found!");
+                var rs = new { success = false, message = $"Animal com o id {id} nao encontrado!" };
+                return NotFound(rs);
             }
         }
 
@@ -115,7 +120,7 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                // VER ESTA PARTE
+                //VER ESTADO DO OBJETO
                 //aAnimal.Status = aAnimal.StartAdopted();
                 _context.Animals.Update(aAnimal);
                 _context.SaveChanges();
@@ -123,8 +128,27 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound("Not Found!!!");
+                var rs = new { success = false, message = $"Nao foi possivel atualizar o animal com o id {aAnimal.Id}" };
+                return NotFound(rs);
             }
         }
+
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [HttpGet("state/{state}")]
+        public async Task<IActionResult> GetStateAnimals(string state)
+        {
+            try
+            {
+                var animalList = _context.Animals.Where(animal => animal.Status == state).ToList();
+                return Ok(animalList);
+            }
+            catch
+            {
+                var rs = new { success = false, message = $"Nao tem animais com o estado {state}!" };
+                return NotFound(rs);
+            }
+        }
+
     }
 }

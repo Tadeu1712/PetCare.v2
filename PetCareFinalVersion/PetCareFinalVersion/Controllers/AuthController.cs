@@ -57,13 +57,15 @@ namespace PetCareFinalVersion.Controllers
                 }
                 else
                 {
-                    return BadRequest("Wrong Password");
+                    var rs = new { success = false, message = "Wrong password" };
+                    return NotFound(rs);
                 }
 
             }
             catch
             {
-                return BadRequest("Wrong email");
+                var rs = new { success = false, message = "Wrong email" };
+                return NotFound(rs);
             }
         }
 
@@ -91,7 +93,8 @@ namespace PetCareFinalVersion.Controllers
 
             }
 
-            return BadRequest();
+            var rs = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
+            return NotFound(rs);
         }
 
         //REGISTO
@@ -118,7 +121,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return BadRequest();
+                var rs = new { success = false, message = "Nao foi possivel criar um novo registo" };
+                return NotFound(rs);
             }
             
         }

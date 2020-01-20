@@ -36,9 +36,6 @@ namespace PetCareFinalVersion.Data
 
         public string Image { get; set; }
 
-
-
-
         //FUNÇÃO QUE PERMITE TRANSITAR DE ESTADO PARA OUTRO ESTADO
         public string TransistionTo(AbstractStatus state)
         {

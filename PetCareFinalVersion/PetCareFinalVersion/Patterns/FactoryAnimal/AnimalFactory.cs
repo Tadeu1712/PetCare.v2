@@ -20,8 +20,7 @@ namespace PetCareFinalVersion.Patterns
 
         public override AbstractAnimal CreateAnimal(AbstractAnimal aAnimal)
         {
-
-            var Animal = new Animal()
+           var Animal = new Animal()
             {
                 Name = aAnimal.Name,
                 Description = aAnimal.Description,

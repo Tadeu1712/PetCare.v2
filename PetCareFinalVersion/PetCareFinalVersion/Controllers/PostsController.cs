@@ -33,7 +33,11 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var json = _context.Posts.ToList();
-                if (!json.Any()) return NotFound("Não tem posts registados");
+                if (!json.Any())
+                {
+                    var rs = new { success = false, message = "Nao existe posts registados" };
+                    return NotFound(rs);
+                } 
                 return Ok(json);
             }
             catch
@@ -55,7 +59,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound();
+                var rs = new { success = false, message = $"Nao existe o post com o id {id}" };
+                return NotFound(rs);
             }
         }
 
@@ -121,7 +126,9 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound("Post with " + id + " not found!");
+                var rs = new { success = false, message = $"Nao existe o post com o id {id}" };
+                return NotFound(rs);
+               
             }
         }
 
@@ -138,7 +145,8 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-                return NotFound("Not Found!!!");
+                var rs = new { success = false, message = $"Nao foi possivel atualizar o post com o id {aPost.Id}" };
+                return NotFound(rs);
             }
         }
 
