@@ -10,43 +10,43 @@ namespace PetCareFinalVersion.Models
     {
 
         [Key]
-        public int Id { get; set; }
+        public override int Id { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Type { get; set; }
+        public override string Type { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Breed { get; set; }
+        public override string Breed { get; set; }
 
         [Required]
-        public string Age { get; set; }
+        public override string Age { get; set; }
 
         [Required]
-        public int Weight { get; set; }
+        public override int Weight { get; set; }
 
         [Required]
-        public string Size { get; set; }
+        public override string Size { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Status { get; set; }
+        public override string Status { get; set; }
 
         [Required]
         [MaxLength(250)]
-        public string  Description { get; set; }
+        public override string  Description { get; set; }
 
         [ForeignKey("Association")]
-        public int Association_id { get; set; }
-        public  Association Association { get; set; }
+        public override int Association_id { get; set; }
+        public override Association Association { get; set; }
 
 
-        public string Image { get; set; }
+        public override string Image { get; set; }
 
 
     }
