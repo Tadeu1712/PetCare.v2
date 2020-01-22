@@ -21,8 +21,7 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
             var Post = new Event()
             {
                 Title = aPost.Title,
-                Description = aPost.Description,
-                Image = "Path to img"
+                Description = aPost.Description
             };
 
             return Post;

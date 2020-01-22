@@ -24,8 +24,7 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
             var Post = new LostAnimalPost()
             {
                 Title = aPost.Title,
-                Description = aPost.Description,
-                Image = "Path to img"
+                Description = aPost.Description
             };
 
             return Post;

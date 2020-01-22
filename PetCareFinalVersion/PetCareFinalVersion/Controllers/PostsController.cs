@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using PetCareFinalVersion.Patterns.FactoryPost;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -17,13 +20,15 @@ namespace PetCareFinalVersion.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
+        IWebHostEnvironment _environment;
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory post_factory = PostFactory.Instance;
         private readonly AbstractPostsFactory event_factory = EventFactory.Instance;
 
-        public PostController(AppDbContext aContext)
+        public PostController(AppDbContext aContext, IWebHostEnvironment aEnvironment)
         {
             _context = aContext;
+            _environment = aEnvironment;
         }
 
         [Produces("application/json")]
@@ -36,7 +41,7 @@ namespace PetCareFinalVersion.Controllers
                 var postsList = await _context.Posts.ToListAsync();
                 if (!postsList.Any())
                 {
-                    response = new { success = false, message = "Não existem posts registados" };
+                    response = new { success = true, message = "Não existem posts registados" };
                     return NotFound(response);
                 }
 
@@ -51,7 +56,7 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> getPost(int id)
         {
             object response;
@@ -72,7 +77,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpPost("create/post")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreatePost([FromBody]Post aPost)
         {
 
@@ -96,38 +101,39 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
+        //PASSAR PARA EVENT CONTROLLER
+        //[Produces("application/json")]
+        //[Consumes("application/json")]
+        //[HttpPost("create/event")]
+        //public async Task<IActionResult> CreateEvent([FromBody]Event aPost)
+        //{
+        //    object response;
+
+        //    var post = (Event)event_factory.CreatePostFromPostFactory(aPost);
+        //    try
+        //    {
+        //        post.Location = aPost.Location;
+        //        post.Type = aPost.Type;
+        //        post.Price = aPost.Price;
+        //        post.DateEnd = aPost.DateEnd;
+        //        post.DateInit = aPost.DateInit;
+        //        post.Association_id = aPost.Association_id;
+        //        await _context.Events.AddAsync(post);
+        //        await _context.SaveChangesAsync();
+
+        //        response = new { success = true, data = post };
+        //        return Ok(response);
+        //    }
+        //    catch
+        //    {
+        //        response = new { success = false, message = "Não foi possivel realizar o seu pedido" };
+        //        return BadRequest(response);
+        //    }
+        //}
+
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpPost("create/event")]
-        public async Task<IActionResult> CreateEvent([FromBody]Event aPost)
-        {
-            object response;
-
-            var post = (Event)event_factory.CreatePostFromPostFactory(aPost);
-            try
-            {
-                post.Location = aPost.Location;
-                post.Type = aPost.Type;
-                post.Price = aPost.Price;
-                post.DateEnd = aPost.DateEnd;
-                post.DateInit = aPost.DateInit;
-                post.Association_id = aPost.Association_id;
-                await _context.Events.AddAsync(post);
-                await _context.SaveChangesAsync();
-
-                response = new { success = true, data = post };
-                return Ok(response);
-            }
-            catch
-            {
-                response = new { success = false, message = "Não foi possivel realizar o seu pedido" };
-                return BadRequest(response);
-            }
-        }
-
-        [Produces("application/json")]
-        [Consumes("application/json")]
-        [HttpDelete("delete/post/{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {
             object response;
@@ -148,28 +154,6 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        [Produces("application/json")]
-        [Consumes("application/json")]
-        [HttpDelete("delete/event/{id}")]
-        public async Task<IActionResult> DeleteEvent(int id)
-        {
-            object response;
-            try
-            {
-                var post = await _context.Events.FindAsync(id);
-                _context.Events.Remove(post);
-                await _context.SaveChangesAsync();
-
-                response = new { success = true, message = $"O post com o id:{id} foi apagado" };
-                return Ok(response);
-            }
-            catch
-            {
-                var rs = new { success = false, message = $"Nao existe o post com o id {id}" };
-                return NotFound(rs);
-
-            }
-        }
 
         [Produces("application/json")]
         [Consumes("application/json")]
@@ -190,6 +174,22 @@ namespace PetCareFinalVersion.Controllers
                 var rs = new { success = false, message = $"Nao foi possivel atualizar o post com o id {aPost.Id}" };
                 return NotFound(rs);
             }
+        }
+
+        
+        [HttpPost("uploadImg")]
+        public async Task<IActionResult> UploadImg([FromForm] IFormFile file)
+        {
+            var image = file;
+            var filePath = Path.Combine("resources/images", image.FileName);
+            if (image.Length > 0)
+            {
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    image.CopyTo(fileStream);
+                }
+            }
+            return Ok("IMAGEM GUARDADA!" );
         }
     }
 }

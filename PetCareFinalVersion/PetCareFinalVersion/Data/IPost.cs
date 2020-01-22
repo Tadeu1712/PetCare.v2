@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
 using PetCareFinalVersion.Models;
 
 namespace PetCareFinalVersion.Data
 {
-    public interface IPost
+    public interface IPost 
     {
 
         int Id { get; set; }

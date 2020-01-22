@@ -9,7 +9,7 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200117190251_Initial")]
+    [Migration("20200122151509_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -177,7 +177,6 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
@@ -205,7 +204,6 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")

@@ -24,7 +24,6 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
             {
                 Title = aPost.Title,
                 Description = aPost.Description,
-                Image = "Path to img"
             };
 
             return Post;

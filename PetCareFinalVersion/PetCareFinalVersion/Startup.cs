@@ -16,7 +16,9 @@ using PetCareFinalVersion.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace PetCareFinalVersion
 {
@@ -86,6 +88,16 @@ namespace PetCareFinalVersion
             {
                 endpoints.MapControllers();
             });
+
+            /////////////////////////
+            //IMG TESTE
+            /////////////////////////
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
+            });
+            /////////////////////////
         }
     }
 }

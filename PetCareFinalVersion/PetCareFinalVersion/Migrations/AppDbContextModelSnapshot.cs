@@ -175,7 +175,6 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
@@ -203,7 +202,6 @@ namespace PetCareFinalVersion.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")

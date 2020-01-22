@@ -17,7 +17,7 @@ namespace PetCareFinalVersion.Migrations
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Contact = table.Column<string>(nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
-                    Image = table.Column<string>(nullable: false)
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -128,7 +128,7 @@ namespace PetCareFinalVersion.Migrations
                     Association_id = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
-                    Image = table.Column<string>(nullable: false)
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
