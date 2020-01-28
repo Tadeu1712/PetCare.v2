@@ -14,14 +14,14 @@ namespace PetCareFinalVersion.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(150)]
         public string Title { get; set; }
 
         [Required]
         public string Contact { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [MaxLength(1024)]
         public string Description { get; set; }
 
      

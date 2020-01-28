@@ -18,11 +18,11 @@ namespace PetCareFinalVersion.Models
         public Association Association { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(150)]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [MaxLength(1024)]
         public string Description { get; set; }
 
         [Required]

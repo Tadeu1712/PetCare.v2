@@ -25,12 +25,14 @@ namespace PetCareFinalVersion.Models
         public override string Breed { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public override string Age { get; set; }
 
         [Required]
-        public override int Weight { get; set; }
+        public override float Weight { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public override string Size { get; set; }
 
         [Required]

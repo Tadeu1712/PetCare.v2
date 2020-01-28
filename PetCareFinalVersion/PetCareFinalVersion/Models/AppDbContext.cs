@@ -80,7 +80,7 @@ namespace PetCareFinalVersion.Models
                new Association
                  {
                     User_id = 3,
-                    Id = 1,
+                    Id = 2,
                     Iban = "233924194",
                     Adress = "Rua dos milagres",
                     PhoneNumber = "291876234",
@@ -90,7 +90,7 @@ namespace PetCareFinalVersion.Models
                new Association
                 {
                     User_id = 4,
-                    Id = 2,
+                    Id = 3,
                     Iban = "28374659",
                     Adress = "Rua dos Vinagres",
                     PhoneNumber = "291745637",
@@ -100,7 +100,7 @@ namespace PetCareFinalVersion.Models
                new Association
                 {
                     User_id = 5,
-                    Id = 2,
+                    Id = 4,
                     Iban = "28374659",
                     Adress = "Rua dos Vinagres",
                     PhoneNumber = "291745637",

@@ -70,6 +70,78 @@ namespace PetCareFinalVersion.Migrations
                     b.HasIndex("Association_id");
 
                     b.ToTable("Animals");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = "1",
+                            Association_id = 1,
+                            Breed = "Rafeiro",
+                            Description = "Mancha no centro da testa",
+                            Image = "",
+                            Name = "Napoleão",
+                            Size = "30cm",
+                            Status = "Nem sei",
+                            Type = "Gato",
+                            Weight = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = "2",
+                            Association_id = 1,
+                            Breed = "Rafeiro",
+                            Description = "Cão de pequeno porte",
+                            Image = "",
+                            Name = "Bolinhas",
+                            Size = "180 metros",
+                            Status = "Nem sei",
+                            Type = "Cão",
+                            Weight = 150
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = "4",
+                            Association_id = 1,
+                            Breed = "Boxer",
+                            Description = "Muita energia",
+                            Image = "",
+                            Name = "Bob",
+                            Size = "1.20m",
+                            Status = "nem sei",
+                            Type = "Cão",
+                            Weight = 25
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = "3",
+                            Association_id = 2,
+                            Breed = "Ragdoll",
+                            Description = "Pelo longo, com orellahs pretas",
+                            Image = "",
+                            Name = "Belinha",
+                            Size = "25 cm",
+                            Status = "Nem sei",
+                            Type = "Gato",
+                            Weight = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = "3",
+                            Association_id = 2,
+                            Breed = "Pastor Alemão",
+                            Description = "Dá-se bem com crianças",
+                            Image = "",
+                            Name = "Duke",
+                            Size = "50cm",
+                            Status = "Nem sei",
+                            Type = "Cão",
+                            Weight = 18
+                        });
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.Association", b =>
@@ -109,6 +181,48 @@ namespace PetCareFinalVersion.Migrations
                     b.HasIndex("User_id");
 
                     b.ToTable("Associations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Adress = "Rua dos milagres",
+                            Description = "Spad",
+                            FoundationDate = new DateTime(2020, 1, 28, 14, 44, 32, 59, DateTimeKind.Local).AddTicks(7620),
+                            Iban = "233924194",
+                            PhoneNumber = "291876234",
+                            User_id = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Adress = "Rua dos milagres",
+                            Description = "Spad",
+                            FoundationDate = new DateTime(2020, 1, 28, 14, 44, 32, 95, DateTimeKind.Local).AddTicks(8400),
+                            Iban = "233924194",
+                            PhoneNumber = "291876234",
+                            User_id = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Adress = "Rua dos Vinagres",
+                            Description = "Ajuda do Animal",
+                            FoundationDate = new DateTime(2020, 1, 28, 14, 44, 32, 95, DateTimeKind.Local).AddTicks(8440),
+                            Iban = "28374659",
+                            PhoneNumber = "291745637",
+                            User_id = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Adress = "Rua dos Vinagres",
+                            Description = "Ajuda do Animal",
+                            FoundationDate = new DateTime(2020, 1, 28, 14, 44, 32, 95, DateTimeKind.Local).AddTicks(8440),
+                            Iban = "28374659",
+                            PhoneNumber = "291745637",
+                            User_id = 5
+                        });
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.Event", b =>
@@ -128,8 +242,8 @@ namespace PetCareFinalVersion.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
-                        .HasMaxLength(250);
+                        .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
+                        .HasMaxLength(1024);
 
                     b.Property<string>("Image")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -144,8 +258,8 @@ namespace PetCareFinalVersion.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
+                        .HasMaxLength(150);
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -157,6 +271,21 @@ namespace PetCareFinalVersion.Migrations
                     b.HasIndex("Association_id");
 
                     b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Association_id = 1,
+                            DateEnd = new DateTime(2020, 1, 28, 14, 44, 32, 97, DateTimeKind.Local).AddTicks(1850),
+                            DateInit = new DateTime(2020, 1, 28, 14, 44, 32, 97, DateTimeKind.Local).AddTicks(1400),
+                            Description = "",
+                            Image = "wasd",
+                            Location = "",
+                            Price = 2m,
+                            Title = "",
+                            Type = ""
+                        });
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.LostAnimalPost", b =>
@@ -171,16 +300,16 @@ namespace PetCareFinalVersion.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
-                        .HasMaxLength(250);
+                        .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
+                        .HasMaxLength(1024);
 
                     b.Property<string>("Image")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
+                        .HasMaxLength(150);
 
                     b.HasKey("Id");
 
@@ -198,22 +327,56 @@ namespace PetCareFinalVersion.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
-                        .HasMaxLength(250);
+                        .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
+                        .HasMaxLength(1024);
 
                     b.Property<string>("Image")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
+                        .HasMaxLength(150);
 
                     b.HasKey("Id");
 
                     b.HasIndex("Association_id");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Association_id = 1,
+                            Description = "Dá-se bem com crianças, cão muito energetico",
+                            Image = "",
+                            Title = "Bob procura nova casa "
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Association_id = 1,
+                            Description = "Napoleão é um gato muito amigavel",
+                            Image = "",
+                            Title = "Ajude-nos a encontrar novo dono para Napoleão."
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Association_id = 2,
+                            Description = "Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
+                            Image = "",
+                            Title = "Ajude a nossa associação a angariar fundos para poder aumentar o espaço"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Association_id = 2,
+                            Description = "Ajude a nossa associação doando comida de animal",
+                            Image = "",
+                            Title = "Ajude a nossa associação doando comida de animal"
+                        });
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.User", b =>
@@ -250,8 +413,40 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 1,
                             Admin = true,
-                            Email = "t@t.com",
+                            Email = "Admin@admin.com",
+                            Name = "Admin",
+                            Password = "secret123"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Admin = false,
+                            Email = "Artur@artur.com",
                             Name = "Artur",
+                            Password = "secret123"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Admin = false,
+                            Email = "Ricardo@ricardo.com",
+                            Name = "Ricardo",
+                            Password = "secret123"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Admin = false,
+                            Email = "Ruben@ruben.com",
+                            Name = "Ruben",
+                            Password = "secret123"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Admin = false,
+                            Email = "Tadeu@tadeu.com",
+                            Name = "Tadeu",
                             Password = "secret123"
                         });
                 });

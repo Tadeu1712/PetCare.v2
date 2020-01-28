@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetCareFinalVersion.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +14,9 @@ namespace PetCareFinalVersion.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Title = table.Column<string>(maxLength: 150, nullable: false),
                     Contact = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(maxLength: 250, nullable: false),
+                    Description = table.Column<string>(maxLength: 1024, nullable: false),
                     Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -99,8 +99,8 @@ namespace PetCareFinalVersion.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Association_id = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 250, nullable: false),
+                    Title = table.Column<string>(maxLength: 150, nullable: false),
+                    Description = table.Column<string>(maxLength: 1024, nullable: false),
                     Location = table.Column<string>(maxLength: 250, nullable: false),
                     DateInit = table.Column<DateTime>(nullable: false),
                     DateEnd = table.Column<DateTime>(nullable: false),
@@ -126,8 +126,8 @@ namespace PetCareFinalVersion.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Association_id = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 250, nullable: false),
+                    Title = table.Column<string>(maxLength: 150, nullable: false),
+                    Description = table.Column<string>(maxLength: 1024, nullable: false),
                     Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -144,7 +144,53 @@ namespace PetCareFinalVersion.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Admin", "Email", "Name", "Password" },
-                values: new object[] { 1, true, "t@t.com", "Artur", "secret123" });
+                values: new object[,]
+                {
+                    { 1, true, "Admin@admin.com", "Admin", "secret123" },
+                    { 2, false, "Artur@artur.com", "Artur", "secret123" },
+                    { 3, false, "Ricardo@ricardo.com", "Ricardo", "secret123" },
+                    { 4, false, "Ruben@ruben.com", "Ruben", "secret123" },
+                    { 5, false, "Tadeu@tadeu.com", "Tadeu", "secret123" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Associations",
+                columns: new[] { "Id", "Adress", "Description", "FoundationDate", "Iban", "PhoneNumber", "User_id" },
+                values: new object[,]
+                {
+                    { 1, "Rua dos milagres", "Spad", new DateTime(2020, 1, 28, 14, 44, 32, 59, DateTimeKind.Local).AddTicks(7620), "233924194", "291876234", 2 },
+                    { 2, "Rua dos milagres", "Spad", new DateTime(2020, 1, 28, 14, 44, 32, 95, DateTimeKind.Local).AddTicks(8400), "233924194", "291876234", 3 },
+                    { 3, "Rua dos Vinagres", "Ajuda do Animal", new DateTime(2020, 1, 28, 14, 44, 32, 95, DateTimeKind.Local).AddTicks(8440), "28374659", "291745637", 4 },
+                    { 4, "Rua dos Vinagres", "Ajuda do Animal", new DateTime(2020, 1, 28, 14, 44, 32, 95, DateTimeKind.Local).AddTicks(8440), "28374659", "291745637", 5 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Animals",
+                columns: new[] { "Id", "Age", "Association_id", "Breed", "Description", "Image", "Name", "Size", "Status", "Type", "Weight" },
+                values: new object[,]
+                {
+                    { 1, "1", 1, "Rafeiro", "Mancha no centro da testa", "", "Napoleão", "30cm", "Nem sei", "Gato", 2 },
+                    { 2, "2", 1, "Rafeiro", "Cão de pequeno porte", "", "Bolinhas", "180 metros", "Nem sei", "Cão", 150 },
+                    { 3, "4", 1, "Boxer", "Muita energia", "", "Bob", "1.20m", "nem sei", "Cão", 25 },
+                    { 4, "3", 2, "Ragdoll", "Pelo longo, com orellahs pretas", "", "Belinha", "25 cm", "Nem sei", "Gato", 2 },
+                    { 5, "3", 2, "Pastor Alemão", "Dá-se bem com crianças", "", "Duke", "50cm", "Nem sei", "Cão", 18 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "Association_id", "DateEnd", "DateInit", "Description", "Image", "Location", "Price", "Title", "Type" },
+                values: new object[] { 1, 1, new DateTime(2020, 1, 28, 14, 44, 32, 97, DateTimeKind.Local).AddTicks(1850), new DateTime(2020, 1, 28, 14, 44, 32, 97, DateTimeKind.Local).AddTicks(1400), "", "wasd", "", 2m, "", "" });
+
+            migrationBuilder.InsertData(
+                table: "Posts",
+                columns: new[] { "Id", "Association_id", "Description", "Image", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, "Dá-se bem com crianças, cão muito energetico", "", "Bob procura nova casa " },
+                    { 2, 1, "Napoleão é um gato muito amigavel", "", "Ajude-nos a encontrar novo dono para Napoleão." },
+                    { 3, 2, "Ajude a nossa associação a angariar fundos para poder aumentar o espaço", "", "Ajude a nossa associação a angariar fundos para poder aumentar o espaço" },
+                    { 4, 2, "Ajude a nossa associação doando comida de animal", "", "Ajude a nossa associação doando comida de animal" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animals_Association_id",
