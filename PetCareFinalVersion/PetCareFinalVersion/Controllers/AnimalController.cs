@@ -9,6 +9,7 @@ using PetCareFinalVersion.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
 
 
@@ -32,19 +33,24 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
-        //  [Authorize]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] Animal aAnimal)
         {
             object response;
-
+            var currentUser = HttpContext.User;
             var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
             
               try
               {
-                  await _context.Animals.AddAsync(animal);
-                 await _context.SaveChangesAsync();
-                 response = new {success = true, data = animal};
-                  return Ok(response);
+                  if (currentUser.HasClaim(c => c.Type == "id"))
+                  {
+                      await _context.Animals.AddAsync(animal);
+                      await _context.SaveChangesAsync();
+                      response = new {success = true, data = animal};
+                      return Ok(response);
+                  }
+                  response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                  return NotFound(response);
               }
               catch
               {
@@ -56,7 +62,7 @@ namespace PetCareFinalVersion.Controllers
         // GET ALL ANIMALS 
         [Produces("application/json")]
         [HttpGet("all")]
-        //  [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllAnimals()
         {
             object response;
@@ -81,7 +87,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("find/{id}")]
-        //  [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAnimal(int id)
         {
             object response;
@@ -102,17 +108,24 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
-        //  [Authorize]
+          [Authorize]
         public async Task<IActionResult> DeleteAnimal(int id)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             try
             {
-                var animal = await _context.Animals.FindAsync(id);
-                _context.Animals.Remove(animal);
-                await _context.SaveChangesAsync();
-                response = new { success = true, message = $"Animal com o id {id} foi eliminado!" };
-                return Ok(response);
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    var animal = await _context.Animals.FindAsync(id);
+                    _context.Animals.Remove(animal);
+                    await _context.SaveChangesAsync();
+                    response = new {success = true, message = $"Animal com o id {id} foi eliminado!"};
+                    return Ok(response);
+                }
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
@@ -124,18 +137,26 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
-        //  [Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Animal aAnimal)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             try
             {
-                //VER ESTADO DO OBJETO
-                _context.Animals.Update(aAnimal);
-                await _context.SaveChangesAsync();
-                response = new { success = true,data = aAnimal };
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    //VER ESTADO DO OBJETO
+                    //aAnimal.Status = aAnimal.StartAdopted();
+                    _context.Animals.Update(aAnimal);
+                    await _context.SaveChangesAsync();
+                    response = new {success = true, data = aAnimal};
 
-                return Ok(response);
+                    return Ok(response);
+                }
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
@@ -147,6 +168,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpGet("state/{state}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetStateAnimals(string state)
         {
             object response;

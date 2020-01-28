@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net;
 using Microsoft.Extensions.FileProviders;
 using System.Net.Mime;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -38,6 +39,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("all")]
+        [AllowAnonymous]
         public async Task<IActionResult> getAllPosts()
         {
             object response;
@@ -62,6 +64,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> getPost(int id)
         {
             object response;
@@ -83,6 +86,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> CreatePost([FromBody]Post aPost)
         {
 
@@ -139,6 +143,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
             object response;
@@ -163,6 +168,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
+        [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Post aPost)
         {
             object response;
