@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Net;
+using Microsoft.Extensions.FileProviders;
+using System.Net.Mime;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -200,17 +202,24 @@ namespace PetCareFinalVersion.Controllers
             return Ok("IMAGEM GUARDADA!" );
         }
 
-        [HttpGet("downloadImg")]
-        public HttpResponseMessage GetImg()
+        private readonly IFileProvider _fileProvider;
+       
+
+        [HttpGet("downloadImg/{name}")]
+        public async Task<IActionResult> GetImgAsync(string name)
         {
-            byte[] bytes = System.IO.File
-                        .ReadAllBytes(
-                          Path.Combine("resources/images/florest.jpg"));
-            var result_ = new HttpResponseMessage(HttpStatusCode.OK);
-            result_.Content = new ByteArrayContent(bytes);
-            result_.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
-            return result_;
+            var path = Path.Combine(
+                     Directory.GetCurrentDirectory(),
+                     "Resources/images", ""+name+".jpg");
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            return Ok(memory);
         }
+
     }
 
 }

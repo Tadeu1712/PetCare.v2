@@ -55,7 +55,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("find/{id}")]
-        public async Task<IActionResult> User(int id)
+        public async Task<IActionResult> getUser(int id)
         {
             try
             {
