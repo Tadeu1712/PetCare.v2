@@ -244,6 +244,16 @@ namespace PetCareFinalVersion.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Admin = true,
+                            Email = "t@t.com",
+                            Name = "Artur",
+                            Password = "secret123"
+                        });
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.Animal", b =>

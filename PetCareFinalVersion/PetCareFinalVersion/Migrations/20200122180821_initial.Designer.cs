@@ -9,8 +9,8 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200122151509_Initial")]
-    partial class Initial
+    [Migration("20200122180821_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -246,6 +246,16 @@ namespace PetCareFinalVersion.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Admin = true,
+                            Email = "t@t.com",
+                            Name = "Artur",
+                            Password = "secret123"
+                        });
                 });
 
             modelBuilder.Entity("PetCareFinalVersion.Models.Animal", b =>

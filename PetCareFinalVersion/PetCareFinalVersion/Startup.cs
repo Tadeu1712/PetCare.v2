@@ -90,7 +90,7 @@ namespace PetCareFinalVersion
             });
 
             /////////////////////////
-            //IMG TESTE
+            //IMG 
             /////////////////////////
             app.UseStaticFiles(new StaticFileOptions()
             {

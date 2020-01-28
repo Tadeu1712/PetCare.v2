@@ -13,6 +13,9 @@ using PetCareFinalVersion.Patterns.FactoryPost;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Net;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -178,12 +181,17 @@ namespace PetCareFinalVersion.Controllers
 
         
         [HttpPost("uploadImg")]
-        public async Task<IActionResult> UploadImg([FromForm] IFormFile file)
+        public async Task<IActionResult> UploadImg()
         {
-            var image = file;
+            //GET ALL FILE ATTACH ON FORM
+            var files = Request.Form.Files;
+            // SELECT THE FIRST FILE = IMAGE
+            var image = files[0];
+            //CREATE THE FILE PATH
             var filePath = Path.Combine("resources/images", image.FileName);
             if (image.Length > 0)
             {
+                //SAVE IMAGE ON THE PATH 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     image.CopyTo(fileStream);
@@ -191,5 +199,18 @@ namespace PetCareFinalVersion.Controllers
             }
             return Ok("IMAGEM GUARDADA!" );
         }
+
+        [HttpGet("downloadImg")]
+        public HttpResponseMessage GetImg()
+        {
+            byte[] bytes = System.IO.File
+                        .ReadAllBytes(
+                          Path.Combine("resources/images/florest.jpg"));
+            var result_ = new HttpResponseMessage(HttpStatusCode.OK);
+            result_.Content = new ByteArrayContent(bytes);
+            result_.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
+            return result_;
+        }
     }
+
 }

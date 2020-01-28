@@ -41,8 +41,8 @@ namespace PetCareFinalVersion.Controllers
             
               try
               {
-                  _context.Animals.Add(animal);
-                 _context.SaveChanges();
+                  await _context.Animals.AddAsync(animal);
+                 await _context.SaveChangesAsync();
                  response = new {success = true, data = animal};
                   return Ok(response);
               }
@@ -62,7 +62,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animals = _context.Animals.ToList();
+                var animals = await _context.Animals.ToListAsync();
                 if (!animals.Any())
                 {
                     response = new { success = false,message = "Não tem animais registados" }; 
@@ -87,8 +87,8 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                Animal animal = _context.Animals.Find(id);
-                animal.Association = _context.Associations.Find(animal.Association_id);
+                Animal animal = await _context.Animals.FindAsync(id);
+                animal.Association = await _context.Associations.FindAsync(animal.Association_id);
                 response = new {success = true, data = animal};
                 return Ok(response);
             }
@@ -108,9 +108,9 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animal = _context.Animals.Find(id);
+                var animal = await _context.Animals.FindAsync(id);
                 _context.Animals.Remove(animal);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 response = new { success = true, message = $"Animal com o id {id} foi eliminado!" };
                 return Ok(response);
             }
@@ -131,9 +131,8 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 //VER ESTADO DO OBJETO
-                //aAnimal.Status = aAnimal.StartAdopted();
                 _context.Animals.Update(aAnimal);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 response = new { success = true,data = aAnimal };
 
                 return Ok(response);

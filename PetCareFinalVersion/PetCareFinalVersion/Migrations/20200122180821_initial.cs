@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetCareFinalVersion.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -140,6 +140,11 @@ namespace PetCareFinalVersion.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Admin", "Email", "Name", "Password" },
+                values: new object[] { 1, true, "t@t.com", "Artur", "secret123" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animals_Association_id",

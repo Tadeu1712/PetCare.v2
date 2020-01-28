@@ -19,6 +19,16 @@ namespace PetCareFinalVersion.Models
             builder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            builder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Name = "Artur",
+                    Email = "t@t.com",
+                    Password = "secret123",
+                    Admin = true
+                }) ;
         }
     }
 }
