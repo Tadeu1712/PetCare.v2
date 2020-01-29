@@ -117,13 +117,13 @@ namespace PetCareFinalVersion.Models
                   Name = "Napoleão",
                   Type = "Gato",
                   Breed = "Rafeiro",
-                  Age = "1",
+                  Age = 1,
                   Weight = 2,
                   Size = "30cm",
-                  Status = "adoption",
+                  Status = "Para adoção",
                   Description = "Mancha no centro da testa",
                   Association_id = 1,
-                  Image = "",   
+                  Image = "/api/animal/img/Napoleão_animal_1.jpg",   
 
                },
                new Animal
@@ -132,13 +132,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Bolinhas",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "2",
+                   Age = 2,
                    Weight = 150,
                    Size = "180 metros",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Cão de pequeno porte",
                    Association_id = 1,
-                   Image = "",
+                   Image = "/api/animal/img/Bolinhas_animal_2.jpg",
 
                },
                new Animal
@@ -147,13 +147,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Bob",
                    Type = "Cão",
                    Breed = "Boxer",
-                   Age = "4",
+                   Age = 4,
                    Weight = 25,
                    Size = "1.20m",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Muita energia",
                    Association_id = 1,
-                   Image = "",
+                   Image = "/api/animal/img/Bob_animal_3.jpg",
 
                },
                new Animal
@@ -162,13 +162,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Belinha",
                    Type = "Gato",
                    Breed = "Ragdoll",
-                   Age = "3",
+                   Age = 3,
                    Weight = 2,
                    Size = "25 cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Pelo longo, com orellahs pretas",
                    Association_id = 1,
-                   Image = "",
+                   Image = "/api/animal/img/Belinha_animal_4.jpg",
 
                },
                new Animal
@@ -177,13 +177,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Duke",
                    Type = "Cão",
                    Breed = "Pastor Alemão",
-                   Age = "3",
+                   Age = 3,
                    Weight = 18,
                    Size = "50cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Dá-se bem com crianças",
                    Association_id = 2,
-                   Image = "",
+                   Image = "/api/animal/img/Duke_animal_5.jpg",
                },
                new Animal
                {
@@ -191,13 +191,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Grey",
                     Type = "Cão",
                     Breed = "Shar-pei",
-                    Age = "4",
+                    Age = 4,
                     Weight = 27,
                     Size = "50cm",
-                    Status = "adoption",
+                    Status = "Para adoção",
                     Description = "Gosta de comer comida humida",
                     Association_id = 2,
-                    Image = "",
+                    Image = "/api/animal/img/Grey_animal_6.jpg",
                },
                new Animal
                 {
@@ -205,13 +205,13 @@ namespace PetCareFinalVersion.Models
                       Name = "Leão",
                       Type = "Cão",
                       Breed = "Pastor Alemão",
-                      Age = "3",
-                      Weight = 30,
-                      Size = "65CM",
-                      Status = "adoption",
+                      Age = 0,
+                      Weight = 2,
+                      Size = "15cm",
+                      Status = "Para adoção",
                       Description = "Não gosta de gatos",
                       Association_id = 2,
-                      Image = "",
+                      Image = "/api/animal/img/Leão_animal_7.jpg",
                 },
                new Animal
                 {
@@ -219,13 +219,13 @@ namespace PetCareFinalVersion.Models
                       Name = "Faisca",
                       Type = "Gato",
                       Breed = "Rafeiro",
-                      Age = "0.7",
+                      Age = 0,
                       Weight = 1,
                       Size = "15cm",
-                      Status = "adoption",
+                      Status = "Para adoção",
                       Description = "Perfeito para apartamentos",
                       Association_id = 2,
-                      Image = "",
+                      Image = "/api/animal/img/Faisca_animal_8.jpg",
                 },
                new Animal
                {
@@ -233,13 +233,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Toby",
                    Type = "Gato",
                    Breed = "Rafeiro",
-                   Age = "2",
+                   Age = 2,
                    Weight = 2,
                    Size = "10cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Perfeito para apartamentos",
                    Association_id = 3,
-                   Image = "",
+                   Image = "/api/animal/img/Toby_animal_9.jpg",
                },
                new Animal
                {
@@ -247,13 +247,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Pipsy",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "3",
+                   Age = 3,
                    Weight = 10,
                    Size = "20cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Perfeito para apartamentos",
                    Association_id = 3,
-                   Image = "",
+                   Image = "/api/animal/img/Pipsy_animal_10.jpg",
                },
                new Animal
                {
@@ -261,13 +261,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Quirk",
                    Type = "Gato",
                    Breed = "Sphynx",
-                   Age = "2",
+                   Age = 2,
                    Weight = 2,
                    Size = "10cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Não têm pelo",
                    Association_id = 3,
-                   Image = "",
+                   Image = "/api/animal/img/Quirk_animal_11.jpg",
                },
                new Animal
                {
@@ -275,13 +275,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Odie",
                    Type = "Cão",
                    Breed = "Doberman",
-                   Age = "2",
+                   Age = 2,
                    Weight = 40,
                    Size = "72cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Precisa de muito espaço",
                    Association_id = 3,
-                   Image = "",
+                   Image = "/api/animal/img/Odie_animal_12.jpg",
                },
                new Animal
                {
@@ -289,13 +289,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Barkley",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "4",
+                   Age = 4,
                    Weight = 20,
                    Size = "50cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Gosta de crianças",
                    Association_id = 4,
-                   Image = "",
+                   Image = "/api/animal/img/Barkley_animal_13.jpg",
                },
                new Animal
                {
@@ -303,13 +303,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Maverick",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "3",
+                   Age = 3,
                    Weight = 10,
                    Size = "15cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Não gosta de gato",
                    Association_id = 4,
-                   Image = "",
+                   Image = "/api/animal/img/Maverick_animal_14.jpg",
                },
                new Animal
                {
@@ -317,13 +317,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Kobe",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "6",
+                   Age = 6,
                    Weight = 30,
                    Size = "40cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Precisa de muito espaço",
                    Association_id = 4,
-                   Image = "",
+                   Image = "/api/animal/img/Kobe_animal_15.jpg",
                },
                new Animal
                {
@@ -331,13 +331,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Dorito",
                    Type = "Gato",
                    Breed = "Rafeiro",
-                   Age = "0.6",
+                   Age = 0,
                    Weight = 2,
                    Size = "20cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Gosta de Crianças",
                    Association_id = 4,
-                   Image = "",
+                   Image = "/api/animal/img/Dorito_animal_16.jpg",
                },
                new Animal
                {
@@ -345,13 +345,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Rage",
                    Type = "Gato",
                    Breed = "Maine Coon",
-                   Age = "2",
+                   Age = 2,
                    Weight = 5,
                    Size = "70cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Precisa de muito espaço",
                    Association_id = 5,
-                   Image = "",
+                   Image = "/api/animal/img/Rage_animal_17.jpg",
                },
                new Animal
                {
@@ -359,13 +359,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Tally",
                    Type = "Gato",
                    Breed = "Rafeiro",
-                   Age = "1",
+                   Age = 1,
                    Weight = 2,
                    Size = "20cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Não gosta de Crianças",
                    Association_id = 5,
-                   Image = "",
+                   Image = "/api/animal/img/Tally_animal_18.jpg",
                },
                new Animal
                {
@@ -373,13 +373,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Connor",
                    Type = "Cão",
                    Breed = "Labrador",
-                   Age = "4",
+                   Age = 4,
                    Weight = 30,
                    Size = "50cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Adora água",
                    Association_id = 5,
-                   Image = "",
+                   Image = "/api/animal/img/Connor_animal_19.jpg",
                },
                new Animal
                {
@@ -387,13 +387,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Gaia",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "0.3",
+                   Age = 0,
                    Weight = 1,
                    Size = "10cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "bebe",
                    Association_id = 5,
-                   Image = "",
+                   Image = "/api/animal/img/Gaia_animal_20.jpg",
                },
                new Animal
                {
@@ -401,13 +401,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Palmer",
                    Type = "Gato",
                    Breed = "Maine Coon",
-                   Age = "0.2",
+                   Age = 0,
                    Weight = 1,
                    Size = "5cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Be",
                    Association_id = 5,
-                   Image = "bebe",
+                   Image = "/api/animal/img/Palmer_animal_21.jpg",
                },
                new Animal
                {
@@ -415,13 +415,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Warp",
                    Type = "Gato",
                    Breed = "Rafeiro",
-                   Age = "1",
+                   Age = 1,
                    Weight = 2,
                    Size = "15cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Gosta de Cães",
                    Association_id = 5,
-                   Image = "",
+                   Image = "/api/animal/img/Warp_animal_22.jpg",
                },
                new Animal
                 {
@@ -429,13 +429,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Rave",
                     Type = "Gato",
                     Breed = "Rafeiro",
-                    Age = "0.4",
+                    Age = 0,
                     Weight = 1,
                     Size = "8cm",
-                    Status = "adoption",
+                    Status = "Para adoção",
                     Description = "Bom para ter num apartamento",
                     Association_id = 1,
-                    Image = "",
+                    Image = "/api/animal/img/Rave_animal_23.jpg",
                 },
                new Animal
                {
@@ -443,13 +443,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Linus",
                     Type = "Cão",
                     Breed = "Rafeiro",
-                    Age = "2",
+                    Age = 2,
                     Weight = 5,
                     Size = "30cm",
-                    Status = "adoption",
+                    Status = "Para adoção",
                     Description = "Muito energetico",
                     Association_id = 1,
-                    Image = "",
+                    Image = "/api/animal/img/Linus_animal_24.jpg",
                },
                new Animal
                {
@@ -457,13 +457,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Newton",
                    Type = "Gato",
                    Breed = "Rafeiro",
-                   Age = "0.9",
+                   Age = 0,
                    Weight = 2,
                    Size = "15cm",
-                   Status = "adoption",
+                   Status = "Para adoção",
                    Description = "Gosta de Cães",
                    Association_id = 1,
-                   Image = "",
+                   Image = "/api/animal/img/Newton_animal_25.jpg",
                },
                new Animal
                {
@@ -471,13 +471,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Lenny",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "1",
+                   Age = 1,
                    Weight = 10,
                    Size = "10cm",
-                   Status = "lost",
+                   Status = "Para adoção",
                    Description = "Desaparecido",
                    Association_id = 1,
-                   Image = "",
+                   Image = "/api/animal/img/Lenny_animal_26.jpg",
                },
                new Animal
                {
@@ -485,13 +485,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Lenny",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "2",
+                   Age = 2,
                    Weight = 10,
                    Size = "26cm",
-                   Status = "lost",
+                   Status = "Para adoção",
                    Description = "Desaparecido",
                    Association_id = 1,
-                   Image = "",
+                   Image = "/api/animal/img/Lenny_animal_27.jpg",
                },
                new Animal
                {
@@ -499,13 +499,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Shakira",
                     Type = "Gato",
                     Breed = "Rafeiro",
-                    Age = "4",
+                    Age = 4,
                     Weight = 4,
                     Size = "20cm",
-                    Status = "lost",
+                    Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 1,
-                    Image = "",
+                    Image = "/api/animal/img/Shakira_animal_28.jpg",
                },
                new Animal
                {
@@ -513,13 +513,13 @@ namespace PetCareFinalVersion.Models
                    Name = "Bagel",
                    Type = "Cão",
                    Breed = "Rafeiro",
-                   Age = "2",
+                   Age = 2,
                    Weight = 5,
                    Size = "25cm",
-                   Status = "lost",
+                   Status = "Para adoção",
                    Description = "Desaparecido",
                    Association_id = 2,
-                   Image = "",
+                   Image = "/api/animal/img/Bagel_animal_29.jpg",
                },
                new Animal
                {
@@ -527,13 +527,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Bingo",
                     Type = "Gato",
                     Breed = "Rafeiro",
-                    Age = "1",
+                    Age = 1,
                     Weight = 3,
                     Size = "20cm",
-                    Status = "lost",
+                    Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 2,
-                    Image = "",
+                    Image = "/api/animal/img/Bingo_animal_30.jpg",
                },
                 new Animal
                 {
@@ -541,13 +541,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Basil",
                     Type = "Gato",
                     Breed = "Rafeiro",
-                    Age = "2",
+                    Age = 2,
                     Weight = 3,
                     Size = "18cm",
-                    Status = "lost",
+                    Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 2,
-                    Image = "",
+                    Image = "/api/animal/img/Basil_animal_31.jpg",
                 },
                 new Animal
                 {
@@ -555,13 +555,13 @@ namespace PetCareFinalVersion.Models
                     Name = "Raisin",
                     Type = "Cão",
                     Breed = "Rafeiro",
-                    Age = "3",
+                    Age = 3,
                     Weight = 9,
                     Size = "20cm",
-                    Status = "lost",
+                    Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 3,
-                    Image = "",
+                    Image = "/api/animal/img/Raisin_animal_32.jpg",
                 }
            );
 
@@ -648,20 +648,161 @@ namespace PetCareFinalVersion.Models
                      Image = ""
                 }
            );
-
+            //Eventos
             builder.Entity<Event>().HasData(
                 new Event
                 {
                     Id = 1,
                     Association_id = 1,
-                    Title = "",
-                    Description = "",
-                    Location = "",
+                    Title = "Campanha de Vacinação",
+                    Description = "Promoção no preço das vacinas",
+                    Location = "No nosso recinto",
                     DateInit =  DateTime.Now ,
                     DateEnd = DateTime.Now,
                     Type = "",
-                    Price = 2,
-                    Image = "wasd"
+                    Price = 10,
+                    Image = ""
+                },
+                new Event
+                {
+                    Id = 2,
+                    Association_id = 1,
+                    Title = "Concentração Canina",
+                    Description = "Concentração Canina",
+                    Location = "Funchal",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 30,
+                    Image = ""
+                },
+                new Event
+                {
+                    Id = 3,
+                    Association_id = 2,
+                    Title = "Campanha de adoção",
+                    Description = "Promoção no preço das adoções",
+                    Location = "Funchal",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 30,
+                    Image = ""
+                },
+                new Event
+                {
+                    Id = 4,
+                    Association_id = 2,
+                    Title = "Campanha de Vacinação",
+                    Description = "Promoção no preço das vacinas",
+                    Location = "Santa cruz",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 25,
+                    Image = ""
+                },
+                new Event
+                 {
+                     Id = 5,
+                     Association_id = 3,
+                     Title = "Campanha de adoção",
+                     Description = "Promoção no preço das adoções",
+                     Location = "Machico",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 6,
+                     Association_id = 3,
+                     Title = "Concurso Canino",
+                     Description = "Mostre o potencial do seu melhor amigo",
+                     Location = "Funchal",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 10,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 7,
+                     Association_id = 4,
+                     Title = "Campanha de Vacinação",
+                     Description = "Promoção no preço das vacinas",
+                     Location = "Santana",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 8,
+                     Association_id = 4,
+                     Title = "Campanha de adoção",
+                     Description = "Promoção no preço das adoções",
+                     Location = "Ribeira Brava",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 9,
+                     Association_id = 5,
+                     Title = "Campanha de Vacinação",
+                     Description = "Promoção no preço das vacinas",
+                     Location = "Machico",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                  {
+                      Id = 10,
+                      Association_id = 5,
+                      Title = "Campanha de adoção",
+                      Description = "Promoção no preço das adoções",
+                      Location = "Funchal",
+                      DateInit = DateTime.Now,
+                      DateEnd = DateTime.Now,
+                      Type = "",
+                      Price = 25,
+                      Image = ""
+                  }
+                );
+
+            builder.Entity<LostAnimalPost>().HasData(
+                new LostAnimalPost
+                {
+                    Id = 1,
+                    Title = "Minha cadelinha desapareceu",
+                    Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
+                    Image = "",
+                },
+                new LostAnimalPost
+                {
+                    Id = 2,
+                    Title = "Meu gato encontra-se desaparecido",
+                    Description = "Ajude-me a encontar o meu gato numero:925789365",
+                    Image = "",
+                },
+                new LostAnimalPost
+                {
+                     Id = 3,
+                     Title = "Se alguem ver este cão que me conacte",
+                     Description = "numero:925789365",
+                     Image = "",
                 }
                 );
         }
