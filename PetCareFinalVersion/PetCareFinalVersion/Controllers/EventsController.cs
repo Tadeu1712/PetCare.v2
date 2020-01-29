@@ -79,6 +79,27 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> CreateEvent([FromBody]Event aEvent)
         {
 
+<<<<<<< HEAD
+            //object response;
+
+            //var cEvent = (Event)event_factory.CreatePostFromPostFactory(aEvent);
+            //try
+            //{
+            //    cEvent.Association_id = aEvent.Association_id;
+            //    await _context.Events.AddAsync(cEvent);
+            //    await _context.SaveChangesAsync();
+
+            //    response = new { sucess = true, data = cEvent };
+            //    return Ok(response);
+            //}
+
+            //catch
+            //{
+            //    response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
+            //    return BadRequest(response);
+            //}
+            return Ok();
+=======
             object response;
             var currentUser = HttpContext.User;
 
@@ -104,6 +125,7 @@ namespace PetCareFinalVersion.Controllers
                 response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
                 return BadRequest(response);
             }
+>>>>>>> master
         }
 
         [Produces("application/json")]

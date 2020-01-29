@@ -18,7 +18,6 @@ using System.Net.Http;
 using System.Net;
 using Microsoft.Extensions.FileProviders;
 using System.Net.Mime;
-using Microsoft.AspNetCore.Authorization;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -39,7 +38,6 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("all")]
-        [AllowAnonymous]
         public async Task<IActionResult> getAllPosts()
         {
             object response;
@@ -52,7 +50,7 @@ namespace PetCareFinalVersion.Controllers
                     return NotFound(response);
                 }
 
-                response = new {success = true, data = postsList };
+                response = new { success = true, data = postsList };
                 return Ok(response);
             }
             catch
@@ -64,7 +62,6 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public async Task<IActionResult> getPost(int id)
         {
             object response;
@@ -84,18 +81,42 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [Consumes("application/json")]
         [HttpPost("create")]
-        [Authorize]
-        public async Task<IActionResult> CreatePost([FromBody]Post aPost)
+        public async Task<IActionResult> CreatePost([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
         {
-
-            object response;
-
-            var post = (Post)post_factory.CreatePostFromPostFactory(aPost);
+            string img_name;
+            var files = Request.Form.Files;
             try
             {
-                post.Association_id = aPost.Association_id;
+                // SELECT THE FIRST FILE = IMAGE
+                var image = files[0];
+                //CREATE THE FILE PATH
+                var filePath = Path.Combine("resources/images/post", image.FileName);
+                img_name = image.FileName;
+                if (image.Length > 0)
+                {
+                    //SAVE IMAGE ON THE PATH 
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        image.CopyTo(fileStream);
+                    }
+                }
+            }
+            catch
+            {
+                img_name = "Default.png";
+            }
+
+            var assoc = Association_id;
+            var title = Title;
+            string desc = Description;
+            
+            object response;
+            var post = (Post)post_factory.CreatePostFromPostFactory(Title, Description);
+            try
+            {
+                post.Association_id = Association_id;
+                post.Image = img_name;
                 await _context.Posts.AddAsync(post);
                 await _context.SaveChangesAsync();
 
@@ -105,45 +126,15 @@ namespace PetCareFinalVersion.Controllers
 
             catch
             {
-                response = new { sucess = false , message = "Não foi possivel realizar a sua ação"};
+                response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
                 return BadRequest(response);
             }
         }
 
-        //PASSAR PARA EVENT CONTROLLER
-        //[Produces("application/json")]
-        //[Consumes("application/json")]
-        //[HttpPost("create/event")]
-        //public async Task<IActionResult> CreateEvent([FromBody]Event aPost)
-        //{
-        //    object response;
-
-        //    var post = (Event)event_factory.CreatePostFromPostFactory(aPost);
-        //    try
-        //    {
-        //        post.Location = aPost.Location;
-        //        post.Type = aPost.Type;
-        //        post.Price = aPost.Price;
-        //        post.DateEnd = aPost.DateEnd;
-        //        post.DateInit = aPost.DateInit;
-        //        post.Association_id = aPost.Association_id;
-        //        await _context.Events.AddAsync(post);
-        //        await _context.SaveChangesAsync();
-
-        //        response = new { success = true, data = post };
-        //        return Ok(response);
-        //    }
-        //    catch
-        //    {
-        //        response = new { success = false, message = "Não foi possivel realizar o seu pedido" };
-        //        return BadRequest(response);
-        //    }
-        //}
 
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
-        [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
             object response;
@@ -153,7 +144,7 @@ namespace PetCareFinalVersion.Controllers
                 _context.Posts.Remove(post);
                 await _context.SaveChangesAsync();
 
-                response = new { success = true, message= $"O post com o id:{id} foi apagado" };
+                response = new { success = true, message= $"O post com o id:{id} foi apagado com sucesso" };
                 return Ok(response);
             }
             catch
@@ -168,7 +159,6 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
-        [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Post aPost)
         {
             object response;
@@ -187,7 +177,7 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        
+        // ROUTE APENAS FAZER UPLOAD DE UMA IMAGEM!
         [HttpPost("uploadImg")]
         public async Task<IActionResult> UploadImg()
         {
@@ -196,7 +186,7 @@ namespace PetCareFinalVersion.Controllers
             // SELECT THE FIRST FILE = IMAGE
             var image = files[0];
             //CREATE THE FILE PATH
-            var filePath = Path.Combine("resources/images", image.FileName);
+            var filePath = Path.Combine("resources/images/post", image.FileName);
             if (image.Length > 0)
             {
                 //SAVE IMAGE ON THE PATH 
@@ -208,15 +198,13 @@ namespace PetCareFinalVersion.Controllers
             return Ok("IMAGEM GUARDADA!" );
         }
 
-        private readonly IFileProvider _fileProvider;
-       
-
-        [HttpGet("downloadImg/{name}")]
-        public async Task<IActionResult> GetImgAsync(string name)
+        // ROUTE GET POST IMAGES 
+        [HttpGet("img/{imgName}")]
+        public async Task<IActionResult> GetImgAsync(string imgName)
         {
             var path = Path.Combine(
                      Directory.GetCurrentDirectory(),
-                     "Resources/images", ""+name+".jpg");
+                     "Resources/images/post", imgName);
             var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
             {

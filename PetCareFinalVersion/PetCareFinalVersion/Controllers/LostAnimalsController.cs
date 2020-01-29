@@ -60,23 +60,8 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody]LostAnimalPost aLostAnimalPost)
         {
-            object response;
-            var lostAnimalPost = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aLostAnimalPost);
-            try
-            {
-                lostAnimalPost.Contact = aLostAnimalPost.Contact;
-                await _context.LostAnimalPosts.AddAsync(lostAnimalPost);
-                await _context.SaveChangesAsync();
 
-                 response = new { success = true, data = lostAnimalPost };
-                return Ok(response);
-            }
-
-            catch
-            {
-                response = new { success = false };
-                return BadRequest(response);
-            }
+            return Ok();
         }
 
 
