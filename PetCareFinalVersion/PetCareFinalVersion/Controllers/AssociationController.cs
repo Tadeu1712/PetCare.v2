@@ -28,34 +28,33 @@ namespace PetCareFinalVersion.Controllers
         //DEVOLVER TODAS AS ASSOCIAÇÔES
         [Produces("application/json")]
         [HttpGet("all")]
-      //  [Authorize]
-      public async Task<IActionResult> AllAssociations()
-      {
-          object response;
-            try
-            {
-                var associationsList = await _context.Associations.ToListAsync();
-                if (!associationsList.Any())
+        [AllowAnonymous]
+        public async Task<IActionResult> AllAssociations()
+          {
+              object response;
+                try
                 {
-                    response = new { success = false, message = "Não tem associações registados" };
-                    return NotFound(response);
+                    var associationsList = await _context.Associations.ToListAsync();
+                    if (!associationsList.Any())
+                    {
+                        response = new { success = false, message = "Não tem associações registados" };
+                        return NotFound(response);
 
+                    }
+
+                    response = new {success = true, data = associationsList};
+                    return Ok(response);
                 }
-
-                response = new {success = true, data = associationsList};
-                return Ok(response);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-
-        }
+                catch
+                {
+                    return BadRequest();
+                }
+          }
 
         //DEVOLVER UMA ASSOCIAÇÂO
         [Produces("application/json")]
         [HttpGet("find/{id}")]
-        //  [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> Association(int id)
         {
             object response;
@@ -83,19 +82,28 @@ namespace PetCareFinalVersion.Controllers
         //ELIMINAR UMA ASSOCIAÇÂO
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")]
-        //  [Authorize]
+        [HttpDelete("delete/{id}")] 
+        [Authorize]
         public async Task<IActionResult> DeleteAssociation(int id)
         {
+
+            var currentUser = HttpContext.User;
             object response;
             try
             {
-                var association = await _context.Associations.FindAsync(id);
-                _context.Users.Remove(association.User);
-                _context.Associations.Remove(association);
-                await _context.SaveChangesAsync();
-                response = new {success = true, message = $"Associação com o id {id} foi eliminada "};
-                return Ok(response);
+                if (currentUser.HasClaim(c => c.Type == "id") && bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value))
+                {
+
+                    var association = await _context.Associations.FindAsync(id);
+                    _context.Users.Remove(association.User);
+                    _context.Associations.Remove(association);
+                    await _context.SaveChangesAsync();
+                    response = new {success = true, message = $"Associação com o id {id} foi eliminada "};
+                    return Ok(response);
+                }
+               
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
@@ -108,16 +116,26 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
-        //  [Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Association aAssociation)
         {
+
+            var currentUser = HttpContext.User;
             object response;
             try
             {
-                _context.Associations.Update(aAssociation);
-                await _context.SaveChangesAsync();
-                response = new {success = true, data = aAssociation};
-                return Ok(response);
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+
+                    _context.Associations.Update(aAssociation);
+                    await _context.SaveChangesAsync();
+                    response = new {success = true, data = aAssociation};
+                    return Ok(response);
+                }
+                
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
+                
             }
             catch
             {

@@ -9,6 +9,7 @@ using PetCareFinalVersion.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 
@@ -28,6 +29,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("all")]
+        [AllowAnonymous]
         public async Task<IActionResult> getAllLostAnimals()
         {
             object response;
@@ -55,25 +57,11 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody]LostAnimalPost aLostAnimalPost)
         {
-            object response;
-            var lostAnimalPost = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aLostAnimalPost);
-            try
-            {
-                lostAnimalPost.Contact = aLostAnimalPost.Contact;
-                await _context.LostAnimalPosts.AddAsync(lostAnimalPost);
-                await _context.SaveChangesAsync();
 
-                 response = new { success = true, data = lostAnimalPost };
-                return Ok(response);
-            }
-
-            catch
-            {
-                response = new { success = false };
-                return BadRequest(response);
-            }
+            return Ok();
         }
 
 

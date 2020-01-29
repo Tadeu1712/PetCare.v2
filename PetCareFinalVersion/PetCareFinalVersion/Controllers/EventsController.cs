@@ -9,6 +9,7 @@ using PetCareFinalVersion.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
 
 namespace PetCareFinalVersion.Controllers
@@ -27,6 +28,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("all")]
+        [AllowAnonymous]
         public async Task<IActionResult> getAllEvents()
         {
             object response;
@@ -51,6 +53,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> getEvents(int id)
         {
             object response;
@@ -72,20 +75,49 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> CreateEvent([FromBody]Event aEvent)
         {
 
+<<<<<<< HEAD
+            //object response;
+
+            //var cEvent = (Event)event_factory.CreatePostFromPostFactory(aEvent);
+            //try
+            //{
+            //    cEvent.Association_id = aEvent.Association_id;
+            //    await _context.Events.AddAsync(cEvent);
+            //    await _context.SaveChangesAsync();
+
+            //    response = new { sucess = true, data = cEvent };
+            //    return Ok(response);
+            //}
+
+            //catch
+            //{
+            //    response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
+            //    return BadRequest(response);
+            //}
+            return Ok();
+=======
             object response;
+            var currentUser = HttpContext.User;
 
             var cEvent = (Event)event_factory.CreatePostFromPostFactory(aEvent);
             try
             {
-                cEvent.Association_id = aEvent.Association_id;
-                await _context.Events.AddAsync(cEvent);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    cEvent.Association_id = aEvent.Association_id;
+                    await _context.Events.AddAsync(cEvent);
+                    await _context.SaveChangesAsync();
 
-                response = new { sucess = true, data = cEvent };
-                return Ok(response);
+                    response = new {sucess = true, data = cEvent};
+                    return Ok(response);
+                }
+                
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
 
             catch
@@ -93,22 +125,32 @@ namespace PetCareFinalVersion.Controllers
                 response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
                 return BadRequest(response);
             }
+>>>>>>> master
         }
 
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             try
             {
-                var dEvent = await _context.Events.FindAsync(id);
-                _context.Events.Remove(dEvent);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    var dEvent = await _context.Events.FindAsync(id);
+                    _context.Events.Remove(dEvent);
+                    await _context.SaveChangesAsync();
 
-                response = new { success = true, message = $"O evento com o id:{id} foi apagado" };
-                return Ok(response);
+                    response = new {success = true, message = $"O evento com o id:{id} foi apagado"};
+                    return Ok(response);
+                }
+               
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
@@ -122,16 +164,25 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
+        [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Event aEvent)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             try
             {
-                _context.Events.Update(aEvent);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    _context.Events.Update(aEvent);
+                    await _context.SaveChangesAsync();
 
-                response = new { success = true, data = aEvent };
-                return Ok(response);
+                    response = new {success = true, data = aEvent};
+                    return Ok(response);
+                }
+                
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
