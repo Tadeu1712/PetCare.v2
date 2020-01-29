@@ -1,22 +1,12 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PetCareFinalVersion.Models;
-using System.Text.Json;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using PetCareFinalVersion.Data;
-using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using BCrypt;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using PetCareFinalVersion.Patterns.FactoryAssoc;
-using System.Text.Json.Serialization;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -102,23 +92,29 @@ namespace PetCareFinalVersion.Controllers
         //REGISTO
         [Produces("application/json")]
         [Consumes("application/json")]
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
 
             try
             {
-              
-              await _context.Associations.AddAsync(newUser);
-               await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id") && bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value))
+                {
+                    await _context.Associations.AddAsync(newUser);
+                    await _context.SaveChangesAsync();
 
-                newUser.User.Password = null;
-                response = new {success = true, data = newUser};
-                return Ok(response);
-               
+                    newUser.User.Password = null;
+                    response = new {success = true, data = newUser};
+                    return Ok(response);
+                }
+                
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {

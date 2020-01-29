@@ -9,12 +9,13 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
 {
     public abstract class AbstractPostsFactory
     {
-        public IPost CreatePostFromPostFactory(IPost aPost)
+        public IPost CreatePostFromPostFactory(string Title, string Description)
         {
-            IPost post = CreatePost(aPost);
+            IPost post = CreatePost(Title, Description);
             return post;
         }
-        public abstract IPost CreatePost(IPost aPost);
+
+        public abstract IPost CreatePost(string Title, string Description);
 
     }
 }
