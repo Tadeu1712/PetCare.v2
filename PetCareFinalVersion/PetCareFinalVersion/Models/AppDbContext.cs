@@ -21,49 +21,49 @@ namespace PetCareFinalVersion.Models
                 .IsUnique();
 
 
-           // //User
-           // builder.Entity<User>().HasData(
-           //     new User
-           //     {
-           //         Id = 1,
-           //         Name = "Admin",
-           //         Email = "Admin@admin.com",
-           //         Password = "secret123",
-           //         Admin = true                 
-           //     },
-           //     new User
-           //     {
-           //         Id = 2,
-           //         Name = "Spad",
-           //         Email = "spadfnc@gmail.com",
-           //         Password = "secret123",
-           //         Admin = false
-           //     },
-           //     new User
-           //      {
-           //          Id = 3,
-           //          Name = "PATA",
-           //          Email = "pata@pata.pt",
-           //          Password = "secret123",
-           //          Admin = false
-           //      },
-           //     new User
-           //       {
-           //           Id = 4,
-           //           Name = "Canil Municipal do Funchal",
-           //           Email = "CMF@cmf.com",
-           //           Password = "secret123",
-           //           Admin = false
-           //       },
-           //     new User
-           //        {
-           //           Id = 5,
-           //           Name = "Associação Madeira Animal Welfare",
-           //           Email = "amaw@madeiraanimalwelfare.org",
-           //           Password = "secret123",
-           //           Admin = false
-           //        }
-           // );
+            //User
+            builder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    Email = "Admin@admin.com",
+                    Password = "secret123",
+                    Admin = true                 
+                },
+                new User
+                {
+                    Id = 2,
+                    Name = "Spad",
+                    Email = "spadfnc@gmail.com",
+                    Password = "secret123",
+                    Admin = false
+                },
+                new User
+                 {
+                     Id = 3,
+                     Name = "PATA",
+                     Email = "pata@pata.pt",
+                     Password = "secret123",
+                     Admin = false
+                 },
+                new User
+                  {
+                      Id = 4,
+                      Name = "Canil Municipal do Funchal",
+                      Email = "CMF@cmf.com",
+                      Password = "secret123",
+                      Admin = false
+                  },
+                new User
+                   {
+                      Id = 5,
+                      Name = "Associação Madeira Animal Welfare",
+                      Email = "amaw@madeiraanimalwelfare.org",
+                      Password = "secret123",
+                      Admin = false
+                   }
+            );
 
             //Associação
             builder.Entity<Association>().HasData(
@@ -260,7 +260,7 @@ namespace PetCareFinalVersion.Models
                    Id = 11,
                    Name = "Quirk",
                    Type = "Gato",
-                   Breed = "Sphynx",
+                   Breed = "Rafeiro",
                    Age = new DateTime(2018, 5, 11),
                    Weight = 2,
                    Size = "10cm",
@@ -565,249 +565,249 @@ namespace PetCareFinalVersion.Models
                 }
            );
 
-           // //Posts
-           // builder.Entity<Post>().HasData(
-           //     new Post
-           //     {
-           //         Id = 1,
-           //         Association_id = 1,
-           //         Title = "SPAD - Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
-           //         Description = "Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
-           //         Image = ""
-           //     },
-           //     new Post
-           //     {
-           //         Id = 2,
-           //         Association_id = 1,
-           //         Title = "SPAD - Ajude a nossa associação doando comida de animal",
-           //         Description = "Ajude a nossa associação doando comida de animal",
-           //         Image = ""
-           //     },
-           //     new Post
-           //     {
-           //         Id = 3,
-           //         Association_id = 1,
-           //         Title = "SPAD - Estamos a ficar sem espaços disponíveis",
-           //         Description = "Estamos a ficar sem espaços disponíveis",
-           //         Image = ""
-           //     },
-           //     new Post
-           //     {
-           //         Id = 4,
-           //         Association_id = 2,
-           //         Title = "PATA - Numero de animais aumenta no ultimo ano",
-           //         Description = "Numero de animais aumenta no ultimo ano",
-           //         Image = ""
-           //     },
-           //     new Post
-           //     {
-           //          Id = 5,
-           //          Association_id = 2,
-           //          Title = "PATA - Precisamos de doações de ração",
-           //          Description = "Precisamos de doações de ração",
-           //          Image = ""
-           //     },
-           //     new Post
-           //     {
-           //         Id = 6,
-           //         Association_id = 3,
-           //         Title = "Ano record a nivel de adoção",
-           //         Description = "Ano record a nivel de adoção",
-           //         Image = ""
-           //     },
-           //     new Post
-           //     {
-           //         Id = 7,
-           //         Association_id = 3,
-           //         Title = "Um obrigado a todos os que ajudaram",
-           //         Description = "Um obrigado a todos os que ajudaram",
-           //         Image = ""
-           //     },
-           //     new Post
-           //     {
-           //          Id = 8,
-           //          Association_id = 4,
-           //          Title = "",
-           //          Description = "Precismos de doações de ração",
-           //          Image = ""
-           //     },
-           //     new Post
-           //     {
-           //          Id = 9,
-           //          Association_id = 4,
-           //          Title = "Estamos a ficar sem espaços disponíveis",
-           //          Description = "Estamos a ficar sem espaços disponíveis",
-           //          Image = ""
-           //     },
-           //     new Post
-           //     {
-           //          Id = 10,
-           //          Association_id = 4,
-           //          Title = "Estamos a ficar sem espaços disponíveis",
-           //          Description = "Estamos a ficar sem espaços disponíveis",
-           //          Image = ""
-           //     }
-           //);
-           // //Eventos
-           // builder.Entity<Event>().HasData(
-           //     new Event
-           //     {
-           //         Id = 1,
-           //         Association_id = 1,
-           //         Title = "Campanha de Vacinação",
-           //         Description = "Promoção no preço das vacinas",
-           //         Location = "No nosso recinto",
-           //         DateInit =  DateTime.Now ,
-           //         DateEnd = DateTime.Now,
-           //         Type = "",
-           //         Price = 10,
-           //         Image = ""
-           //     },
-           //     new Event
-           //     {
-           //         Id = 2,
-           //         Association_id = 1,
-           //         Title = "Concentração Canina",
-           //         Description = "Concentração Canina",
-           //         Location = "Funchal",
-           //         DateInit =  DateTime.Now ,
-           //         DateEnd = DateTime.Now,
-           //         Type = "",
-           //         Price = 30,
-           //         Image = ""
-           //     },
-           //     new Event
-           //     {
-           //         Id = 3,
-           //         Association_id = 2,
-           //         Title = "Campanha de adoção",
-           //         Description = "Promoção no preço das adoções",
-           //         Location = "Funchal",
-           //         DateInit =  DateTime.Now ,
-           //         DateEnd = DateTime.Now,
-           //         Type = "",
-           //         Price = 30,
-           //         Image = ""
-           //     },
-           //     new Event
-           //     {
-           //         Id = 4,
-           //         Association_id = 2,
-           //         Title = "Campanha de Vacinação",
-           //         Description = "Promoção no preço das vacinas",
-           //         Location = "Santa cruz",
-           //         DateInit =  DateTime.Now ,
-           //         DateEnd = DateTime.Now,
-           //         Type = "",
-           //         Price = 25,
-           //         Image = ""
-           //     },
-           //     new Event
-           //      {
-           //          Id = 5,
-           //          Association_id = 3,
-           //          Title = "Campanha de adoção",
-           //          Description = "Promoção no preço das adoções",
-           //          Location = "Machico",
-           //          DateInit = DateTime.Now,
-           //          DateEnd = DateTime.Now,
-           //          Type = "",
-           //          Price = 25,
-           //          Image = ""
-           //      },
-           //     new Event
-           //      {
-           //          Id = 6,
-           //          Association_id = 3,
-           //          Title = "Concurso Canino",
-           //          Description = "Mostre o potencial do seu melhor amigo",
-           //          Location = "Funchal",
-           //          DateInit = DateTime.Now,
-           //          DateEnd = DateTime.Now,
-           //          Type = "",
-           //          Price = 10,
-           //          Image = ""
-           //      },
-           //     new Event
-           //      {
-           //          Id = 7,
-           //          Association_id = 4,
-           //          Title = "Campanha de Vacinação",
-           //          Description = "Promoção no preço das vacinas",
-           //          Location = "Santana",
-           //          DateInit = DateTime.Now,
-           //          DateEnd = DateTime.Now,
-           //          Type = "",
-           //          Price = 25,
-           //          Image = ""
-           //      },
-           //     new Event
-           //      {
-           //          Id = 8,
-           //          Association_id = 4,
-           //          Title = "Campanha de adoção",
-           //          Description = "Promoção no preço das adoções",
-           //          Location = "Ribeira Brava",
-           //          DateInit = DateTime.Now,
-           //          DateEnd = DateTime.Now,
-           //          Type = "",
-           //          Price = 25,
-           //          Image = ""
-           //      },
-           //     new Event
-           //      {
-           //          Id = 9,
-           //          Association_id = 4,
-           //          Title = "Campanha de Vacinação",
-           //          Description = "Promoção no preço das vacinas",
-           //          Location = "Machico",
-           //          DateInit = DateTime.Now,
-           //          DateEnd = DateTime.Now,
-           //          Type = "",
-           //          Price = 25,
-           //          Image = ""
-           //      },
-           //     new Event
-           //       {
-           //           Id = 10,
-           //           Association_id = 4,
-           //           Title = "Campanha de adoção",
-           //           Description = "Promoção no preço das adoções",
-           //           Location = "Funchal",
-           //           DateInit = DateTime.Now,
-           //           DateEnd = DateTime.Now,
-           //           Type = "",
-           //           Price = 25,
-           //           Image = ""
-           //       }
-           //     );
+            //Posts
+            builder.Entity<Post>().HasData(
+                new Post
+                {
+                    Id = 1,
+                    Association_id = 1,
+                    Title = "SPAD - Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
+                    Description = "Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
+                    Image = ""
+                },
+                new Post
+                {
+                    Id = 2,
+                    Association_id = 1,
+                    Title = "SPAD - Ajude a nossa associação doando comida de animal",
+                    Description = "Ajude a nossa associação doando comida de animal",
+                    Image = ""
+                },
+                new Post
+                {
+                    Id = 3,
+                    Association_id = 1,
+                    Title = "SPAD - Estamos a ficar sem espaços disponíveis",
+                    Description = "Estamos a ficar sem espaços disponíveis",
+                    Image = ""
+                },
+                new Post
+                {
+                    Id = 4,
+                    Association_id = 2,
+                    Title = "PATA - Numero de animais aumenta no ultimo ano",
+                    Description = "Numero de animais aumenta no ultimo ano",
+                    Image = ""
+                },
+                new Post
+                {
+                     Id = 5,
+                     Association_id = 2,
+                     Title = "PATA - Precisamos de doações de ração",
+                     Description = "Precisamos de doações de ração",
+                     Image = ""
+                },
+                new Post
+                {
+                    Id = 6,
+                    Association_id = 3,
+                    Title = "Ano record a nivel de adoção",
+                    Description = "Ano record a nivel de adoção",
+                    Image = ""
+                },
+                new Post
+                {
+                    Id = 7,
+                    Association_id = 3,
+                    Title = "Um obrigado a todos os que ajudaram",
+                    Description = "Um obrigado a todos os que ajudaram",
+                    Image = ""
+                },
+                new Post
+                {
+                     Id = 8,
+                     Association_id = 4,
+                     Title = "",
+                     Description = "Precismos de doações de ração",
+                     Image = ""
+                },
+                new Post
+                {
+                     Id = 9,
+                     Association_id = 4,
+                     Title = "Estamos a ficar sem espaços disponíveis",
+                     Description = "Estamos a ficar sem espaços disponíveis",
+                     Image = ""
+                },
+                new Post
+                {
+                     Id = 10,
+                     Association_id = 4,
+                     Title = "Estamos a ficar sem espaços disponíveis",
+                     Description = "Estamos a ficar sem espaços disponíveis",
+                     Image = ""
+                }
+           );
+            //Eventos
+            builder.Entity<Event>().HasData(
+                new Event
+                {
+                    Id = 1,
+                    Association_id = 1,
+                    Title = "Campanha de Vacinação",
+                    Description = "Promoção no preço das vacinas",
+                    Location = "No nosso recinto",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 10,
+                    Image = ""
+                },
+                new Event
+                {
+                    Id = 2,
+                    Association_id = 1,
+                    Title = "Concentração Canina",
+                    Description = "Concentração Canina",
+                    Location = "Funchal",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 30,
+                    Image = ""
+                },
+                new Event
+                {
+                    Id = 3,
+                    Association_id = 2,
+                    Title = "Campanha de adoção",
+                    Description = "Promoção no preço das adoções",
+                    Location = "Funchal",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 30,
+                    Image = ""
+                },
+                new Event
+                {
+                    Id = 4,
+                    Association_id = 2,
+                    Title = "Campanha de Vacinação",
+                    Description = "Promoção no preço das vacinas",
+                    Location = "Santa cruz",
+                    DateInit =  DateTime.Now ,
+                    DateEnd = DateTime.Now,
+                    Type = "",
+                    Price = 25,
+                    Image = ""
+                },
+                new Event
+                 {
+                     Id = 5,
+                     Association_id = 3,
+                     Title = "Campanha de adoção",
+                     Description = "Promoção no preço das adoções",
+                     Location = "Machico",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 6,
+                     Association_id = 3,
+                     Title = "Concurso Canino",
+                     Description = "Mostre o potencial do seu melhor amigo",
+                     Location = "Funchal",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 10,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 7,
+                     Association_id = 4,
+                     Title = "Campanha de Vacinação",
+                     Description = "Promoção no preço das vacinas",
+                     Location = "Santana",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 8,
+                     Association_id = 4,
+                     Title = "Campanha de adoção",
+                     Description = "Promoção no preço das adoções",
+                     Location = "Ribeira Brava",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                 {
+                     Id = 9,
+                     Association_id = 4,
+                     Title = "Campanha de Vacinação",
+                     Description = "Promoção no preço das vacinas",
+                     Location = "Machico",
+                     DateInit = DateTime.Now,
+                     DateEnd = DateTime.Now,
+                     Type = "",
+                     Price = 25,
+                     Image = ""
+                 },
+                new Event
+                  {
+                      Id = 10,
+                      Association_id = 4,
+                      Title = "Campanha de adoção",
+                      Description = "Promoção no preço das adoções",
+                      Location = "Funchal",
+                      DateInit = DateTime.Now,
+                      DateEnd = DateTime.Now,
+                      Type = "",
+                      Price = 25,
+                      Image = ""
+                  }
+                );
 
-           // builder.Entity<LostAnimalPost>().HasData(
-           //     new LostAnimalPost
-           //     {
-           //         Id = 1,
-           //         Title = "Minha cadelinha desapareceu",
-           //         Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
-           //         Image = "",
-           //         Contact= "291987123"
-           //     },
-           //     new LostAnimalPost
-           //     {
-           //         Id = 2,
-           //         Title = "Meu gato encontra-se desaparecido",
-           //         Description = "Ajude-me a encontar o meu gato numero:925789365",
-           //         Image = "",
-           //         Contact = "291987123"
-           //     },
-           //     new LostAnimalPost
-           //     {
-           //          Id = 3,
-           //          Title = "Se alguem ver este cão que me contacte",
-           //          Description = "numero:925789365",
-           //          Image = "",
-           //         Contact = "291987123"
-           //     }
-           //     );
+            builder.Entity<LostAnimalPost>().HasData(
+                new LostAnimalPost
+                {
+                    Id = 1,
+                    Title = "Minha cadelinha desapareceu",
+                    Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
+                    Image = "",
+                    Contact= "291987123"
+                },
+                new LostAnimalPost
+                {
+                    Id = 2,
+                    Title = "Meu gato encontra-se desaparecido",
+                    Description = "Ajude-me a encontar o meu gato numero:925789365",
+                    Image = "",
+                    Contact = "291987123"
+                },
+                new LostAnimalPost
+                {
+                     Id = 3,
+                     Title = "Se alguem ver este cão que me contacte",
+                     Description = "numero:925789365",
+                     Image = "",
+                    Contact = "291987123"
+                }
+                );
         }
 
     }
