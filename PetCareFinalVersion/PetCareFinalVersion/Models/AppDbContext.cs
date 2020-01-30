@@ -350,7 +350,7 @@ namespace PetCareFinalVersion.Models
                    Size = "70cm",
                    Status = "Para adoção",
                    Description = "Precisa de muito espaço",
-                   Association_id = 5,
+                   Association_id = 1,
                    Image = "/api/animal/img/Rage_animal_17.jpg",
                },
                new Animal
@@ -364,7 +364,7 @@ namespace PetCareFinalVersion.Models
                    Size = "20cm",
                    Status = "Para adoção",
                    Description = "Não gosta de Crianças",
-                   Association_id = 5,
+                   Association_id = 2,
                    Image = "/api/animal/img/Tally_animal_18.jpg",
                },
                new Animal
@@ -378,7 +378,7 @@ namespace PetCareFinalVersion.Models
                    Size = "50cm",
                    Status = "Para adoção",
                    Description = "Adora água",
-                   Association_id = 5,
+                   Association_id = 3,
                    Image = "/api/animal/img/Connor_animal_19.jpg",
                },
                new Animal
@@ -392,7 +392,7 @@ namespace PetCareFinalVersion.Models
                    Size = "10cm",
                    Status = "Para adoção",
                    Description = "bebe",
-                   Association_id = 5,
+                   Association_id = 4,
                    Image = "/api/animal/img/Gaia_animal_20.jpg",
                },
                new Animal
@@ -406,7 +406,7 @@ namespace PetCareFinalVersion.Models
                    Size = "5cm",
                    Status = "Para adoção",
                    Description = "Be",
-                   Association_id = 5,
+                   Association_id = 1,
                    Image = "/api/animal/img/Palmer_animal_21.jpg",
                },
                new Animal
@@ -420,7 +420,7 @@ namespace PetCareFinalVersion.Models
                    Size = "15cm",
                    Status = "Para adoção",
                    Description = "Gosta de Cães",
-                   Association_id = 5,
+                   Association_id = 2,
                    Image = "/api/animal/img/Warp_animal_22.jpg",
                },
                new Animal
@@ -642,7 +642,7 @@ namespace PetCareFinalVersion.Models
                 new Post
                 {
                      Id = 10,
-                     Association_id = 5,
+                     Association_id = 4,
                      Title = "Estamos a ficar sem espaços disponíveis",
                      Description = "Estamos a ficar sem espaços disponíveis",
                      Image = ""
@@ -757,7 +757,7 @@ namespace PetCareFinalVersion.Models
                 new Event
                  {
                      Id = 9,
-                     Association_id = 5,
+                     Association_id = 4,
                      Title = "Campanha de Vacinação",
                      Description = "Promoção no preço das vacinas",
                      Location = "Machico",
@@ -770,7 +770,7 @@ namespace PetCareFinalVersion.Models
                 new Event
                   {
                       Id = 10,
-                      Association_id = 5,
+                      Association_id = 4,
                       Title = "Campanha de adoção",
                       Description = "Promoção no preço das adoções",
                       Location = "Funchal",
@@ -789,6 +789,7 @@ namespace PetCareFinalVersion.Models
                     Title = "Minha cadelinha desapareceu",
                     Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
                     Image = "",
+                    Contact= "291987123"
                 },
                 new LostAnimalPost
                 {
@@ -796,13 +797,15 @@ namespace PetCareFinalVersion.Models
                     Title = "Meu gato encontra-se desaparecido",
                     Description = "Ajude-me a encontar o meu gato numero:925789365",
                     Image = "",
+                    Contact = "291987123"
                 },
                 new LostAnimalPost
                 {
                      Id = 3,
-                     Title = "Se alguem ver este cão que me conacte",
+                     Title = "Se alguem ver este cão que me contacte",
                      Description = "numero:925789365",
                      Image = "",
+                    Contact = "291987123"
                 }
                 );
         }

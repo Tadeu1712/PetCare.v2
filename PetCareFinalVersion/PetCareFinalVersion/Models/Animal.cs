@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,6 +25,7 @@ namespace PetCareFinalVersion.Models
         public override string Breed { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public override int Age { get; set; }
 
         [Required]
