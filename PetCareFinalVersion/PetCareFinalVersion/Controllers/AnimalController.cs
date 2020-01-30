@@ -185,5 +185,25 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
+        //IGUAL MAS APENAS PARA UMA ASSOCIAÇAo
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [HttpGet("state/{state}/association/{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetStateAnimalsByAssoc(string state, int id)
+        {
+            object response;
+            try
+            {
+                var animalList = _context.Animals.Where(animal => animal.Status == state).Where(animals => animals.Association_id == id).ToList();
+                response = new { success = true, data = animalList };
+                return Ok(response);
+            }
+            catch
+            {
+                response = new { success = false, message = $"Nao tem animais com o estado {state}!" };
+                return NotFound(response);
+            }
+        }
     }
 }
