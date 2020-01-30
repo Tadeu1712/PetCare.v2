@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PetCareFinalVersion.Models;
-using PetCareFinalVersion.Patterns;
 using PetCareFinalVersion.Patterns.StateMachine;
 
 namespace PetCareFinalVersion.Data
 {
-
     public abstract class AbstractAnimal
     {
 
@@ -18,7 +13,7 @@ namespace PetCareFinalVersion.Data
         public abstract string Name { get; set; }
         public abstract string Type { get; set; }
         public abstract string Breed { get; set; }
-        public abstract int Age { get; set; }
+        public abstract DateTime Age { get; set; }
         public abstract float Weight { get; set; }
         public abstract string Status { get; set; }
         public abstract string Size { get; set; }

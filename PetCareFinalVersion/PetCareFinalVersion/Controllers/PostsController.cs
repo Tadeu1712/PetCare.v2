@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net;
 using Microsoft.Extensions.FileProviders;
 using System.Net.Mime;
+using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -85,41 +86,18 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> CreatePost([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
         {
             object response;
-            string img_name;
             var files = Request.Form.Files;
-            try
-            {
-                // SELECT THE FIRST FILE = IMAGE
-                var image = files[0];
-                //CREATE THE FILE PATH
-                var filePath = Path.Combine("resources/images/post", image.FileName);
-                img_name = image.FileName;
-                if (image.Length > 0)
-                {
-                    //SAVE IMAGE ON THE PATH 
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        image.CopyTo(fileStream);
-                    }
-                }
-            }
-            catch
-            {
-                img_name = "Default.png";
-            }
-            
             var post = (Post)post_factory.CreatePostFromPostFactory(Title, Description);
             try
             {
                 post.Association_id = Association_id;
-                post.Image = img_name;
+                post.Image = ImageSave.SaveImage(files, "post");
                 await _context.Posts.AddAsync(post);
                 await _context.SaveChangesAsync();
 
                 response = new { sucess = true, data = post };
                 return Ok(response);
             }
-
             catch
             {
                 response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
