@@ -68,7 +68,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animals = await _context.Animals.ToListAsync();
+                var animals = await _context.Animals.OrderByDescending(b =>b.Id).ToListAsync();
                 if (!animals.Any())
                 {
                     response = new { success = false,message = "Não tem animais registados" }; 
@@ -205,5 +205,32 @@ namespace PetCareFinalVersion.Controllers
                 return NotFound(response);
             }
         }
+
+        //ACABAR ISTO
+
+        [Produces("application/json")]
+        [HttpGet("babeis")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetBabies()
+        {
+            object response;
+            try
+            {
+                var animals = await _context.Animals.OrderByDescending(b => b.Age).ToListAsync();
+                if (!animals.Any())
+                {
+                    response = new { success = false, message = "Não tem animais registados" };
+                    return NotFound(response);
+                }
+                response = new { success = true, data = animals };
+                return Ok(response);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
+
+
 }
