@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
+using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -73,22 +74,28 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [Consumes("application/json")]
         [HttpPost("create")]
-        [Authorize]
-        public async Task<IActionResult> CreateEvent([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
+        public async Task<IActionResult> CreateEvent([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd)
         {
             object response;
             var files = Request.Form.Files;
-            var cEvent = (Event)post_factory.CreatePostFromPostFactory(Title, Description);
+            var cEvent = (Event)event_factory.CreatePostFromPostFactory(aTitle, aDescription);
             try
             {
-                cEvent.Association_id = Association_id;
-                cEvent.Image = ImageSave.SaveImage(files, "post");
+                cEvent.Association_id = aAssociation_id;
+                cEvent.Image = ImageSave.SaveImage(files, "event");
+                cEvent.Location = aLocation;
+                var initDate = DateTime.Parse(aDateInit);
+                var endDate = DateTime.Parse(aDateEnd);
+                cEvent.DateInit = initDate;
+                cEvent.DateEnd = endDate;
+                cEvent.Price = 1;
+                
+                cEvent.Type = "Concentração de Cães";
                 await _context.Events.AddAsync(cEvent);
                 await _context.SaveChangesAsync();
 
-                response = new { sucess = true, data = post };
+                response = new { sucess = true, data = cEvent };
                 return Ok(response);
             }
             catch
