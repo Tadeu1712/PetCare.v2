@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
 using PetCareFinalVersion.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,7 +34,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var eventsList = await _context.Events.ToListAsync();
+                var eventsList = await _context.Events.OrderBy(b => b.DateInit).ToListAsync();
                 if (!eventsList.Any())
                 {
                     response = new { success = true, message = "Não existem posts registados" };
@@ -79,27 +79,6 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> CreateEvent([FromBody]Event aEvent)
         {
 
-<<<<<<< HEAD
-            //object response;
-
-            //var cEvent = (Event)event_factory.CreatePostFromPostFactory(aEvent);
-            //try
-            //{
-            //    cEvent.Association_id = aEvent.Association_id;
-            //    await _context.Events.AddAsync(cEvent);
-            //    await _context.SaveChangesAsync();
-
-            //    response = new { sucess = true, data = cEvent };
-            //    return Ok(response);
-            //}
-
-            //catch
-            //{
-            //    response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
-            //    return BadRequest(response);
-            //}
-            return Ok();
-=======
             object response;
             var currentUser = HttpContext.User;
 
@@ -125,7 +104,6 @@ namespace PetCareFinalVersion.Controllers
                 response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
                 return BadRequest(response);
             }
->>>>>>> master
         }
 
         [Produces("application/json")]
@@ -145,10 +123,10 @@ namespace PetCareFinalVersion.Controllers
                     _context.Events.Remove(dEvent);
                     await _context.SaveChangesAsync();
 
-                    response = new {success = true, message = $"O evento com o id:{id} foi apagado"};
+                    response = new { success = true, message = $"O evento com o id:{id} foi apagado" };
                     return Ok(response);
                 }
-               
+
                 response = new { success = false, message = "Utilizador não se encontra autenticado" };
                 return NotFound(response);
             }
@@ -177,10 +155,10 @@ namespace PetCareFinalVersion.Controllers
                     _context.Events.Update(aEvent);
                     await _context.SaveChangesAsync();
 
-                    response = new {success = true, data = aEvent};
+                    response = new { success = true, data = aEvent };
                     return Ok(response);
                 }
-                
+
                 response = new { success = false, message = "Utilizador não se encontra autenticado" };
                 return NotFound(response);
             }

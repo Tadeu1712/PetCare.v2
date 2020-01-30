@@ -148,7 +148,7 @@ namespace PetCareFinalVersion.Controllers
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                     //VER ESTADO DO OBJETO
-                    //aAnimal.Status = aAnimal.StartAdopted();
+                    aAnimal.Status = aAnimal.StartAdopted();
                     _context.Animals.Update(aAnimal);
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = aAnimal};
@@ -209,7 +209,7 @@ namespace PetCareFinalVersion.Controllers
         //ACABAR ISTO
 
         [Produces("application/json")]
-        [HttpGet("babeis")]
+        [HttpGet("babies")]
         [AllowAnonymous]
         public async Task<IActionResult> GetBabies()
         {

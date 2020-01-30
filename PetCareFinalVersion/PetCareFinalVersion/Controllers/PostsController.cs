@@ -1,28 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetCareFinalVersion.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using Microsoft.AspNetCore.Http;
-using System.Net.Http.Headers;
-using System.Net.Http;
-using System.Net;
-using Microsoft.Extensions.FileProviders;
-using System.Net.Mime;
-<<<<<<< HEAD
+
 using PetCareFinalVersion.Data;
-=======
-using Microsoft.CodeAnalysis.FlowAnalysis;
->>>>>>> master
 
 namespace PetCareFinalVersion.Controllers
 {

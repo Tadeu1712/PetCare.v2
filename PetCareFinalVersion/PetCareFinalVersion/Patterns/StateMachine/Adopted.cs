@@ -9,6 +9,7 @@ namespace PetCareFinalVersion.Patterns.StateMachine
     {
         public override string LostTo()
         {
+            // Observer
             return this._context.TransistionTo(new Lost());
         }
         
