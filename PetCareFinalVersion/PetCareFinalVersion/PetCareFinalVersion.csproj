@@ -27,5 +27,6 @@
     <Folder Include="Resources\images\post\" />
     <Folder Include="Resources\images\lost_animal\" />
     <Folder Include="Resources\images\event\" />
+    <Folder Include="Resources\images\animal\" />
   </ItemGroup>
 </Project>

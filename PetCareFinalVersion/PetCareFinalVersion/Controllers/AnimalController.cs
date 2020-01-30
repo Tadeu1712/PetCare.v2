@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
-
+using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -31,24 +31,26 @@ namespace PetCareFinalVersion.Controllers
 
         // CREATE NEW ANIMAL
         [Produces("application/json")]
-        [Consumes("application/json")]
         [HttpPost("create")]
-        [Authorize]
-        public async Task<IActionResult> Create([FromBody] Animal aAnimal)
+        //[Authorize]
+        public async Task<IActionResult> Create()
         {
+            var files = Request.Form.Files;
+            var data = Request.Form;
             object response;
             var currentUser = HttpContext.User;
-            var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
+            var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(data);
             
               try
               {
-                  if (currentUser.HasClaim(c => c.Type == "id"))
-                  {
+                //if (currentUser.HasClaim(c => c.Type == "id"))
+                //{
+                animal.Image = ImageSave.SaveImage(files, "animal");
                       await _context.Animals.AddAsync(animal);
                       await _context.SaveChangesAsync();
                       response = new {success = true, data = animal};
                       return Ok(response);
-                  }
+                  //}
                   response = new { success = false, message = "Utilizador não se encontra autenticado" };
                   return NotFound(response);
               }

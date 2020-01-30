@@ -75,7 +75,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpPost("create")]
-        public async Task<IActionResult> CreateEvent([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd)
+        public async Task<IActionResult> CreateEvent([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd, [FromForm] decimal aPrice)
         {
             object response;
             var files = Request.Form.Files;
@@ -89,8 +89,7 @@ namespace PetCareFinalVersion.Controllers
                 var endDate = DateTime.Parse(aDateEnd);
                 cEvent.DateInit = initDate;
                 cEvent.DateEnd = endDate;
-                cEvent.Price = 1;
-                
+                cEvent.Price = aPrice;
                 cEvent.Type = "Concentração de Cães";
                 await _context.Events.AddAsync(cEvent);
                 await _context.SaveChangesAsync();
