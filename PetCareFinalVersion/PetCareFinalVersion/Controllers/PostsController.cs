@@ -84,6 +84,7 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreatePost([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
         {
+            object response;
             string img_name;
             var files = Request.Form.Files;
             try
@@ -106,12 +107,7 @@ namespace PetCareFinalVersion.Controllers
             {
                 img_name = "Default.png";
             }
-
-            var assoc = Association_id;
-            var title = Title;
-            string desc = Description;
             
-            object response;
             var post = (Post)post_factory.CreatePostFromPostFactory(Title, Description);
             try
             {
