@@ -55,13 +55,28 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [Consumes("application/json")]
         [HttpPost("create")]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([FromBody]LostAnimalPost aLostAnimalPost)
+        public async Task<IActionResult> Create([FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aContact)
         {
+            object response;
+            var files = Request.Form.Files;
+            var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aTitle, aDescription);
+            try
+            {
+                postLostAnimal.Image = ImageSave.SaveImage(files, "lost_animal");
+                postLostAnimal.Contact = aContact;
+                await _context.LostAnimalPosts.AddAsync(postLostAnimal);
+                await _context.SaveChangesAsync();
 
-            return Ok();
+                response = new { sucess = true, data = postLostAnimal };
+                return Ok(response);
+            }
+            catch
+            {
+                response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
+                return BadRequest(response);
+            }
         }
 
 

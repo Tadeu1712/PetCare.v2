@@ -25,6 +25,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\images\" />
     <Folder Include="Resources\images\post\" />
+    <Folder Include="Resources\images\lost_animal\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\EventsController.cs" />

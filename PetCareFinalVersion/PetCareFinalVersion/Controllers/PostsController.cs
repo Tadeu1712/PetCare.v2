@@ -18,7 +18,7 @@ namespace PetCareFinalVersion.Controllers
         IWebHostEnvironment _environment;
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory post_factory = PostFactory.Instance;
-        private readonly AbstractPostsFactory event_factory = EventFactory.Instance;
+        
 
         public PostController(AppDbContext aContext, IWebHostEnvironment aEnvironment)
         {

@@ -23,8 +23,8 @@ namespace PetCareFinalVersion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int")
+                    b.Property<DateTime>("Age")
+                        .HasColumnType("datetime(6)")
                         .HasMaxLength(50);
 
                     b.Property<int>("Association_id")
@@ -76,7 +76,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 1,
+                            Age = new DateTime(1995, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Mancha no centro da testa",
@@ -86,440 +86,6 @@ namespace PetCareFinalVersion.Migrations
                             Status = "Para adoção",
                             Type = "Gato",
                             Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Age = 2,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Cão de pequeno porte",
-                            Image = "/api/animal/img/Bolinhas_animal_2.jpg",
-                            Name = "Bolinhas",
-                            Size = "180 metros",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 150f
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Age = 4,
-                            Association_id = 1,
-                            Breed = "Boxer",
-                            Description = "Muita energia",
-                            Image = "/api/animal/img/Bob_animal_3.jpg",
-                            Name = "Bob",
-                            Size = "1.20m",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 25f
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Age = 3,
-                            Association_id = 1,
-                            Breed = "Ragdoll",
-                            Description = "Pelo longo, com orellahs pretas",
-                            Image = "/api/animal/img/Belinha_animal_4.jpg",
-                            Name = "Belinha",
-                            Size = "25 cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Age = 3,
-                            Association_id = 2,
-                            Breed = "Pastor Alemão",
-                            Description = "Dá-se bem com crianças",
-                            Image = "/api/animal/img/Duke_animal_5.jpg",
-                            Name = "Duke",
-                            Size = "50cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 18f
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Age = 4,
-                            Association_id = 2,
-                            Breed = "Shar-pei",
-                            Description = "Gosta de comer comida humida",
-                            Image = "/api/animal/img/Grey_animal_6.jpg",
-                            Name = "Grey",
-                            Size = "50cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 27f
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Age = 0,
-                            Association_id = 2,
-                            Breed = "Pastor Alemão",
-                            Description = "Não gosta de gatos",
-                            Image = "/api/animal/img/Leão_animal_7.jpg",
-                            Name = "Leão",
-                            Size = "15cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Age = 0,
-                            Association_id = 2,
-                            Breed = "Rafeiro",
-                            Description = "Perfeito para apartamentos",
-                            Image = "/api/animal/img/Faisca_animal_8.jpg",
-                            Name = "Faisca",
-                            Size = "15cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 1f
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Age = 2,
-                            Association_id = 3,
-                            Breed = "Rafeiro",
-                            Description = "Perfeito para apartamentos",
-                            Image = "/api/animal/img/Toby_animal_9.jpg",
-                            Name = "Toby",
-                            Size = "10cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Age = 3,
-                            Association_id = 3,
-                            Breed = "Rafeiro",
-                            Description = "Perfeito para apartamentos",
-                            Image = "/api/animal/img/Pipsy_animal_10.jpg",
-                            Name = "Pipsy",
-                            Size = "20cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 10f
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Age = 2,
-                            Association_id = 3,
-                            Breed = "Sphynx",
-                            Description = "Não têm pelo",
-                            Image = "/api/animal/img/Quirk_animal_11.jpg",
-                            Name = "Quirk",
-                            Size = "10cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Age = 2,
-                            Association_id = 3,
-                            Breed = "Doberman",
-                            Description = "Precisa de muito espaço",
-                            Image = "/api/animal/img/Odie_animal_12.jpg",
-                            Name = "Odie",
-                            Size = "72cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 40f
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Age = 4,
-                            Association_id = 4,
-                            Breed = "Rafeiro",
-                            Description = "Gosta de crianças",
-                            Image = "/api/animal/img/Barkley_animal_13.jpg",
-                            Name = "Barkley",
-                            Size = "50cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 20f
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Age = 3,
-                            Association_id = 4,
-                            Breed = "Rafeiro",
-                            Description = "Não gosta de gato",
-                            Image = "/api/animal/img/Maverick_animal_14.jpg",
-                            Name = "Maverick",
-                            Size = "15cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 10f
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Age = 6,
-                            Association_id = 4,
-                            Breed = "Rafeiro",
-                            Description = "Precisa de muito espaço",
-                            Image = "/api/animal/img/Kobe_animal_15.jpg",
-                            Name = "Kobe",
-                            Size = "40cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 30f
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Age = 0,
-                            Association_id = 4,
-                            Breed = "Rafeiro",
-                            Description = "Gosta de Crianças",
-                            Image = "/api/animal/img/Dorito_animal_16.jpg",
-                            Name = "Dorito",
-                            Size = "20cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Age = 2,
-                            Association_id = 1,
-                            Breed = "Maine Coon",
-                            Description = "Precisa de muito espaço",
-                            Image = "/api/animal/img/Rage_animal_17.jpg",
-                            Name = "Rage",
-                            Size = "70cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 5f
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Age = 1,
-                            Association_id = 2,
-                            Breed = "Rafeiro",
-                            Description = "Não gosta de Crianças",
-                            Image = "/api/animal/img/Tally_animal_18.jpg",
-                            Name = "Tally",
-                            Size = "20cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Age = 4,
-                            Association_id = 3,
-                            Breed = "Labrador",
-                            Description = "Adora água",
-                            Image = "/api/animal/img/Connor_animal_19.jpg",
-                            Name = "Connor",
-                            Size = "50cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 30f
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Age = 0,
-                            Association_id = 4,
-                            Breed = "Rafeiro",
-                            Description = "bebe",
-                            Image = "/api/animal/img/Gaia_animal_20.jpg",
-                            Name = "Gaia",
-                            Size = "10cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 1f
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Age = 0,
-                            Association_id = 1,
-                            Breed = "Maine Coon",
-                            Description = "Be",
-                            Image = "/api/animal/img/Palmer_animal_21.jpg",
-                            Name = "Palmer",
-                            Size = "5cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 1f
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Age = 1,
-                            Association_id = 2,
-                            Breed = "Rafeiro",
-                            Description = "Gosta de Cães",
-                            Image = "/api/animal/img/Warp_animal_22.jpg",
-                            Name = "Warp",
-                            Size = "15cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Age = 0,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Bom para ter num apartamento",
-                            Image = "/api/animal/img/Rave_animal_23.jpg",
-                            Name = "Rave",
-                            Size = "8cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 1f
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Age = 2,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Muito energetico",
-                            Image = "/api/animal/img/Linus_animal_24.jpg",
-                            Name = "Linus",
-                            Size = "30cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 5f
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Age = 0,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Gosta de Cães",
-                            Image = "/api/animal/img/Newton_animal_25.jpg",
-                            Name = "Newton",
-                            Size = "15cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 2f
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Age = 1,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Lenny_animal_26.jpg",
-                            Name = "Lenny",
-                            Size = "10cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 10f
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Age = 2,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Lenny_animal_27.jpg",
-                            Name = "Lenny",
-                            Size = "26cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 10f
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Age = 4,
-                            Association_id = 1,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Shakira_animal_28.jpg",
-                            Name = "Shakira",
-                            Size = "20cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 4f
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Age = 2,
-                            Association_id = 2,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Bagel_animal_29.jpg",
-                            Name = "Bagel",
-                            Size = "25cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 5f
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Age = 1,
-                            Association_id = 2,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Bingo_animal_30.jpg",
-                            Name = "Bingo",
-                            Size = "20cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 3f
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Age = 2,
-                            Association_id = 2,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Basil_animal_31.jpg",
-                            Name = "Basil",
-                            Size = "18cm",
-                            Status = "Para adoção",
-                            Type = "Gato",
-                            Weight = 3f
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Age = 3,
-                            Association_id = 3,
-                            Breed = "Rafeiro",
-                            Description = "Desaparecido",
-                            Image = "/api/animal/img/Raisin_animal_32.jpg",
-                            Name = "Raisin",
-                            Size = "20cm",
-                            Status = "Para adoção",
-                            Type = "Cão",
-                            Weight = 9f
                         });
                 });
 
@@ -567,7 +133,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 1,
                             Adress = "R. do Matadouro 10, 9050-100 Funcha",
                             Description = "Intervenção Activa na Protecção, Bem-estar e Saúde Animal",
-                            FoundationDate = new DateTime(2020, 1, 29, 20, 49, 4, 510, DateTimeKind.Local).AddTicks(2260),
+                            FoundationDate = new DateTime(2020, 1, 30, 16, 26, 42, 572, DateTimeKind.Local).AddTicks(9550),
                             Iban = "PT50000702430012359000733",
                             PhoneNumber = "291220852",
                             User_id = 2
@@ -577,7 +143,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 2,
                             Adress = "Santa cruz",
                             Description = "A Associação PATA – Porque os Animais Também se Amam",
-                            FoundationDate = new DateTime(2020, 1, 29, 20, 49, 4, 528, DateTimeKind.Local).AddTicks(2600),
+                            FoundationDate = new DateTime(2020, 1, 30, 16, 26, 42, 592, DateTimeKind.Local).AddTicks(5680),
                             Iban = "233924194",
                             PhoneNumber = "961133214",
                             User_id = 3
@@ -587,7 +153,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Adress = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = new DateTime(2020, 1, 29, 20, 49, 4, 528, DateTimeKind.Local).AddTicks(2630),
+                            FoundationDate = new DateTime(2020, 1, 30, 16, 26, 42, 592, DateTimeKind.Local).AddTicks(5710),
                             Iban = "28374659",
                             PhoneNumber = "291773357",
                             User_id = 4
@@ -597,7 +163,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 4,
                             Adress = "Rua Cidade de Oakland 1 Funchal",
                             Description = "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados",
-                            FoundationDate = new DateTime(2020, 1, 29, 20, 49, 4, 528, DateTimeKind.Local).AddTicks(2640),
+                            FoundationDate = new DateTime(2020, 1, 30, 16, 26, 42, 592, DateTimeKind.Local).AddTicks(5710),
                             Iban = "28374659",
                             PhoneNumber = "966295555",
                             User_id = 5
@@ -656,8 +222,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 1,
                             Association_id = 1,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(4590),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(4180),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(7800),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(7400),
                             Description = "Promoção no preço das vacinas",
                             Image = "",
                             Location = "No nosso recinto",
@@ -669,8 +235,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 2,
                             Association_id = 1,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6280),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6260),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9360),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9350),
                             Description = "Concentração Canina",
                             Image = "",
                             Location = "Funchal",
@@ -682,8 +248,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 3,
                             Association_id = 2,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6310),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6310),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9400),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9400),
                             Description = "Promoção no preço das adoções",
                             Image = "",
                             Location = "Funchal",
@@ -695,8 +261,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 4,
                             Association_id = 2,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6320),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6320),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9400),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9400),
                             Description = "Promoção no preço das vacinas",
                             Image = "",
                             Location = "Santa cruz",
@@ -708,8 +274,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 5,
                             Association_id = 3,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6320),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6320),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9410),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9410),
                             Description = "Promoção no preço das adoções",
                             Image = "",
                             Location = "Machico",
@@ -721,8 +287,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 6,
                             Association_id = 3,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6330),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6330),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9410),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9410),
                             Description = "Mostre o potencial do seu melhor amigo",
                             Image = "",
                             Location = "Funchal",
@@ -734,8 +300,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 7,
                             Association_id = 4,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6330),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6330),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9420),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9420),
                             Description = "Promoção no preço das vacinas",
                             Image = "",
                             Location = "Santana",
@@ -747,8 +313,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 8,
                             Association_id = 4,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6340),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6330),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9420),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9420),
                             Description = "Promoção no preço das adoções",
                             Image = "",
                             Location = "Ribeira Brava",
@@ -760,8 +326,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 9,
                             Association_id = 4,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6340),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6340),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9430),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9420),
                             Description = "Promoção no preço das vacinas",
                             Image = "",
                             Location = "Machico",
@@ -773,8 +339,8 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 10,
                             Association_id = 4,
-                            DateEnd = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6340),
-                            DateInit = new DateTime(2020, 1, 29, 20, 49, 4, 529, DateTimeKind.Local).AddTicks(6340),
+                            DateEnd = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9430),
+                            DateInit = new DateTime(2020, 1, 30, 16, 26, 42, 593, DateTimeKind.Local).AddTicks(9430),
                             Description = "Promoção no preço das adoções",
                             Image = "",
                             Location = "Funchal",

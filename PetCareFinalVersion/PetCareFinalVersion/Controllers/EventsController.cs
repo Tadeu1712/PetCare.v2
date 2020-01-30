@@ -76,29 +76,21 @@ namespace PetCareFinalVersion.Controllers
         [Consumes("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreateEvent([FromBody]Event aEvent)
+        public async Task<IActionResult> CreateEvent([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
         {
-
             object response;
-            var currentUser = HttpContext.User;
-
-            var cEvent = (Event)event_factory.CreatePostFromPostFactory(aEvent);
+            var files = Request.Form.Files;
+            var cEvent = (Event)post_factory.CreatePostFromPostFactory(Title, Description);
             try
             {
-                if (currentUser.HasClaim(c => c.Type == "id"))
-                {
-                    cEvent.Association_id = aEvent.Association_id;
-                    await _context.Events.AddAsync(cEvent);
-                    await _context.SaveChangesAsync();
+                cEvent.Association_id = Association_id;
+                cEvent.Image = ImageSave.SaveImage(files, "post");
+                await _context.Events.AddAsync(cEvent);
+                await _context.SaveChangesAsync();
 
-                    response = new {sucess = true, data = cEvent};
-                    return Ok(response);
-                }
-                
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                response = new { sucess = true, data = post };
+                return Ok(response);
             }
-
             catch
             {
                 response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
