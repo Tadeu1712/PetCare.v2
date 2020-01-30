@@ -18,7 +18,11 @@ using System.Net.Http;
 using System.Net;
 using Microsoft.Extensions.FileProviders;
 using System.Net.Mime;
+<<<<<<< HEAD
 using PetCareFinalVersion.Data;
+=======
+using Microsoft.CodeAnalysis.FlowAnalysis;
+>>>>>>> master
 
 namespace PetCareFinalVersion.Controllers
 {

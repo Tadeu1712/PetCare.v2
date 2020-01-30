@@ -17,6 +17,7 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
 
         public abstract IPost CreatePost(string Title, string Description);
 
+
     }
 }
 
