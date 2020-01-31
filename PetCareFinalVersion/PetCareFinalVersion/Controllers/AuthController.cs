@@ -123,28 +123,5 @@ namespace PetCareFinalVersion.Controllers
             }
             
         }
-
-
-        // VAI SER APAGADO
-        //TESTE
-        [HttpGet("values")]
-        [Authorize]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            var currentUser = HttpContext.User;
-            bool admin;
-            int id;
-            IActionResult response = Unauthorized();
-            if (currentUser.HasClaim(c => c.Type == "id") && currentUser.HasClaim(c => c.Type == "admin"))
-            {
-                id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
-                admin = bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value);
-
-                return Ok(id);
-
-            }
-
-            return BadRequest();
-        }
     }
 }

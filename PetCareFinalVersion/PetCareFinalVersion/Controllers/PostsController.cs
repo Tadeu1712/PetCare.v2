@@ -6,7 +6,7 @@ using PetCareFinalVersion.Models;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-
+using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Controllers
@@ -28,6 +28,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("all")]
+        [AllowAnonymous]
         public async Task<IActionResult> getAllPosts()
         {
             object response;
@@ -52,6 +53,8 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpGet("{id}")]
+        [AllowAnonymous]
+
         public async Task<IActionResult> getPost(int id)
         {
             object response;
@@ -72,20 +75,28 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> CreatePost([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
         {
             object response;
             var files = Request.Form.Files;
+            var currentUser = HttpContext.User;
+
             var post = (Post)post_factory.CreatePostFromPostFactory(Title, Description);
             try
             {
-                post.Association_id = Association_id;
-                post.Image = ImageSave.SaveImage(files, "post");
-                await _context.Posts.AddAsync(post);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    post.Association_id = Association_id;
+                    post.Image = ImageSave.SaveImage(files, "post");
+                    await _context.Posts.AddAsync(post);
+                    await _context.SaveChangesAsync();
 
-                response = new { sucess = true, data = post };
-                return Ok(response);
+                    response = new {sucess = true, data = post};
+                    return Ok(response);
+                }
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
@@ -98,17 +109,23 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             try
             {
-                var post = await _context.Posts.FindAsync(id);
-                _context.Posts.Remove(post);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    var post = await _context.Posts.FindAsync(id);
+                    _context.Posts.Remove(post);
+                    await _context.SaveChangesAsync();
 
-                response = new { success = true, message= $"O post com o id:{id} foi apagado com sucesso" };
-                return Ok(response);
+                    response = new {success = true, message = $"O post com o id:{id} foi apagado com sucesso"};
+                    return Ok(response);
+                }
             }
             catch
             {
@@ -116,23 +133,32 @@ namespace PetCareFinalVersion.Controllers
                 return NotFound(rs);
                
             }
-
+            response = new { success = false, message = "Utilizador não se encontra autenticado" };
+            return NotFound(response);
         }
 
 
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
+        [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Post aPost)
         {
             object response;
+            var currentUser = HttpContext.User;
+
             try
             {
-                _context.Posts.Update(aPost);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    _context.Posts.Update(aPost);
+                    await _context.SaveChangesAsync();
 
-                response = new { success = true, data = aPost };
-                return Ok(response);
+                    response = new {success = true, data = aPost};
+                    return Ok(response);
+                }
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {
@@ -141,29 +167,10 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        // ROUTE APENAS FAZER UPLOAD DE UMA IMAGEM!
-        [HttpPost("uploadImg")]
-        public async Task<IActionResult> UploadImg()
-        {
-            //GET ALL FILE ATTACH ON FORM
-            var files = Request.Form.Files;
-            // SELECT THE FIRST FILE = IMAGE
-            var image = files[0];
-            //CREATE THE FILE PATH
-            var filePath = Path.Combine("resources/images/post", image.FileName);
-            if (image.Length > 0)
-            {
-                //SAVE IMAGE ON THE PATH 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    image.CopyTo(fileStream);
-                }
-            }
-            return Ok("IMAGEM GUARDADA!" );
-        }
-
         // ROUTE GET POST IMAGES 
         [HttpGet("img/{imgName}")]
+        [AllowAnonymous]
+
         public async Task<IActionResult> GetImgAsync(string imgName)
         {
             var path = Path.Combine(

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,7 @@ namespace PetCareFinalVersion.Controllers
         // CREATE NEW ANIMAL
         [Produces("application/json")]
         [HttpPost("create")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             var files = Request.Form.Files;
@@ -43,16 +44,16 @@ namespace PetCareFinalVersion.Controllers
             
               try
               {
-                //if (currentUser.HasClaim(c => c.Type == "id"))
-                //{
-                animal.Image = ImageSave.SaveImage(files, "animal");
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                      animal.Image = ImageSave.SaveImage(files, "animal");
                       await _context.Animals.AddAsync(animal);
                       await _context.SaveChangesAsync();
                       response = new {success = true, data = animal};
                       return Ok(response);
-                  //}
-                  response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                  return NotFound(response);
+                }
+              response = new { success = false, message = "Utilizador não se encontra autenticado" };
+              return NotFound(response);
               }
               catch
               {
@@ -150,7 +151,19 @@ namespace PetCareFinalVersion.Controllers
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                     //VER ESTADO DO OBJETO
-                    aAnimal.Status = aAnimal.StartAdopted();
+                    if (aAnimal.Status == "Adotado")
+                    {
+                        aAnimal.Status = aAnimal.StartAdopted();
+                    }
+                    else if (aAnimal.Status == "Perdido")
+                    {
+                        aAnimal.Status = aAnimal.StartLosted();
+                    }
+                    else
+                    {
+                        aAnimal.Status = aAnimal.StartToAdoption();
+                    }
+
                     _context.Animals.Update(aAnimal);
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = aAnimal};
@@ -250,6 +263,23 @@ namespace PetCareFinalVersion.Controllers
             {
                 return BadRequest();
             }
+        }
+        // ROUTE GET POST IMAGES 
+        [HttpGet("img/{imgName}")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetImgAsync(string imgName)
+        {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "Resources/images/animal", imgName);
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            return Ok(memory);
         }
     }
 

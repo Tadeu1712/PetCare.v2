@@ -12,6 +12,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
+using System.IO;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -77,6 +78,24 @@ namespace PetCareFinalVersion.Controllers
                 response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
                 return BadRequest(response);
             }
+        }
+
+        // ROUTE GET POST IMAGES 
+        [HttpGet("img/{imgName}")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetImgAsync(string imgName)
+        {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "Resources/images/lost_animal", imgName);
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            return Ok(memory);
         }
 
 
