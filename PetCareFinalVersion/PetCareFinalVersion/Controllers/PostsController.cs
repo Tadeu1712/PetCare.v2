@@ -167,29 +167,6 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        // ROUTE APENAS FAZER UPLOAD DE UMA IMAGEM!
-        [HttpPost("uploadImg")]
-        [AllowAnonymous]
-
-        public async Task<IActionResult> UploadImg()
-        {
-            //GET ALL FILE ATTACH ON FORM
-            var files = Request.Form.Files;
-            // SELECT THE FIRST FILE = IMAGE
-            var image = files[0];
-            //CREATE THE FILE PATH
-            var filePath = Path.Combine("resources/images/post", image.FileName);
-            if (image.Length > 0)
-            {
-                //SAVE IMAGE ON THE PATH 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    image.CopyTo(fileStream);
-                }
-            }
-            return Ok("IMAGEM GUARDADA!" );
-        }
-
         // ROUTE GET POST IMAGES 
         [HttpGet("img/{imgName}")]
         [AllowAnonymous]

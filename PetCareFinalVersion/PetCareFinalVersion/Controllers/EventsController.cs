@@ -12,6 +12,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
+using System.IO;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -173,6 +174,23 @@ namespace PetCareFinalVersion.Controllers
                 var rs = new { success = false, message = $"Nao foi possivel atualizar o post com o id {aEvent.Id}" };
                 return NotFound(rs);
             }
+        }
+        // ROUTE GET POST IMAGES 
+        [HttpGet("img/{imgName}")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetImgAsync(string imgName)
+        {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "Resources/images/event", imgName);
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            return Ok(memory);
         }
     }
 }
