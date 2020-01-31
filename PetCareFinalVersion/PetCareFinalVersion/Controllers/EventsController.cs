@@ -75,27 +75,35 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> CreateEvent([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd, [FromForm] decimal aPrice)
         {
             object response;
+            var currentUser = HttpContext.User;
             var files = Request.Form.Files;
             var cEvent = (Event)event_factory.CreatePostFromPostFactory(aTitle, aDescription);
             try
             {
-                cEvent.Association_id = aAssociation_id;
-                cEvent.Image = ImageSave.SaveImage(files, "event");
-                cEvent.Location = aLocation;
-                var initDate = DateTime.Parse(aDateInit);
-                var endDate = DateTime.Parse(aDateEnd);
-                cEvent.DateInit = initDate;
-                cEvent.DateEnd = endDate;
-                cEvent.Price = aPrice;
-                cEvent.Type = "Concentração de Cães";
-                await _context.Events.AddAsync(cEvent);
-                await _context.SaveChangesAsync();
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                    cEvent.Association_id = aAssociation_id;
+                    cEvent.Image = ImageSave.SaveImage(files, "event");
+                    cEvent.Location = aLocation;
+                    var initDate = DateTime.Parse(aDateInit);
+                    var endDate = DateTime.Parse(aDateEnd);
+                    cEvent.DateInit = initDate;
+                    cEvent.DateEnd = endDate;
+                    cEvent.Price = aPrice;
+                    cEvent.Type = "Concentração de Cães";
+                    await _context.Events.AddAsync(cEvent);
+                    await _context.SaveChangesAsync();
 
-                response = new { sucess = true, data = cEvent };
-                return Ok(response);
+
+                    response = new {sucess = true, data = cEvent};
+                    return Ok(response);
+                }
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
             }
             catch
             {

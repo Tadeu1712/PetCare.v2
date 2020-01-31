@@ -32,7 +32,7 @@ namespace PetCareFinalVersion.Controllers
         // CREATE NEW ANIMAL
         [Produces("application/json")]
         [HttpPost("create")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             var files = Request.Form.Files;
@@ -43,16 +43,16 @@ namespace PetCareFinalVersion.Controllers
             
               try
               {
-                //if (currentUser.HasClaim(c => c.Type == "id"))
-                //{
-                animal.Image = ImageSave.SaveImage(files, "animal");
+                if (currentUser.HasClaim(c => c.Type == "id"))
+                {
+                      animal.Image = ImageSave.SaveImage(files, "animal");
                       await _context.Animals.AddAsync(animal);
                       await _context.SaveChangesAsync();
                       response = new {success = true, data = animal};
                       return Ok(response);
-                  //}
-                  response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                  return NotFound(response);
+                }
+              response = new { success = false, message = "Utilizador não se encontra autenticado" };
+              return NotFound(response);
               }
               catch
               {
