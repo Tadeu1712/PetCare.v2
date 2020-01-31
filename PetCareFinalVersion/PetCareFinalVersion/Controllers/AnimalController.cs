@@ -228,29 +228,14 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetBabies()
         {
+            
+            var endDate = DateTime.Now.AddYears(-2);
+          
             object response;
             try
             {
-                var animals = await _context.Animals.OrderByDescending(b => b.Age).ToListAsync();
-                var dataNow = DateTime.Now;
-                foreach(var value in animals)
-                {
-                    
-                    int result = DateTime.Compare(dataNow , value.Age);
-                   
+                var animals = await _context.Animals.Where(obj => obj.Age >= endDate).OrderByDescending(b => b.Age).ToListAsync();
 
-                    if (result < 0)
-                    {
-                        //is earlier than
-                    }else if(result == 0){
-                        //is the same time as
-                    }
-                    else
-                    {
-                        //is later than
-                    }
-                }
-               
                 if (!animals.Any())
                 {
                     response = new { success = false, message = "Não tem animais registados" };

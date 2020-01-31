@@ -68,25 +68,46 @@ namespace PetCareFinalVersion.Controllers
             var currentUser = HttpContext.User;
             object response;
             int id;
-          
-            if (currentUser.HasClaim(c => c.Type == "id"))
+
+            try
             {
-                id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                if (currentUser.HasClaim(c => c.Type == "id") && bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value) == false)
+                {
+                    id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
 
-                Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-                association.User = await _context.Users.FindAsync(id);
-                association.User.Password = null;
-                association.Posts = _context.Posts.Where(post => post.Association_id == association.Id).ToList();
-                association.Animals = _context.Animals.Where(animal => animal.Association_id == association.Id).ToList();
-                association.Events = _context.Events.Where(e => e.Association_id == association.Id).ToList();
+                    Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                    association.User = await _context.Users.FindAsync(id);
+                    association.User.Password = null;
+                    association.Posts = _context.Posts.Where(post => post.Association_id == association.Id).ToList();
+                    association.Animals = _context.Animals.Where(animal => animal.Association_id == association.Id).ToList();
+                    association.Events = _context.Events.Where(e => e.Association_id == association.Id).ToList();
 
-                response = new {success = true, data = association};
-                return Ok(response);
+                    response = new { success = true, data = association };
+                    return Ok(response);
+
+                }
+                else
+                {
+                    id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+
+                    User user = _context.Users.Single(user => user.Id == id);
+                    user = await _context.Users.FindAsync(id);
+                    user.Password = null;
+
+                    response = new { success = true, data = user };
+                    return Ok(response);
+                }
 
             }
+            catch
+            {
+                response = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
+                return NotFound(response);
+            }
+           
 
-            response = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
-            return NotFound(response);
+
+           
         }
 
         //REGISTO
@@ -113,7 +134,7 @@ namespace PetCareFinalVersion.Controllers
                     return Ok(response);
                 }
                 
-                response = new { success = false, message = "Utilizador n„o se encontra autenticado" };
+                response = new { success = false, message = "Utilizador n√£o se encontra autenticado" };
                 return NotFound(response);
             }
             catch
