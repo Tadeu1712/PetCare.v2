@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -219,6 +219,25 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var animals = await _context.Animals.OrderByDescending(b => b.Age).ToListAsync();
+                var dataNow = DateTime.Now;
+                foreach(var value in animals)
+                {
+                    
+                    int result = DateTime.Compare(dataNow , value.Age);
+                   
+
+                    if (result < 0)
+                    {
+                        //is earlier than
+                    }else if(result == 0){
+                        //is the same time as
+                    }
+                    else
+                    {
+                        //is later than
+                    }
+                }
+               
                 if (!animals.Any())
                 {
                     response = new { success = false, message = "Não tem animais registados" };

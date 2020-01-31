@@ -28,7 +28,7 @@ namespace PetCareFinalVersion.Models
                     Id = 1,
                     Name = "Admin",
                     Email = "Admin@admin.com",
-                    Password = "secret123",
+                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword("secret123"),
                     Admin = true                 
                 },
                 new User
@@ -36,7 +36,7 @@ namespace PetCareFinalVersion.Models
                     Id = 2,
                     Name = "Spad",
                     Email = "spadfnc@gmail.com",
-                    Password = "secret123",
+                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword("secret123"),
                     Admin = false
                 },
                 new User
@@ -44,24 +44,24 @@ namespace PetCareFinalVersion.Models
                      Id = 3,
                      Name = "PATA",
                      Email = "pata@pata.pt",
-                     Password = "secret123",
-                     Admin = false
+                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword("secret123"),
+                    Admin = false
                  },
                 new User
                   {
                       Id = 4,
                       Name = "Canil Municipal do Funchal",
                       Email = "CMF@cmf.com",
-                      Password = "secret123",
-                      Admin = false
+                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword("secret123"),
+                    Admin = false
                   },
                 new User
                    {
                       Id = 5,
                       Name = "Associação Madeira Animal Welfare",
                       Email = "amaw@madeiraanimalwelfare.org",
-                      Password = "secret123",
-                      Admin = false
+                    Password = BCrypt.Net.BCrypt.EnhancedHashPassword("secret123"),
+                    Admin = false
                    }
             );
 
