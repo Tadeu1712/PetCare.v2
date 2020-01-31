@@ -14,7 +14,7 @@ namespace PetCareFinalVersion.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(25)]
+        [MaxLength(32)]
         public string Iban { get; set; }
         [Required]
         [MaxLength(255)]
