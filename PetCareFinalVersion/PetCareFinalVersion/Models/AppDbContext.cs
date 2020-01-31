@@ -657,11 +657,11 @@ namespace PetCareFinalVersion.Models
                     Title = "Campanha de Vacinação",
                     Description = "Promoção no preço das vacinas",
                     Location = "No nosso recinto",
-                    DateInit =  DateTime.Now ,
-                    DateEnd = DateTime.Now,
+                    DateInit =  new DateTime(2020, 3, 20) ,
+                    DateEnd = new DateTime(2020, 3, 20),
                     Type = "",
-                    Price = 10,
-                    Image = ""
+                    Price = 25,
+                    Image = "/api/animal/img/event/event_1.jpg"
                 },
                 new Event
                 {
@@ -670,24 +670,24 @@ namespace PetCareFinalVersion.Models
                     Title = "Concentração Canina",
                     Description = "Concentração Canina",
                     Location = "Funchal",
-                    DateInit =  DateTime.Now ,
-                    DateEnd = DateTime.Now,
+                    DateInit = new DateTime(2020, 5, 20),
+                    DateEnd = new DateTime(2020, 5, 20),
                     Type = "",
                     Price = 30,
-                    Image = ""
+                    Image = "/api/animal/img/event/event_2.jpg"
                 },
                 new Event
                 {
                     Id = 3,
-                    Association_id = 2,
-                    Title = "Campanha de adoção",
-                    Description = "Promoção no preço das adoções",
+                    Association_id = 1,
+                    Title = "Campanha de Vacinação",
+                    Description = "Promoção no preço das vacinas",
                     Location = "Funchal",
-                    DateInit =  DateTime.Now ,
-                    DateEnd = DateTime.Now,
+                    DateInit = new DateTime(2020, 10, 20),
+                    DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 30,
-                    Image = ""
+                    Image = "/api/animal/img/event/event_3.jpg"
                 },
                 new Event
                 {
@@ -696,25 +696,25 @@ namespace PetCareFinalVersion.Models
                     Title = "Campanha de Vacinação",
                     Description = "Promoção no preço das vacinas",
                     Location = "Santa cruz",
-                    DateInit =  DateTime.Now ,
-                    DateEnd = DateTime.Now,
+                    DateInit = new DateTime(2020, 10, 20),
+                    DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = ""
+                    Image = "/api/animal/img/event/event_4.jpg"
                 },
                 new Event
                  {
                      Id = 5,
-                     Association_id = 3,
+                     Association_id = 2,
                      Title = "Campanha de adoção",
                      Description = "Promoção no preço das adoções",
                      Location = "Machico",
-                     DateInit = DateTime.Now,
-                     DateEnd = DateTime.Now,
+                     DateInit = new DateTime(2020, 10, 20),
+                     DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = ""
-                 },
+                     Image = "/api/animal/img/event/event_8.jpg"
+                },
                 new Event
                  {
                      Id = 6,
@@ -722,12 +722,12 @@ namespace PetCareFinalVersion.Models
                      Title = "Concurso Canino",
                      Description = "Mostre o potencial do seu melhor amigo",
                      Location = "Funchal",
-                     DateInit = DateTime.Now,
-                     DateEnd = DateTime.Now,
+                     DateInit = new DateTime(2020, 10, 20),
+                     DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 10,
-                     Image = ""
-                 },
+                     Image = "/api/animal/img/event/event_6.jpg"
+                },
                 new Event
                  {
                      Id = 7,
@@ -735,12 +735,12 @@ namespace PetCareFinalVersion.Models
                      Title = "Campanha de Vacinação",
                      Description = "Promoção no preço das vacinas",
                      Location = "Santana",
-                     DateInit = DateTime.Now,
-                     DateEnd = DateTime.Now,
+                     DateInit = new DateTime(2020, 10, 20),
+                     DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = ""
-                 },
+                     Image = "/api/animal/img/event/event_5.jpg"
+                },
                 new Event
                  {
                      Id = 8,
@@ -748,12 +748,12 @@ namespace PetCareFinalVersion.Models
                      Title = "Campanha de adoção",
                      Description = "Promoção no preço das adoções",
                      Location = "Ribeira Brava",
-                     DateInit = DateTime.Now,
-                     DateEnd = DateTime.Now,
+                     DateInit = new DateTime(2020, 10, 20),
+                     DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = ""
-                 },
+                     Image = "/api/animal/img/event/event_7.jpg"
+                },
                 new Event
                  {
                      Id = 9,
@@ -761,12 +761,12 @@ namespace PetCareFinalVersion.Models
                      Title = "Campanha de Vacinação",
                      Description = "Promoção no preço das vacinas",
                      Location = "Machico",
-                     DateInit = DateTime.Now,
-                     DateEnd = DateTime.Now,
+                     DateInit = new DateTime(2020, 10, 20),
+                     DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = ""
-                 },
+                     Image = "/api/animal/img/event/event_9.jpg"
+                },
                 new Event
                   {
                       Id = 10,
@@ -774,12 +774,12 @@ namespace PetCareFinalVersion.Models
                       Title = "Campanha de adoção",
                       Description = "Promoção no preço das adoções",
                       Location = "Funchal",
-                      DateInit = DateTime.Now,
-                      DateEnd = DateTime.Now,
+                      DateInit = new DateTime(2020, 10, 20),
+                      DateEnd = new DateTime(2020, 10, 20),
                       Type = "",
                       Price = 25,
-                      Image = ""
-                  }
+                      Image = "/api/animal/img/event/event_10.jpg"
+                }
                 );
 
             builder.Entity<LostAnimalPost>().HasData(
