@@ -90,7 +90,7 @@ namespace PetCareFinalVersion.Controllers
                 {
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
 
-                    User user = _context.Users.Single(user => user.Id == id);
+                    User user = _context.Users.Single(users => users.Id == id);
                     user = await _context.Users.FindAsync(id);
                     user.Password = null;
 

@@ -163,7 +163,6 @@ namespace PetCareFinalVersion.Controllers
                     {
                         aAnimal.Status = aAnimal.StartToAdoption();
                     }
-
                     _context.Animals.Update(aAnimal);
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = aAnimal};
@@ -189,7 +188,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animalList = _context.Animals.Where(animal => animal.Status == state).ToList();
+                var animalList = await _context.Animals.Where(animal => animal.Status == state).ToListAsync();
                 response = new { success = true, data = animalList };
                 return Ok(response);
             }
@@ -210,7 +209,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animalList = _context.Animals.Where(animal => animal.Status == state).Where(animals => animals.Association_id == id).ToList();
+                var animalList = await _context.Animals.Where(animal => animal.Status == state).Where(animals => animals.Association_id == id).ToListAsync();
                 response = new { success = true, data = animalList };
                 return Ok(response);
             }
