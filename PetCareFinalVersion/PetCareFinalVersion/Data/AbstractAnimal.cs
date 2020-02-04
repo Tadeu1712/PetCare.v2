@@ -30,8 +30,9 @@ namespace PetCareFinalVersion.Data
         }
 
         //AÇÃO REQUEST1
-        public string StartLosted()
+        public string StartLosted(string state)
         {
+            _state = state
             return this._state.LostTo();
         }
 
