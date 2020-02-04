@@ -9,8 +9,8 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200131170747_Final")]
-    partial class Final
+    [Migration("20200204160933_update")]
+    partial class update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,8 +25,9 @@ namespace PetCareFinalVersion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Age")
-                        .HasColumnType("datetime(6)")
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.Property<int>("Association_id")
@@ -78,7 +79,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 1,
-                            Age = new DateTime(2018, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "10/02/2018 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Mancha no centro da testa",
@@ -92,7 +93,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 2,
-                            Age = new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "01/20/2018 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Cão de pequeno porte",
@@ -106,7 +107,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 3,
-                            Age = new DateTime(2016, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "05/09/2016 00:00:00",
                             Association_id = 1,
                             Breed = "Boxer",
                             Description = "Muita energia",
@@ -120,7 +121,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 4,
-                            Age = new DateTime(2017, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "08/17/2017 00:00:00",
                             Association_id = 1,
                             Breed = "Ragdoll",
                             Description = "Pelo longo, com orellahs pretas",
@@ -134,7 +135,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 5,
-                            Age = new DateTime(2017, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "04/10/2017 00:00:00",
                             Association_id = 2,
                             Breed = "Pastor Alemão",
                             Description = "Dá-se bem com crianças",
@@ -148,7 +149,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 6,
-                            Age = new DateTime(2016, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "12/03/2016 00:00:00",
                             Association_id = 2,
                             Breed = "Shar-pei",
                             Description = "Gosta de comer comida humida",
@@ -162,7 +163,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 7,
-                            Age = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "11/10/2019 00:00:00",
                             Association_id = 2,
                             Breed = "Pastor Alemão",
                             Description = "Não gosta de gatos",
@@ -176,7 +177,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 8,
-                            Age = new DateTime(2019, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "11/27/2019 00:00:00",
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Perfeito para apartamentos",
@@ -190,7 +191,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 9,
-                            Age = new DateTime(2018, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "05/21/2018 00:00:00",
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Perfeito para apartamentos",
@@ -204,7 +205,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 10,
-                            Age = new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "03/10/2017 00:00:00",
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Perfeito para apartamentos",
@@ -218,7 +219,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 11,
-                            Age = new DateTime(2018, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "05/11/2018 00:00:00",
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Não têm pelo",
@@ -232,7 +233,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 12,
-                            Age = new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "01/20/2018 00:00:00",
                             Association_id = 3,
                             Breed = "Doberman",
                             Description = "Precisa de muito espaço",
@@ -246,7 +247,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 13,
-                            Age = new DateTime(2016, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "02/10/2016 00:00:00",
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Gosta de crianças",
@@ -260,7 +261,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 14,
-                            Age = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "01/15/2017 00:00:00",
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Não gosta de gato",
@@ -274,7 +275,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 15,
-                            Age = new DateTime(2015, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "02/07/2015 00:00:00",
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Precisa de muito espaço",
@@ -288,7 +289,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 16,
-                            Age = new DateTime(2019, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "10/02/2019 00:00:00",
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Gosta de Crianças",
@@ -302,7 +303,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 17,
-                            Age = new DateTime(2017, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "12/29/2017 00:00:00",
                             Association_id = 1,
                             Breed = "Maine Coon",
                             Description = "Precisa de muito espaço",
@@ -316,7 +317,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 18,
-                            Age = new DateTime(2019, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "01/02/2019 00:00:00",
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Não gosta de Crianças",
@@ -330,7 +331,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 19,
-                            Age = new DateTime(2016, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "07/24/2016 00:00:00",
                             Association_id = 3,
                             Breed = "Labrador",
                             Description = "Adora água",
@@ -344,7 +345,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 20,
-                            Age = new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "09/20/2019 00:00:00",
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "bebe",
@@ -358,7 +359,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 21,
-                            Age = new DateTime(2019, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "11/08/2019 00:00:00",
                             Association_id = 1,
                             Breed = "Maine Coon",
                             Description = "Be",
@@ -372,7 +373,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 22,
-                            Age = new DateTime(2018, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "12/29/2018 00:00:00",
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Gosta de Cães",
@@ -386,7 +387,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 23,
-                            Age = new DateTime(2019, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "09/13/2019 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Bom para ter num apartamento",
@@ -400,7 +401,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 24,
-                            Age = new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "11/28/2017 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Muito energetico",
@@ -414,7 +415,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 25,
-                            Age = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "08/10/2019 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Gosta de Cães",
@@ -428,7 +429,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 26,
-                            Age = new DateTime(2018, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "07/12/2018 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -442,7 +443,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 27,
-                            Age = new DateTime(2018, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "06/28/2018 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -456,7 +457,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 28,
-                            Age = new DateTime(2016, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "02/19/2016 00:00:00",
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -470,7 +471,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 29,
-                            Age = new DateTime(2018, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "02/09/2018 00:00:00",
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -484,7 +485,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 30,
-                            Age = new DateTime(2018, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "01/17/2018 00:00:00",
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -498,7 +499,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 31,
-                            Age = new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "11/28/2017 00:00:00",
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -512,7 +513,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 32,
-                            Age = new DateTime(2016, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Age = "05/17/2016 00:00:00",
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
@@ -589,7 +590,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Adress = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = new DateTime(2020, 1, 31, 17, 7, 47, 380, DateTimeKind.Local).AddTicks(6240),
+                            FoundationDate = new DateTime(2020, 2, 4, 16, 9, 33, 459, DateTimeKind.Local).AddTicks(380),
                             Iban = "28374659",
                             PhoneNumber = "291773357",
                             User_id = 4
@@ -987,7 +988,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$Q2Wgv3SIhLLSQXya/DMeVunlSdwGN2L3rurI.1gFr/ZZhHGN0nV3a"
+                            Password = "$2a$11$pE9cnLZabX9jJW09ShWa5ev.gryEIkil7aNSS/bEsFKrAOzscyize"
                         },
                         new
                         {
@@ -995,7 +996,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$KhU/VHd9Ur4rzo03xpxiIuOlvJ.fxFEMho/zFQGc6fE6UI/nVpTiy"
+                            Password = "$2a$11$x29PzVcg5g2EzO4vfZs6F.6kOIJvXCvctkbrn9qKx2F/5jDplnK86"
                         },
                         new
                         {
@@ -1003,7 +1004,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$H.rJn3cRx.VO4XpppPyodeToOvYdxOeZyEyY8CIhzmBvb97FErNnq"
+                            Password = "$2a$11$6x4bbZLAAvW51NgrxkH1kes6k2.sPfmoUz3cIzidaOqSycZvQ3OnS"
                         },
                         new
                         {
@@ -1011,7 +1012,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$DAzs7JUBQ3k7JNCC6U5G.OKYrQkuiRWokXs36UTBpyEkP.nYyf.Xy"
+                            Password = "$2a$11$URkPRQ8p6NLz1T8vEOy.K.1hebMnLDIgL99txXD4at2rieemEXbda"
                         },
                         new
                         {
@@ -1019,7 +1020,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$wBXLHngqWQnTVXbjadbUue01rigo.kQD1b2RxmFDjWe3/qgrqJNuu"
+                            Password = "$2a$11$KDkJBgHa04h9OTOd4wM7e.ngc/UBq4MI9f23Ds8OnWkj9Ksa6oKIG"
                         });
                 });
 
