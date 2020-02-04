@@ -41,9 +41,8 @@ namespace PetCareFinalVersion.Controllers
             object response;
             var currentUser = HttpContext.User;
             var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(data);
-            
-              try
-              {
+            try
+            {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                       animal.Image = ImageSave.SaveImage(files, "animal");
@@ -52,13 +51,13 @@ namespace PetCareFinalVersion.Controllers
                       response = new {success = true, data = animal};
                       return Ok(response);
                 }
-              response = new { success = false, message = "Utilizador não se encontra autenticado" };
-              return NotFound(response);
-              }
-              catch
-              {
-                  return BadRequest();
-              }
+                response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                return NotFound(response);
+            }
+            catch
+            {
+               return BadRequest();
+            }
         }
 
 

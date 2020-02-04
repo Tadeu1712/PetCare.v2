@@ -83,11 +83,14 @@ namespace PetCareFinalVersion.Controllers
             var currentUser = HttpContext.User;
             var files = Request.Form.Files;
             var cEvent = (Event)event_factory.CreatePostFromPostFactory(aTitle, aDescription);
+            int id;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    cEvent.Association_id = aAssociation_id;
+                    id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                    Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                    cEvent.Association_id = association.Id;
                     cEvent.Image = ImageSave.SaveImage(files, "event");
                     cEvent.Location = aLocation;
                     var initDate = DateTime.Parse(aDateInit);
@@ -121,7 +124,7 @@ namespace PetCareFinalVersion.Controllers
         {
             object response;
             var currentUser = HttpContext.User;
-
+           
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
