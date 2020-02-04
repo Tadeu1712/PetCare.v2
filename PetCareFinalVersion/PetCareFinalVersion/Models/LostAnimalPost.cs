@@ -14,6 +14,14 @@ namespace PetCareFinalVersion.Models
         public string Title { get; set; }
 
         [Required]
+        [MaxLength(250)]
+        public string Location { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string Date { get; set; }
+
+        [Required]
         public string Contact { get; set; }
 
         [Required]

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetCareFinalVersion.Migrations
 {
-    public partial class update : Migration
+    public partial class final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +15,8 @@ namespace PetCareFinalVersion.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(maxLength: 150, nullable: false),
+                    Location = table.Column<string>(maxLength: 250, nullable: false),
+                    Date = table.Column<string>(maxLength: 50, nullable: false),
                     Contact = table.Column<string>(nullable: false),
                     Description = table.Column<string>(maxLength: 1024, nullable: false),
                     Image = table.Column<string>(nullable: true)
@@ -50,7 +52,7 @@ namespace PetCareFinalVersion.Migrations
                     Adress = table.Column<string>(maxLength: 255, nullable: false),
                     PhoneNumber = table.Column<string>(maxLength: 9, nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: false),
-                    FoundationDate = table.Column<DateTime>(nullable: false),
+                    FoundationDate = table.Column<string>(nullable: false),
                     User_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -143,12 +145,12 @@ namespace PetCareFinalVersion.Migrations
 
             migrationBuilder.InsertData(
                 table: "LostAnimalPosts",
-                columns: new[] { "Id", "Contact", "Description", "Image", "Title" },
+                columns: new[] { "Id", "Contact", "Date", "Description", "Image", "Location", "Title" },
                 values: new object[,]
                 {
-                    { 1, "291987123", "Por favor ajudem me a encontrar a minha cadela numero:925789365", "", "Minha cadelinha desapareceu" },
-                    { 2, "291987123", "Ajude-me a encontar o meu gato numero:925789365", "", "Meu gato encontra-se desaparecido" },
-                    { 3, "291987123", "numero:925789365", "", "Se alguem ver este cão que me contacte" }
+                    { 1, "291987123", "2020-01-29", "Por favor ajudem me a encontrar a minha cadela numero:925789365", "", "Avenida do mar", "Minha cadelinha desapareceu" },
+                    { 2, "291987123", "2020-01-15", "Ajude-me a encontar o meu gato numero:925789365", "", "Rua da carreira", "Meu gato encontra-se desaparecido" },
+                    { 3, "291987123", "2020-01-01", "numero:925789365", "", "Rua das Pretas", "Se alguem ver este cão que me contacte" }
                 });
 
             migrationBuilder.InsertData(
@@ -156,11 +158,11 @@ namespace PetCareFinalVersion.Migrations
                 columns: new[] { "Id", "Admin", "Email", "Name", "Password" },
                 values: new object[,]
                 {
-                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$pE9cnLZabX9jJW09ShWa5ev.gryEIkil7aNSS/bEsFKrAOzscyize" },
-                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$x29PzVcg5g2EzO4vfZs6F.6kOIJvXCvctkbrn9qKx2F/5jDplnK86" },
-                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$6x4bbZLAAvW51NgrxkH1kes6k2.sPfmoUz3cIzidaOqSycZvQ3OnS" },
-                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$URkPRQ8p6NLz1T8vEOy.K.1hebMnLDIgL99txXD4at2rieemEXbda" },
-                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$KDkJBgHa04h9OTOd4wM7e.ngc/UBq4MI9f23Ds8OnWkj9Ksa6oKIG" }
+                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$K6dFgqPXCStjmeJtk4xcPeGA1h3C8gGrmDkmROb.vbeyqJEGyKNtC" },
+                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$jHciEWMuN6/iCB9xv8AVduMHWE47h1BYPEnejnUq/qHQWleyVrL6O" },
+                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$1kW6M5trrpcSy1hpR6ghWendh0lGuYVvsj3aq2RnfSs.8CdhkSolq" },
+                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$HAnoG1OVq1NDG461NViU.OSStpEt9a7sIhGFNPTBDAYRdN78Zr.K6" },
+                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$48EpfuDOfgxXUdaRsOc2g.GHvuyD2jhdRWLTLTDlaQTKND9yyMM9." }
                 });
 
             migrationBuilder.InsertData(
@@ -168,10 +170,10 @@ namespace PetCareFinalVersion.Migrations
                 columns: new[] { "Id", "Adress", "Description", "FoundationDate", "Iban", "PhoneNumber", "User_id" },
                 values: new object[,]
                 {
-                    { 1, "R. do Matadouro 10, 9050-100 Funchal", "Intervenção Activa na Protecção, Bem-estar e Saúde Animal", new DateTime(1897, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PT50000702430012359000733", "291220852", 2 },
-                    { 2, "Santa cruz", "A Associação PATA – Porque os Animais Também se Amam", new DateTime(2006, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "233924194", "961133214", 3 },
-                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", new DateTime(2020, 2, 4, 16, 9, 33, 459, DateTimeKind.Local).AddTicks(380), "28374659", "291773357", 4 },
-                    { 4, "Rua Cidade de Oakland 1 Funchal", "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados", new DateTime(2012, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "PT50 0007 0000 0008 4526 8682 3", "966295555", 5 }
+                    { 1, "R. do Matadouro 10, 9050-100 Funchal", "Intervenção Activa na Protecção, Bem-estar e Saúde Animal", "06/30/1897 00:00:00", "PT50000702430012359000733", "291220852", 2 },
+                    { 2, "Santa cruz", "A Associação PATA – Porque os Animais Também se Amam", "05/08/2006 00:00:00", "233924194", "961133214", 3 },
+                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/04/2020 18:11:22", "28374659", "291773357", 4 },
+                    { 4, "Rua Cidade de Oakland 1 Funchal", "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados", "01/02/2012 00:00:00", "PT50 0007 0000 0008 4526 8682 3", "966295555", 5 }
                 });
 
             migrationBuilder.InsertData(

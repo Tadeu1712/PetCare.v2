@@ -72,7 +72,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreateEvent([FromForm] string title, [FromForm] string description, [FromForm] string location, [FromForm] string dateInit, [FromForm] string dateEnd, [FromForm] decimal price)
+        public async Task<IActionResult> CreateEvent([FromForm] string title, [FromForm] string description, [FromForm] string location, [FromForm] string dateInit, [FromForm] string dateEnd, [FromForm] decimal price, [FromForm] string type)
         {
             object response;
             var currentUser = HttpContext.User;
@@ -95,6 +95,7 @@ namespace PetCareFinalVersion.Controllers
                     cEvent.DateEnd = endDate;
                     cEvent.Price = price;
                     cEvent.Type = "Concentração de Cães";
+                    cEvent.Type = type;
                     await _context.Events.AddAsync(cEvent);
                     await _context.SaveChangesAsync();
 

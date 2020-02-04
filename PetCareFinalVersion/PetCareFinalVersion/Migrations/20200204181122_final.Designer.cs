@@ -9,8 +9,8 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200204160933_update")]
-    partial class update
+    [Migration("20200204181122_final")]
+    partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -542,8 +542,9 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
-                    b.Property<DateTime>("FoundationDate")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("FoundationDate")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Iban")
                         .IsRequired()
@@ -570,7 +571,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 1,
                             Adress = "R. do Matadouro 10, 9050-100 Funchal",
                             Description = "Intervenção Activa na Protecção, Bem-estar e Saúde Animal",
-                            FoundationDate = new DateTime(1897, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FoundationDate = "06/30/1897 00:00:00",
                             Iban = "PT50000702430012359000733",
                             PhoneNumber = "291220852",
                             User_id = 2
@@ -580,7 +581,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 2,
                             Adress = "Santa cruz",
                             Description = "A Associação PATA – Porque os Animais Também se Amam",
-                            FoundationDate = new DateTime(2006, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FoundationDate = "05/08/2006 00:00:00",
                             Iban = "233924194",
                             PhoneNumber = "961133214",
                             User_id = 3
@@ -590,7 +591,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Adress = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = new DateTime(2020, 2, 4, 16, 9, 33, 459, DateTimeKind.Local).AddTicks(380),
+                            FoundationDate = "02/04/2020 18:11:22",
                             Iban = "28374659",
                             PhoneNumber = "291773357",
                             User_id = 4
@@ -600,7 +601,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 4,
                             Adress = "Rua Cidade de Oakland 1 Funchal",
                             Description = "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados",
-                            FoundationDate = new DateTime(2012, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FoundationDate = "01/02/2012 00:00:00",
                             Iban = "PT50 0007 0000 0008 4526 8682 3",
                             PhoneNumber = "966295555",
                             User_id = 5
@@ -797,6 +798,11 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
@@ -804,6 +810,11 @@ namespace PetCareFinalVersion.Migrations
 
                     b.Property<string>("Image")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -819,24 +830,30 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 1,
                             Contact = "291987123",
+                            Date = "2020-01-29",
                             Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
                             Image = "",
+                            Location = "Avenida do mar",
                             Title = "Minha cadelinha desapareceu"
                         },
                         new
                         {
                             Id = 2,
                             Contact = "291987123",
+                            Date = "2020-01-15",
                             Description = "Ajude-me a encontar o meu gato numero:925789365",
                             Image = "",
+                            Location = "Rua da carreira",
                             Title = "Meu gato encontra-se desaparecido"
                         },
                         new
                         {
                             Id = 3,
                             Contact = "291987123",
+                            Date = "2020-01-01",
                             Description = "numero:925789365",
                             Image = "",
+                            Location = "Rua das Pretas",
                             Title = "Se alguem ver este cão que me contacte"
                         });
                 });
@@ -988,7 +1005,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$pE9cnLZabX9jJW09ShWa5ev.gryEIkil7aNSS/bEsFKrAOzscyize"
+                            Password = "$2a$11$K6dFgqPXCStjmeJtk4xcPeGA1h3C8gGrmDkmROb.vbeyqJEGyKNtC"
                         },
                         new
                         {
@@ -996,7 +1013,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$x29PzVcg5g2EzO4vfZs6F.6kOIJvXCvctkbrn9qKx2F/5jDplnK86"
+                            Password = "$2a$11$jHciEWMuN6/iCB9xv8AVduMHWE47h1BYPEnejnUq/qHQWleyVrL6O"
                         },
                         new
                         {
@@ -1004,7 +1021,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$6x4bbZLAAvW51NgrxkH1kes6k2.sPfmoUz3cIzidaOqSycZvQ3OnS"
+                            Password = "$2a$11$1kW6M5trrpcSy1hpR6ghWendh0lGuYVvsj3aq2RnfSs.8CdhkSolq"
                         },
                         new
                         {
@@ -1012,7 +1029,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$URkPRQ8p6NLz1T8vEOy.K.1hebMnLDIgL99txXD4at2rieemEXbda"
+                            Password = "$2a$11$HAnoG1OVq1NDG461NViU.OSStpEt9a7sIhGFNPTBDAYRdN78Zr.K6"
                         },
                         new
                         {
@@ -1020,7 +1037,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$KDkJBgHa04h9OTOd4wM7e.ngc/UBq4MI9f23Ds8OnWkj9Ksa6oKIG"
+                            Password = "$2a$11$48EpfuDOfgxXUdaRsOc2g.GHvuyD2jhdRWLTLTDlaQTKND9yyMM9."
                         });
                 });
 

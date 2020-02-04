@@ -52,7 +52,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([FromForm] string title, [FromForm] string description, [FromForm] string contact)
+        public async Task<IActionResult> Create([FromForm] string title, [FromForm] string description, [FromForm] string contact, [FromForm] string location, [FromForm] string date)
         {
             object response;
             var files = Request.Form.Files;
@@ -61,6 +61,8 @@ namespace PetCareFinalVersion.Controllers
                 var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(title, description);
                 postLostAnimal.Image = ImageSave.SaveImage(files, "lost_animal");
                 postLostAnimal.Contact = contact;
+                postLostAnimal.Location = location;
+                postLostAnimal.Date = date;
                 await _context.LostAnimalPosts.AddAsync(postLostAnimal);
                 await _context.SaveChangesAsync();
 

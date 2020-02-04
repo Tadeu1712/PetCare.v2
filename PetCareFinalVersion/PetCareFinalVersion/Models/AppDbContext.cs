@@ -755,30 +755,30 @@ namespace PetCareFinalVersion.Models
                      Image = "/api/animal/img/event/event_7.jpg"
                 },
                 new Event
-                 {
-                     Id = 9,
-                     Association_id = 4,
-                     Title = "Campanha de Vacinação",
-                     Description = "Promoção no preço das vacinas",
-                     Location = "Machico",
-                     DateInit = new DateTime(2020, 10, 20),
-                     DateEnd = new DateTime(2020, 10, 20),
-                     Type = "",
-                     Price = 25,
-                     Image = "/api/animal/img/event/event_9.jpg"
+                {
+                    Id = 9,
+                    Association_id = 4,
+                    Title = "Campanha de Vacinação",
+                    Description = "Promoção no preço das vacinas",
+                    Location = "Machico",
+                    DateInit = new DateTime(2020, 10, 20),
+                    DateEnd = new DateTime(2020, 10, 20),
+                    Type = "",
+                    Price = 25,
+                    Image = "/api/animal/img/event/event_9.jpg"
                 },
                 new Event
-                  {
-                      Id = 10,
-                      Association_id = 4,
-                      Title = "Campanha de adoção",
-                      Description = "Promoção no preço das adoções",
-                      Location = "Funchal",
-                      DateInit = new DateTime(2020, 10, 20),
-                      DateEnd = new DateTime(2020, 10, 20),
-                      Type = "",
-                      Price = 25,
-                      Image = "/api/animal/img/event/event_10.jpg"
+                {
+                    Id = 10,
+                    Association_id = 4,
+                    Title = "Campanha de adoção",
+                    Description = "Promoção no preço das adoções",
+                    Location = "Funchal",
+                    DateInit = new DateTime(2020, 10, 20),
+                    DateEnd = new DateTime(2020, 10, 20),
+                    Type = "",
+                    Price = 25,
+                    Image = "/api/animal/img/event/event_10.jpg"
                 }
                 );
 
@@ -789,7 +789,9 @@ namespace PetCareFinalVersion.Models
                     Title = "Minha cadelinha desapareceu",
                     Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
                     Image = "",
-                    Contact= "291987123"
+                    Contact= "291987123",
+                    Location ="Avenida do mar",
+                    Date = "2020-01-29"
                 },
                 new LostAnimalPost
                 {
@@ -797,15 +799,19 @@ namespace PetCareFinalVersion.Models
                     Title = "Meu gato encontra-se desaparecido",
                     Description = "Ajude-me a encontar o meu gato numero:925789365",
                     Image = "",
-                    Contact = "291987123"
+                    Contact = "291987123",
+                    Location = "Rua da carreira",
+                    Date = "2020-01-15"
                 },
                 new LostAnimalPost
                 {
-                     Id = 3,
-                     Title = "Se alguem ver este cão que me contacte",
-                     Description = "numero:925789365",
-                     Image = "",
-                    Contact = "291987123"
+                    Id = 3,
+                    Title = "Se alguem ver este cão que me contacte",
+                    Description = "numero:925789365",
+                    Image = "",
+                    Contact = "291987123",
+                    Location = "Rua das Pretas",
+                    Date = "2020-01-01"
                 }
                 );
         }

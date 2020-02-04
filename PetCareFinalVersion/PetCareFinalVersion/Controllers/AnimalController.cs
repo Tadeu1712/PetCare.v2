@@ -154,7 +154,7 @@ namespace PetCareFinalVersion.Controllers
                     }
                     else if (aAnimal.Status == "Perdido")
                     {
-                        aAnimal.Status = aAnimal.StartLosted(aAnimal.Status);
+                        aAnimal.Status = aAnimal.StartLosted();
                     }
                     else
                     {
