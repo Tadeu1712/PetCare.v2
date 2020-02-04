@@ -72,12 +72,11 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreateEvent([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd, [FromForm] decimal aPrice)
+        public async Task<IActionResult> CreateEvent([FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd, [FromForm] decimal aPrice)
         {
             object response;
             var currentUser = HttpContext.User;
             var files = Request.Form.Files;
-            var cEvent = (Event)event_factory.CreatePostFromPostFactory(aTitle, aDescription);
             int id;
             try
             {
@@ -85,6 +84,8 @@ namespace PetCareFinalVersion.Controllers
                 {
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+
+                    var cEvent = (Event)event_factory.CreatePostFromPostFactory(aTitle, aDescription);
                     cEvent.Association_id = association.Id;
                     cEvent.Image = ImageSave.SaveImage(files, "event");
                     cEvent.Location = aLocation;

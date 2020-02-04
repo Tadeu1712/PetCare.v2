@@ -34,18 +34,22 @@ namespace PetCareFinalVersion.Controllers
         {
             var files = Request.Form.Files;
             var data = Request.Form;
+            int id;
             object response;
             var currentUser = HttpContext.User;
-            var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(data);
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                      animal.Image = ImageSave.SaveImage(files, "animal");
-                      await _context.Animals.AddAsync(animal);
-                      await _context.SaveChangesAsync();
-                      response = new {success = true, data = animal};
-                      return Ok(response);
+                  id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                  Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                    
+                  var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(data, association.Id);
+                  animal.Image = ImageSave.SaveImage(files, "animal");
+                  await _context.Animals.AddAsync(animal);
+                  await _context.SaveChangesAsync();
+                  response = new {success = true, data = animal};
+                  return Ok(response);
                 }
                 response = new { success = false, message = "Utilizador não se encontra autenticado" };
                 return NotFound(response);

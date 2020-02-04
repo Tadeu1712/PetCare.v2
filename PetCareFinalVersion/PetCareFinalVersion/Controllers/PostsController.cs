@@ -75,19 +75,20 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreatePost([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription)
+        public async Task<IActionResult> CreatePost([FromForm] string aTitle, [FromForm] string aDescription)
         {
             object response;
             var files = Request.Form.Files;
             var currentUser = HttpContext.User;
             int id;
-            var post = (Post)post_factory.CreatePostFromPostFactory(aTitle, aDescription);
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                    
+                    var post = (Post)post_factory.CreatePostFromPostFactory(aTitle, aDescription);
 
                     post.Association_id = association.Id;
                     post.Image = ImageSave.SaveImage(files, "post");

@@ -56,9 +56,9 @@ namespace PetCareFinalVersion.Controllers
         {
             object response;
             var files = Request.Form.Files;
-            var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aTitle, aDescription);
             try
             {
+                var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aTitle, aDescription);
                 postLostAnimal.Image = ImageSave.SaveImage(files, "lost_animal");
                 postLostAnimal.Contact = aContact;
                 await _context.LostAnimalPosts.AddAsync(postLostAnimal);

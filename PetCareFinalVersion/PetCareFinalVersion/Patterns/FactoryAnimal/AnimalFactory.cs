@@ -15,7 +15,7 @@ namespace PetCareFinalVersion.Patterns
 
         public static AnimalFactory Instance => mInstance;
 
-        public override AbstractAnimal CreateAnimal(IFormCollection data)
+        public override AbstractAnimal CreateAnimal(IFormCollection data, int assoc_id)
         {
            var animal = new Animal()
            {
@@ -26,7 +26,7 @@ namespace PetCareFinalVersion.Patterns
                 Weight = float.Parse(data["aWeight"][0]),
                 Size= data["aSize"][0],
                 Breed = data["aBreed"][0],
-                Association_id = int.Parse(data["aAssociation_id"][0]),
+                Association_id = assoc_id,
             };
            animal.Status= animal.TransistionTo(new Adoption());
             
