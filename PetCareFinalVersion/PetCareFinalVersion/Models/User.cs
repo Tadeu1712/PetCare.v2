@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Models
 {
-       public class User
-    {
+       public class User :IUser
+        {
         [Key]
         public int Id { get; set; }
         [Required]

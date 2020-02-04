@@ -7,7 +7,7 @@ using PetCareFinalVersion.Data;
 namespace PetCareFinalVersion.Models
 {
 
-    public class Association : IUser
+    public class Association : IAssoc
     {
 
        
@@ -26,7 +26,7 @@ namespace PetCareFinalVersion.Models
         [MaxLength(255)]
         public string Description { get; set; }
         [Required]
-        public DateTime FoundationDate { get; set; }
+        public string FoundationDate { get; set; }
 
 
         [ForeignKey("User")]

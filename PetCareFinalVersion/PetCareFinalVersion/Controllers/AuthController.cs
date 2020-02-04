@@ -111,20 +111,20 @@ namespace PetCareFinalVersion.Controllers
 
         //REGISTO
         [Produces("application/json")]
-        [Consumes("application/json")]
         [Authorize]
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAssociation([FromBody]Association aAssociation)
+        public async Task<IActionResult> RegisterAssociation()
         {
             object response;
             var currentUser = HttpContext.User;
-
-            var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
-
+         //   var files = Request.Form.Files;
+            var data = Request.Form;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id") && bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value))
                 {
+                    var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(data);
+
                     await _context.Associations.AddAsync(newUser);
                     await _context.SaveChangesAsync();
 
