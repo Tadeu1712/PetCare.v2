@@ -54,7 +54,7 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("{id}")]
+        [HttpGet("find/{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> getEvents(int id)
         {

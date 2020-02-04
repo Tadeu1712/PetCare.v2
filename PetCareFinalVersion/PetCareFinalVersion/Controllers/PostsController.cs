@@ -52,9 +52,8 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("{id}")]
+        [HttpGet("find/{id}")]
         [AllowAnonymous]
-
         public async Task<IActionResult> getPost(int id)
         {
             object response;
@@ -76,18 +75,18 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreatePost([FromForm] int Association_id, [FromForm] string Title, [FromForm] string Description)
+        public async Task<IActionResult> CreatePost([FromForm] int aAssociation_id, [FromForm] string aTitle, [FromForm] string aDescription)
         {
             object response;
             var files = Request.Form.Files;
             var currentUser = HttpContext.User;
 
-            var post = (Post)post_factory.CreatePostFromPostFactory(Title, Description);
+            var post = (Post)post_factory.CreatePostFromPostFactory(aTitle, aDescription);
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    post.Association_id = Association_id;
+                    post.Association_id = aAssociation_id;
                     post.Image = ImageSave.SaveImage(files, "post");
                     await _context.Posts.AddAsync(post);
                     await _context.SaveChangesAsync();

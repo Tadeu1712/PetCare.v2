@@ -26,7 +26,7 @@ namespace PetCareFinalVersion.Models
 
         [Required]
         [MaxLength(50)]
-        public override DateTime Age { get; set; }
+        public override string Age { get; set; }
 
         [Required]
         public override float Weight { get; set; }

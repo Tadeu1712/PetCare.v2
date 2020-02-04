@@ -13,7 +13,7 @@ namespace PetCareFinalVersion.Data
         public abstract string Name { get; set; }
         public abstract string Type { get; set; }
         public abstract string Breed { get; set; }
-        public abstract DateTime Age { get; set; }
+        public abstract string Age { get; set; }
         public abstract float Weight { get; set; }
         public abstract string Status { get; set; }
         public abstract string Size { get; set; }

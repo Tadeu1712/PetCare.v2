@@ -111,7 +111,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpDelete("delete/{id}")]
-          [Authorize]
+        [Authorize]
         public async Task<IActionResult> DeleteAnimal(int id)
         {
             object response;
@@ -233,7 +233,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animals = await _context.Animals.Where(obj => obj.Age >= endDate).OrderByDescending(b => b.Age).ToListAsync();
+                var animals = await _context.Animals.Where(obj => DateTime.Parse(obj.Age) >= endDate).OrderByDescending(b => b.Age).ToListAsync();
 
                 if (!animals.Any())
                 {

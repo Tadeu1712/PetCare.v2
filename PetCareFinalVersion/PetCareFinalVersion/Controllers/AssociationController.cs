@@ -60,14 +60,14 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                Association query = await _context.Associations.FindAsync(id);
-                query.User = await _context.Users.FindAsync(query.User_id);
-                query.User.Password = null;
-                query.Posts = _context.Posts.Where(post => post.Association_id == id).ToList();
-                query.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
-                query.Events = _context.Events.Where(e => e.Association_id == id).ToList();
+                Association assoc = await _context.Associations.FindAsync(id);
+                assoc.User = await _context.Users.FindAsync(assoc.User_id);
+                assoc.User.Password = null;
+                assoc.Posts = _context.Posts.Where(post => post.Association_id == id).ToList();
+                assoc.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
+                assoc.Events = _context.Events.Where(e => e.Association_id == id).ToList();
 
-                response = new {success = true, data = query};
+                response = new {success = true, data = assoc};
                 return Ok(response);
             }
             catch

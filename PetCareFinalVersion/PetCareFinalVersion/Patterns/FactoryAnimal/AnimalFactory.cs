@@ -25,7 +25,7 @@ namespace PetCareFinalVersion.Patterns
             {
                 Name = data["aName"][0],
                 Description = data["aDescription"][0],
-                Age = DateTime.Parse(data["aAge"][0]),
+                Age = data["aAge"][0],
                 Type = data["aType"][0],
                 Weight = float.Parse(data["aWeight"][0]),
                 Size= data["aSize"][0],
