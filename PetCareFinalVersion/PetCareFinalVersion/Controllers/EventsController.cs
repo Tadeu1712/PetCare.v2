@@ -72,7 +72,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreateEvent([FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aLocation, [FromForm] string aDateInit, [FromForm] string aDateEnd, [FromForm] decimal aPrice)
+        public async Task<IActionResult> CreateEvent([FromForm] string title, [FromForm] string description, [FromForm] string location, [FromForm] string dateInit, [FromForm] string dateEnd, [FromForm] decimal price)
         {
             object response;
             var currentUser = HttpContext.User;
@@ -85,15 +85,15 @@ namespace PetCareFinalVersion.Controllers
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
 
-                    var cEvent = (Event)event_factory.CreatePostFromPostFactory(aTitle, aDescription);
+                    var cEvent = (Event)event_factory.CreatePostFromPostFactory(title, description);
                     cEvent.Association_id = association.Id;
                     cEvent.Image = ImageSave.SaveImage(files, "event");
-                    cEvent.Location = aLocation;
-                    var initDate = DateTime.Parse(aDateInit);
-                    var endDate = DateTime.Parse(aDateEnd);
+                    cEvent.Location = location;
+                    var initDate = DateTime.Parse(dateInit);
+                    var endDate = DateTime.Parse(dateEnd);
                     cEvent.DateInit = initDate;
                     cEvent.DateEnd = endDate;
-                    cEvent.Price = aPrice;
+                    cEvent.Price = price;
                     cEvent.Type = "Concentração de Cães";
                     await _context.Events.AddAsync(cEvent);
                     await _context.SaveChangesAsync();

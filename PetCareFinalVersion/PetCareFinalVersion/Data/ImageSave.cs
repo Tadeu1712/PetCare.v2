@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Http;
 
 namespace PetCareFinalVersion.Data
@@ -11,8 +12,8 @@ namespace PetCareFinalVersion.Data
             try
             {
                 var image = files[0];
-                var filePath = Path.Combine($"resources/images/{store_local}", image.FileName);
-                img_name = image.FileName;
+                img_name = Guid.NewGuid() + image.FileName;
+                var filePath = Path.Combine($"resources/images/{store_local}", img_name);
                 if (image.Length > 0)
                 {
                     using (var fileStream = new FileStream(filePath, FileMode.Create))

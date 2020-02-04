@@ -75,7 +75,7 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreatePost([FromForm] string aTitle, [FromForm] string aDescription)
+        public async Task<IActionResult> CreatePost([FromForm] string title, [FromForm] string description)
         {
             object response;
             var files = Request.Form.Files;
@@ -88,7 +88,7 @@ namespace PetCareFinalVersion.Controllers
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
                     
-                    var post = (Post)post_factory.CreatePostFromPostFactory(aTitle, aDescription);
+                    var post = (Post)post_factory.CreatePostFromPostFactory(title, description);
 
                     post.Association_id = association.Id;
                     post.Image = ImageSave.SaveImage(files, "post");

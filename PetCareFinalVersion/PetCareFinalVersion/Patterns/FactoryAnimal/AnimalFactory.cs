@@ -22,10 +22,10 @@ namespace PetCareFinalVersion.Patterns
                 Name = data["name"][0],
                 Description = data["description"][0],
                 Age = data["age"][0],
-                Type = data["aType"][0],
-                Weight = float.Parse(data["aWeight"][0]),
-                Size= data["aSize"][0],
-                Breed = data["aBreed"][0],
+                Type = data["type"][0],
+                Weight = float.Parse(data["weight"][0]),
+                Size= data["size"][0],
+                Breed = data["breed"][0],
                 Association_id = assoc_id,
             };
            animal.Status= animal.TransistionTo(new Adoption());

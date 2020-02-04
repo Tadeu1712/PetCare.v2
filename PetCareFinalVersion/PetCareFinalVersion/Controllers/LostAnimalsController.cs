@@ -52,15 +52,15 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([FromForm] string aTitle, [FromForm] string aDescription, [FromForm] string aContact)
+        public async Task<IActionResult> Create([FromForm] string title, [FromForm] string description, [FromForm] string contact)
         {
             object response;
             var files = Request.Form.Files;
             try
             {
-                var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aTitle, aDescription);
+                var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(title, description);
                 postLostAnimal.Image = ImageSave.SaveImage(files, "lost_animal");
-                postLostAnimal.Contact = aContact;
+                postLostAnimal.Contact = contact;
                 await _context.LostAnimalPosts.AddAsync(postLostAnimal);
                 await _context.SaveChangesAsync();
 
