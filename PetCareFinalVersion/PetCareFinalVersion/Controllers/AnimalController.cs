@@ -28,7 +28,7 @@ namespace PetCareFinalVersion.Controllers
         // CREATE NEW ANIMAL
         [Produces("application/json")]
         [HttpPost("create")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             var files = Request.Form.Files;
