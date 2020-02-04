@@ -19,9 +19,9 @@ namespace PetCareFinalVersion.Patterns
         {
            var animal = new Animal()
            {
-                Name = data["aName"][0],
-                Description = data["aDescription"][0],
-                Age = data["aAge"][0],
+                Name = data["name"][0],
+                Description = data["description"][0],
+                Age = data["age"][0],
                 Type = data["aType"][0],
                 Weight = float.Parse(data["aWeight"][0]),
                 Size= data["aSize"][0],
