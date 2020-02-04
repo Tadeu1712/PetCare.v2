@@ -50,6 +50,26 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
+        [HttpGet("find/{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> getLostAnimal(int id)
+        {
+            object response;
+            try
+            {
+                LostAnimalPost lostAnimal = await _context.LostAnimalPosts.FindAsync(id);
+
+                response = new { success = true, data = lostAnimal };
+                return Ok(response);
+            }
+            catch
+            {
+                response = new { success = false, message = $"Nao existe o post com o id {id}" };
+                return NotFound(response);
+            }
+        }
+
+        [Produces("application/json")]
         [HttpPost("create")]
         [AllowAnonymous]
         public async Task<IActionResult> Create([FromForm] string title, [FromForm] string description, [FromForm] string contact, [FromForm] string location, [FromForm] string date)

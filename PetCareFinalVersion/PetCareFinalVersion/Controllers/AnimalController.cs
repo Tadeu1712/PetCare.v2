@@ -119,10 +119,18 @@ namespace PetCareFinalVersion.Controllers
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                     var animal = await _context.Animals.FindAsync(id);
-                    _context.Animals.Remove(animal);
-                    await _context.SaveChangesAsync();
-                    response = new {success = true, message = $"Animal com o id {id} foi eliminado!"};
-                    return Ok(response);
+                    var id_log = int.Parse(currentUser.Claims.First(c => c.Type == "id").Value);
+                    if (animal.Association_id == id_log) {
+                        _context.Animals.Remove(animal);
+                        await _context.SaveChangesAsync();
+                        response = new { success = true, message = $"Animal com o id {id} foi eliminado!" };
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        response = new { success = false, message = "Este animal não pertence à sua associação" };
+                        return BadRequest(response);
+                    }
                 }
                 response = new { success = false, message = "Utilizador não se encontra autenticado" };
                 return NotFound(response);

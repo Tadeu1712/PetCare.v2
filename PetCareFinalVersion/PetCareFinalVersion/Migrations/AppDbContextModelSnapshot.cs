@@ -589,7 +589,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Adress = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = "02/04/2020 18:11:22",
+                            FoundationDate = "02/04/2020 18:50:54",
                             Iban = "28374659",
                             PhoneNumber = "291773357",
                             User_id = 4
@@ -1003,7 +1003,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$K6dFgqPXCStjmeJtk4xcPeGA1h3C8gGrmDkmROb.vbeyqJEGyKNtC"
+                            Password = "$2a$11$zS5qufWsq.RTwLH7Oefih.iWCIPFb.s9hlC1g88ZHjYZCaMxghqi."
                         },
                         new
                         {
@@ -1011,7 +1011,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$jHciEWMuN6/iCB9xv8AVduMHWE47h1BYPEnejnUq/qHQWleyVrL6O"
+                            Password = "$2a$11$uc9suHe0ku.dnMtSUqG1luwKgacIZWj1MwqLkM1e6FSvcuFYacGDq"
                         },
                         new
                         {
@@ -1019,7 +1019,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$1kW6M5trrpcSy1hpR6ghWendh0lGuYVvsj3aq2RnfSs.8CdhkSolq"
+                            Password = "$2a$11$I1QVDwlxROOibKNnAs9TBOR1OQBxXIIKsRe5xrr053sE0jNjRWTVS"
                         },
                         new
                         {
@@ -1027,7 +1027,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$HAnoG1OVq1NDG461NViU.OSStpEt9a7sIhGFNPTBDAYRdN78Zr.K6"
+                            Password = "$2a$11$7KY7xvaaTHnfl.HZA.3KnOEn71QdOjGt.BGggBQ8EJ0Gf1cgXmzpy"
                         },
                         new
                         {
@@ -1035,7 +1035,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$48EpfuDOfgxXUdaRsOc2g.GHvuyD2jhdRWLTLTDlaQTKND9yyMM9."
+                            Password = "$2a$11$Uqs2MUrv0XvYMfpjqsyEHOhgSiJinXX45CrHkA/m6Dh1drbzie7Sm"
                         });
                 });
 

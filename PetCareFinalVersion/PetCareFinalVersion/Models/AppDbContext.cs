@@ -123,7 +123,7 @@ namespace PetCareFinalVersion.Models
                   Status = "Para adoção",
                   Description = "Mancha no centro da testa",
                   Association_id = 1,
-                  Image = "/api/animal/img/Napoleão_animal_1.jpg",   
+                  Image = "Napoleão_animal_1.jpg",   
 
                },
                new Animal
@@ -138,7 +138,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Cão de pequeno porte",
                    Association_id = 1,
-                   Image = "/api/animal/img/Bolinhas_animal_2.jpg",
+                   Image = "Bolinhas_animal_2.jpg",
 
                },
                new Animal
@@ -153,7 +153,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Muita energia",
                    Association_id = 1,
-                   Image = "/api/animal/img/Bob_animal_3.jpg",
+                   Image = "Bob_animal_3.jpg",
 
                },
                new Animal
@@ -168,7 +168,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Pelo longo, com orellahs pretas",
                    Association_id = 1,
-                   Image = "/api/animal/img/Belinha_animal_4.jpg",
+                   Image = "Belinha_animal_4.jpg",
 
                },
                new Animal
@@ -183,7 +183,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Dá-se bem com crianças",
                    Association_id = 2,
-                   Image = "/api/animal/img/Duke_animal_5.jpg",
+                   Image = "Duke_animal_5.jpg",
                },
                new Animal
                {
@@ -197,7 +197,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Gosta de comer comida humida",
                     Association_id = 2,
-                    Image = "/api/animal/img/Grey_animal_6.jpg",
+                    Image = "Grey_animal_6.jpg",
                },
                new Animal
                 {
@@ -211,7 +211,7 @@ namespace PetCareFinalVersion.Models
                       Status = "Para adoção",
                       Description = "Não gosta de gatos",
                       Association_id = 2,
-                      Image = "/api/animal/img/Leão_animal_7.jpg",
+                      Image = "Leão_animal_7.jpg",
                 },
                new Animal
                 {
@@ -225,7 +225,7 @@ namespace PetCareFinalVersion.Models
                       Status = "Para adoção",
                       Description = "Perfeito para apartamentos",
                       Association_id = 2,
-                      Image = "/api/animal/img/Faisca_animal_8.jpg",
+                      Image = "Faisca_animal_8.jpg",
                 },
                new Animal
                {
@@ -239,7 +239,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Perfeito para apartamentos",
                    Association_id = 3,
-                   Image = "/api/animal/img/Toby_animal_9.jpg",
+                   Image = "Toby_animal_9.jpg",
                },
                new Animal
                {
@@ -253,7 +253,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Perfeito para apartamentos",
                    Association_id = 3,
-                   Image = "/api/animal/img/Pipsy_animal_10.jpg",
+                   Image = "Pipsy_animal_10.jpg",
                },
                new Animal
                {
@@ -267,7 +267,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Não têm pelo",
                    Association_id = 3,
-                   Image = "/api/animal/img/Quirk_animal_11.jpg",
+                   Image = "Quirk_animal_11.jpg",
                },
                new Animal
                {
@@ -281,7 +281,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Precisa de muito espaço",
                    Association_id = 3,
-                   Image = "/api/animal/img/Odie_animal_12.jpg",
+                   Image = "Odie_animal_12.jpg",
                },
                new Animal
                {
@@ -295,7 +295,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Gosta de crianças",
                    Association_id = 4,
-                   Image = "/api/animal/img/Barkley_animal_13.jpg",
+                   Image = "Barkley_animal_13.jpg",
                },
                new Animal
                {
@@ -309,7 +309,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Não gosta de gato",
                    Association_id = 4,
-                   Image = "/api/animal/img/Maverick_animal_14.jpg",
+                   Image = "Maverick_animal_14.jpg",
                },
                new Animal
                {
@@ -323,7 +323,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Precisa de muito espaço",
                    Association_id = 4,
-                   Image = "/api/animal/img/Kobe_animal_15.jpg",
+                   Image = "Kobe_animal_15.jpg",
                },
                new Animal
                {
@@ -337,7 +337,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Gosta de Crianças",
                    Association_id = 4,
-                   Image = "/api/animal/img/Dorito_animal_16.jpg",
+                   Image = "Dorito_animal_16.jpg",
                },
                new Animal
                {
@@ -351,7 +351,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Precisa de muito espaço",
                    Association_id = 1,
-                   Image = "/api/animal/img/Rage_animal_17.jpg",
+                   Image = "Rage_animal_17.jpg",
                },
                new Animal
                {
@@ -365,7 +365,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Não gosta de Crianças",
                    Association_id = 2,
-                   Image = "/api/animal/img/Tally_animal_18.jpg",
+                   Image = "Tally_animal_18.jpg",
                },
                new Animal
                {
@@ -379,7 +379,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Adora água",
                    Association_id = 3,
-                   Image = "/api/animal/img/Connor_animal_19.jpg",
+                   Image = "Connor_animal_19.jpg",
                },
                new Animal
                {
@@ -393,7 +393,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "bebe",
                    Association_id = 4,
-                   Image = "/api/animal/img/Gaia_animal_20.jpg",
+                   Image = "Gaia_animal_20.jpg",
                },
                new Animal
                {
@@ -407,7 +407,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Be",
                    Association_id = 1,
-                   Image = "/api/animal/img/Palmer_animal_21.jpg",
+                   Image = "Palmer_animal_21.jpg",
                },
                new Animal
                {
@@ -421,7 +421,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Gosta de Cães",
                    Association_id = 2,
-                   Image = "/api/animal/img/Warp_animal_22.jpg",
+                   Image = "Warp_animal_22.jpg",
                },
                new Animal
                 {
@@ -435,7 +435,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Bom para ter num apartamento",
                     Association_id = 1,
-                    Image = "/api/animal/img/Rave_animal_23.jpg",
+                    Image = "Rave_animal_23.jpg",
                 },
                new Animal
                {
@@ -449,7 +449,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Muito energetico",
                     Association_id = 1,
-                    Image = "/api/animal/img/Linus_animal_24.jpg",
+                    Image = "Linus_animal_24.jpg",
                },
                new Animal
                {
@@ -463,7 +463,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Gosta de Cães",
                    Association_id = 1,
-                   Image = "/api/animal/img/Newton_animal_25.jpg",
+                   Image = "Newton_animal_25.jpg",
                },
                new Animal
                {
@@ -477,7 +477,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Desaparecido",
                    Association_id = 1,
-                   Image = "/api/animal/img/Lenny_animal_26.jpg",
+                   Image = "Lenny_animal_26.jpg",
                },
                new Animal
                {
@@ -491,7 +491,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Desaparecido",
                    Association_id = 1,
-                   Image = "/api/animal/img/Lenny_animal_27.jpg",
+                   Image = "Lenny_animal_27.jpg",
                },
                new Animal
                {
@@ -505,7 +505,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 1,
-                    Image = "/api/animal/img/Shakira_animal_28.jpg",
+                    Image = "Shakira_animal_28.jpg",
                },
                new Animal
                {
@@ -519,7 +519,7 @@ namespace PetCareFinalVersion.Models
                    Status = "Para adoção",
                    Description = "Desaparecido",
                    Association_id = 2,
-                   Image = "/api/animal/img/Bagel_animal_29.jpg",
+                   Image = "Bagel_animal_29.jpg",
                },
                new Animal
                {
@@ -533,7 +533,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 2,
-                    Image = "/api/animal/img/Bingo_animal_30.jpg",
+                    Image = "Bingo_animal_30.jpg",
                },
                new Animal
                 {
@@ -547,7 +547,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 2,
-                    Image = "/api/animal/img/Basil_animal_31.jpg",
+                    Image = "Basil_animal_31.jpg",
                 },
                new Animal
                 {
@@ -561,7 +561,7 @@ namespace PetCareFinalVersion.Models
                     Status = "Para adoção",
                     Description = "Desaparecido",
                     Association_id = 3,
-                    Image = "/api/animal/img/Raisin_animal_32.jpg",
+                    Image = "Raisin_animal_32.jpg",
                 }
            );
 
@@ -661,7 +661,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 3, 20),
                     Type = "",
                     Price = 25,
-                    Image = "/api/animal/img/event/event_1.jpg"
+                    Image = "event/event_1.jpg"
                 },
                 new Event
                 {
@@ -674,7 +674,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 5, 20),
                     Type = "",
                     Price = 30,
-                    Image = "/api/animal/img/event/event_2.jpg"
+                    Image = "event/event_2.jpg"
                 },
                 new Event
                 {
@@ -687,7 +687,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 30,
-                    Image = "/api/animal/img/event/event_3.jpg"
+                    Image = "event/event_3.jpg"
                 },
                 new Event
                 {
@@ -700,7 +700,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = "/api/animal/img/event/event_4.jpg"
+                    Image = "event/event_4.jpg"
                 },
                 new Event
                  {
@@ -713,7 +713,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = "/api/animal/img/event/event_8.jpg"
+                     Image = "event/event_8.jpg"
                 },
                 new Event
                  {
@@ -726,7 +726,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 10,
-                     Image = "/api/animal/img/event/event_6.jpg"
+                     Image = "event/event_6.jpg"
                 },
                 new Event
                  {
@@ -739,7 +739,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = "/api/animal/img/event/event_5.jpg"
+                     Image = "event/event_5.jpg"
                 },
                 new Event
                  {
@@ -752,7 +752,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = "/api/animal/img/event/event_7.jpg"
+                     Image = "event/event_7.jpg"
                 },
                 new Event
                 {
@@ -765,7 +765,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = "/api/animal/img/event/event_9.jpg"
+                    Image = "event/event_9.jpg"
                 },
                 new Event
                 {
@@ -778,7 +778,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = "/api/animal/img/event/event_10.jpg"
+                    Image = "event/event_10.jpg"
                 }
                 );
 

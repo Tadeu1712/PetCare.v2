@@ -158,11 +158,11 @@ namespace PetCareFinalVersion.Migrations
                 columns: new[] { "Id", "Admin", "Email", "Name", "Password" },
                 values: new object[,]
                 {
-                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$K6dFgqPXCStjmeJtk4xcPeGA1h3C8gGrmDkmROb.vbeyqJEGyKNtC" },
-                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$jHciEWMuN6/iCB9xv8AVduMHWE47h1BYPEnejnUq/qHQWleyVrL6O" },
-                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$1kW6M5trrpcSy1hpR6ghWendh0lGuYVvsj3aq2RnfSs.8CdhkSolq" },
-                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$HAnoG1OVq1NDG461NViU.OSStpEt9a7sIhGFNPTBDAYRdN78Zr.K6" },
-                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$48EpfuDOfgxXUdaRsOc2g.GHvuyD2jhdRWLTLTDlaQTKND9yyMM9." }
+                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$zS5qufWsq.RTwLH7Oefih.iWCIPFb.s9hlC1g88ZHjYZCaMxghqi." },
+                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$uc9suHe0ku.dnMtSUqG1luwKgacIZWj1MwqLkM1e6FSvcuFYacGDq" },
+                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$I1QVDwlxROOibKNnAs9TBOR1OQBxXIIKsRe5xrr053sE0jNjRWTVS" },
+                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$7KY7xvaaTHnfl.HZA.3KnOEn71QdOjGt.BGggBQ8EJ0Gf1cgXmzpy" },
+                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$Uqs2MUrv0XvYMfpjqsyEHOhgSiJinXX45CrHkA/m6Dh1drbzie7Sm" }
                 });
 
             migrationBuilder.InsertData(
@@ -172,7 +172,7 @@ namespace PetCareFinalVersion.Migrations
                 {
                     { 1, "R. do Matadouro 10, 9050-100 Funchal", "Intervenção Activa na Protecção, Bem-estar e Saúde Animal", "06/30/1897 00:00:00", "PT50000702430012359000733", "291220852", 2 },
                     { 2, "Santa cruz", "A Associação PATA – Porque os Animais Também se Amam", "05/08/2006 00:00:00", "233924194", "961133214", 3 },
-                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/04/2020 18:11:22", "28374659", "291773357", 4 },
+                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/04/2020 18:50:54", "28374659", "291773357", 4 },
                     { 4, "Rua Cidade de Oakland 1 Funchal", "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados", "01/02/2012 00:00:00", "PT50 0007 0000 0008 4526 8682 3", "966295555", 5 }
                 });
 
