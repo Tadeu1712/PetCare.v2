@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PetCareFinalVersion.Data;
+﻿using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Models;
-using PetCareFinalVersion.Patterns.StateMachine;
 
 namespace PetCareFinalVersion.Patterns.FactoryPost
 {

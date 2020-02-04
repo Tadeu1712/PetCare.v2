@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
-using PetCareFinalVersion.Models;
-
-namespace PetCareFinalVersion.Data
+﻿namespace PetCareFinalVersion.Data
 {
     public interface IPost 
     {

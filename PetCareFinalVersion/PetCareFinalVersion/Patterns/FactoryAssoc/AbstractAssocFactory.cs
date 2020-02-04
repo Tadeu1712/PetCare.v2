@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PetCareFinalVersion.Data;
-using PetCareFinalVersion.Models;
+﻿using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Patterns.FactoryAssoc
 {

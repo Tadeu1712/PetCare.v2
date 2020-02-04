@@ -81,7 +81,7 @@ namespace PetCareFinalVersion.Controllers
             var files = Request.Form.Files;
             var currentUser = HttpContext.User;
             int id;
-            var post = (Post)post_factory.CreatePostFromPostFactory(Title, Description);
+            var post = (Post)post_factory.CreatePostFromPostFactory(aTitle, aDescription);
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))

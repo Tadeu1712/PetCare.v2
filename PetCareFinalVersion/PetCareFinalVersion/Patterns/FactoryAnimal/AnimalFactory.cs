@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Models;
 using PetCareFinalVersion.Patterns.StateMachine;
@@ -21,20 +17,20 @@ namespace PetCareFinalVersion.Patterns
 
         public override AbstractAnimal CreateAnimal(IFormCollection data)
         {
-           var Animal = new Animal()
-            {
+           var animal = new Animal()
+           {
                 Name = data["aName"][0],
                 Description = data["aDescription"][0],
                 Age = data["aAge"][0],
                 Type = data["aType"][0],
                 Weight = float.Parse(data["aWeight"][0]),
                 Size= data["aSize"][0],
-                Breed = data["aBreed"],
+                Breed = data["aBreed"][0],
                 Association_id = int.Parse(data["aAssociation_id"][0]),
             };
-            Animal.Status= Animal.TransistionTo(new Adoption());
+           animal.Status= animal.TransistionTo(new Adoption());
             
-            return Animal;
+           return animal;
         }
     }
 }

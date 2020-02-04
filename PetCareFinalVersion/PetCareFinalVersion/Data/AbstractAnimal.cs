@@ -1,4 +1,3 @@
-using System;
 using PetCareFinalVersion.Models;
 using PetCareFinalVersion.Patterns.StateMachine;
 
@@ -6,9 +5,7 @@ namespace PetCareFinalVersion.Data
 {
     public abstract class AbstractAnimal
     {
-
-        private AbstractStatus _state = null;
-
+        private AbstractStatus _state ; 
         public abstract int Id { get; set; }
         public abstract string Name { get; set; }
         public abstract string Type { get; set; }

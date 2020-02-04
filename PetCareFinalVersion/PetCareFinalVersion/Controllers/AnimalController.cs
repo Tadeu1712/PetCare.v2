@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetCareFinalVersion.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
 using PetCareFinalVersion.Data;
@@ -33,6 +28,7 @@ namespace PetCareFinalVersion.Controllers
         // CREATE NEW ANIMAL
         [Produces("application/json")]
         [HttpPost("create")]
+       
         [Authorize]
         public async Task<IActionResult> Create()
         {
@@ -59,7 +55,6 @@ namespace PetCareFinalVersion.Controllers
                return BadRequest();
             }
         }
-
 
         // GET ALL ANIMALS 
         [Produces("application/json")]
