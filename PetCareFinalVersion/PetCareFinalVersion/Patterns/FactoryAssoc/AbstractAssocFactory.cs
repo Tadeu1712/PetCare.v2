@@ -1,16 +1,17 @@
-﻿using PetCareFinalVersion.Data;
+﻿using Microsoft.AspNetCore.Http;
+using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Patterns.FactoryAssoc
 {
     public abstract class AbstractAssocFactory 
     {
-        public IUser CreateAssociationFromAssocFactory(IUser aAssociation)
+        public IAssoc CreateAssociationFromAssocFactory(IFormCollection data)
         {
-            IUser association = CreateAssociation(aAssociation);
+            IAssoc association = CreateAssociation(data);
             return association;
 
         }
-        public abstract IUser CreateAssociation(IUser aAssociation);
+        public abstract IAssoc CreateAssociation(IFormCollection data);
     }
 }
 

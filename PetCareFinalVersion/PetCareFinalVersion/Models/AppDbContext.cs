@@ -75,7 +75,7 @@ namespace PetCareFinalVersion.Models
                     Adress = "R. do Matadouro 10, 9050-100 Funchal",
                     PhoneNumber = "291220852",
                     Description = "Intervenção Activa na Protecção, Bem-estar e Saúde Animal",
-                    FoundationDate = new DateTime(1897, 6, 30)
+                    FoundationDate = new DateTime(1897, 6, 30).ToString()
                },
                new Association
                  {
@@ -85,7 +85,7 @@ namespace PetCareFinalVersion.Models
                     Adress = "Santa cruz",
                     PhoneNumber = "961133214",
                     Description = "A Associação PATA – Porque os Animais Também se Amam",
-                    FoundationDate = new DateTime(2006, 5, 8)
+                    FoundationDate = new DateTime(2006, 5, 8).ToString()
                },
                new Association
                 {
@@ -95,8 +95,8 @@ namespace PetCareFinalVersion.Models
                     Adress = "Funchal",
                     PhoneNumber = "291773357",
                     Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                    FoundationDate = DateTime.Now
-                 },
+                    FoundationDate = DateTime.Now.ToString()
+               },
                new Association
                 {
                     User_id = 5,
@@ -105,7 +105,7 @@ namespace PetCareFinalVersion.Models
                     Adress = "Rua Cidade de Oakland 1 Funchal",
                     PhoneNumber = "966295555",
                     Description = "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados",
-                    FoundationDate = new DateTime(2012, 1, 2)
+                    FoundationDate = new DateTime(2012, 1, 2).ToString()
                }
             );
 

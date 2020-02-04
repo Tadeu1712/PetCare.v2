@@ -1,5 +1,8 @@
 ﻿using System;
-using PetCareFinalVersion.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PetCareFinalVersion.Data
 {
@@ -7,18 +10,12 @@ namespace PetCareFinalVersion.Data
     {
          int Id { get; set; }
         
-         string Iban { get; set; }
-  
-         string Adress { get; set; }
-     
-         string PhoneNumber { get; set; }
+         string Name { get; set; }
+   
+         string Email { get; set; }
 
-         string Description { get; set; }
+         string Password { get; set; }
 
-         DateTime FoundationDate { get; set; }
-
-         int User_id { get; set; }
-         User User { get; set; }
-
+         bool Admin { get; set; }
     }
 }

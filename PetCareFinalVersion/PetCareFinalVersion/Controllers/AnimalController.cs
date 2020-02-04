@@ -217,8 +217,6 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        //ACABAR ISTO
-
         [Produces("application/json")]
         [HttpGet("babies")]
         [AllowAnonymous]
@@ -230,7 +228,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animals = await _context.Animals.Where(obj => DateTime.Parse(obj.Age) >= endDate).OrderByDescending(b => b.Age).ToListAsync();
+                var animals = await _context.Animals.Where(obj => DateTime.Parse(obj.Age) >= endDate).OrderByDescending(b => DateTime.Parse(b.Age)).ToListAsync();
 
                 if (!animals.Any())
                 {

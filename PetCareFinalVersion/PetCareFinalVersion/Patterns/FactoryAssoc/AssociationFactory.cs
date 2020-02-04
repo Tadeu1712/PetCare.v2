@@ -1,10 +1,15 @@
+using Microsoft.AspNetCore.Http;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Models;
+using PetCareFinalVersion.Patterns.FactoryUser;
 
 namespace PetCareFinalVersion.Patterns.FactoryAssoc
 {
     public sealed class AssociationFactory : AbstractAssocFactory
     {
+        private readonly AbstractUserFactory user_factory = UserFactory.Instance;
+
+
         private static readonly AssociationFactory mInstance = new AssociationFactory();
 
         private AssociationFactory() { }
@@ -13,25 +18,18 @@ namespace PetCareFinalVersion.Patterns.FactoryAssoc
         public static AssociationFactory Instance => mInstance;
 
 
-        public override IUser CreateAssociation(IUser aAssociation)
+        public override IAssoc CreateAssociation(IFormCollection data)
         {
-            var user = new User() 
-            {
-                Name = aAssociation.User.Name,
-                Email = aAssociation.User.Email,
-                Password = BCrypt.Net.BCrypt.EnhancedHashPassword(aAssociation.User.Password),
-                Admin = false,
-            };
-
+            var user = (User)user_factory.CreateUserFromFactory(data);
 
             var association = new Association() 
             {
-                Iban = aAssociation.Iban,
-                Adress = aAssociation.Adress,
-                PhoneNumber = aAssociation.PhoneNumber,
-                Description = aAssociation.Description,
-                FoundationDate = aAssociation.FoundationDate,
-                User = user,
+                Iban = data["iban"][0],
+                Adress = data["adress"][0],
+                PhoneNumber = data["phoneNumber"][0],
+                Description = data["description"][0],
+                FoundationDate = data["foundationDate"][0],
+                User = user
             };
 
             return association;
