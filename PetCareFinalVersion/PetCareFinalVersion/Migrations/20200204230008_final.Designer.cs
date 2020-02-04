@@ -9,7 +9,7 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200204185054_final")]
+    [Migration("20200204230008_final")]
     partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,9 +25,8 @@ namespace PetCareFinalVersion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                    b.Property<DateTime>("Age")
+                        .HasColumnType("datetime(6)")
                         .HasMaxLength(50);
 
                     b.Property<int>("Association_id")
@@ -79,11 +78,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 1,
-                            Age = "10/02/2018 00:00:00",
+                            Age = new DateTime(2018, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Mancha no centro da testa",
-                            Image = "/api/animal/img/Napoleão_animal_1.jpg",
+                            Image = "Napoleão_animal_1.jpg",
                             Name = "Napoleão",
                             Size = "30cm",
                             Status = "Para adoção",
@@ -93,11 +92,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 2,
-                            Age = "01/20/2018 00:00:00",
+                            Age = new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Cão de pequeno porte",
-                            Image = "/api/animal/img/Bolinhas_animal_2.jpg",
+                            Image = "Bolinhas_animal_2.jpg",
                             Name = "Bolinhas",
                             Size = "180 metros",
                             Status = "Para adoção",
@@ -107,11 +106,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 3,
-                            Age = "05/09/2016 00:00:00",
+                            Age = new DateTime(2016, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Boxer",
                             Description = "Muita energia",
-                            Image = "/api/animal/img/Bob_animal_3.jpg",
+                            Image = "Bob_animal_3.jpg",
                             Name = "Bob",
                             Size = "1.20m",
                             Status = "Para adoção",
@@ -121,11 +120,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 4,
-                            Age = "08/17/2017 00:00:00",
+                            Age = new DateTime(2017, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Ragdoll",
                             Description = "Pelo longo, com orellahs pretas",
-                            Image = "/api/animal/img/Belinha_animal_4.jpg",
+                            Image = "Belinha_animal_4.jpg",
                             Name = "Belinha",
                             Size = "25 cm",
                             Status = "Para adoção",
@@ -135,11 +134,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 5,
-                            Age = "04/10/2017 00:00:00",
+                            Age = new DateTime(2017, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Pastor Alemão",
                             Description = "Dá-se bem com crianças",
-                            Image = "/api/animal/img/Duke_animal_5.jpg",
+                            Image = "Duke_animal_5.jpg",
                             Name = "Duke",
                             Size = "50cm",
                             Status = "Para adoção",
@@ -149,11 +148,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 6,
-                            Age = "12/03/2016 00:00:00",
+                            Age = new DateTime(2016, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Shar-pei",
                             Description = "Gosta de comer comida humida",
-                            Image = "/api/animal/img/Grey_animal_6.jpg",
+                            Image = "Grey_animal_6.jpg",
                             Name = "Grey",
                             Size = "50cm",
                             Status = "Para adoção",
@@ -163,11 +162,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 7,
-                            Age = "11/10/2019 00:00:00",
+                            Age = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Pastor Alemão",
                             Description = "Não gosta de gatos",
-                            Image = "/api/animal/img/Leão_animal_7.jpg",
+                            Image = "Leão_animal_7.jpg",
                             Name = "Leão",
                             Size = "15cm",
                             Status = "Para adoção",
@@ -177,11 +176,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 8,
-                            Age = "11/27/2019 00:00:00",
+                            Age = new DateTime(2019, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Perfeito para apartamentos",
-                            Image = "/api/animal/img/Faisca_animal_8.jpg",
+                            Image = "Faisca_animal_8.jpg",
                             Name = "Faisca",
                             Size = "15cm",
                             Status = "Para adoção",
@@ -191,11 +190,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 9,
-                            Age = "05/21/2018 00:00:00",
+                            Age = new DateTime(2018, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Perfeito para apartamentos",
-                            Image = "/api/animal/img/Toby_animal_9.jpg",
+                            Image = "Toby_animal_9.jpg",
                             Name = "Toby",
                             Size = "10cm",
                             Status = "Para adoção",
@@ -205,11 +204,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 10,
-                            Age = "03/10/2017 00:00:00",
+                            Age = new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Perfeito para apartamentos",
-                            Image = "/api/animal/img/Pipsy_animal_10.jpg",
+                            Image = "Pipsy_animal_10.jpg",
                             Name = "Pipsy",
                             Size = "20cm",
                             Status = "Para adoção",
@@ -219,11 +218,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 11,
-                            Age = "05/11/2018 00:00:00",
+                            Age = new DateTime(2018, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Não têm pelo",
-                            Image = "/api/animal/img/Quirk_animal_11.jpg",
+                            Image = "Quirk_animal_11.jpg",
                             Name = "Quirk",
                             Size = "10cm",
                             Status = "Para adoção",
@@ -233,11 +232,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 12,
-                            Age = "01/20/2018 00:00:00",
+                            Age = new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Doberman",
                             Description = "Precisa de muito espaço",
-                            Image = "/api/animal/img/Odie_animal_12.jpg",
+                            Image = "Odie_animal_12.jpg",
                             Name = "Odie",
                             Size = "72cm",
                             Status = "Para adoção",
@@ -247,11 +246,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 13,
-                            Age = "02/10/2016 00:00:00",
+                            Age = new DateTime(2016, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Gosta de crianças",
-                            Image = "/api/animal/img/Barkley_animal_13.jpg",
+                            Image = "Barkley_animal_13.jpg",
                             Name = "Barkley",
                             Size = "50cm",
                             Status = "Para adoção",
@@ -261,11 +260,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 14,
-                            Age = "01/15/2017 00:00:00",
+                            Age = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Não gosta de gato",
-                            Image = "/api/animal/img/Maverick_animal_14.jpg",
+                            Image = "Maverick_animal_14.jpg",
                             Name = "Maverick",
                             Size = "15cm",
                             Status = "Para adoção",
@@ -275,11 +274,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 15,
-                            Age = "02/07/2015 00:00:00",
+                            Age = new DateTime(2015, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Precisa de muito espaço",
-                            Image = "/api/animal/img/Kobe_animal_15.jpg",
+                            Image = "Kobe_animal_15.jpg",
                             Name = "Kobe",
                             Size = "40cm",
                             Status = "Para adoção",
@@ -289,11 +288,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 16,
-                            Age = "10/02/2019 00:00:00",
+                            Age = new DateTime(2019, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "Gosta de Crianças",
-                            Image = "/api/animal/img/Dorito_animal_16.jpg",
+                            Image = "Dorito_animal_16.jpg",
                             Name = "Dorito",
                             Size = "20cm",
                             Status = "Para adoção",
@@ -303,11 +302,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 17,
-                            Age = "12/29/2017 00:00:00",
+                            Age = new DateTime(2017, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Maine Coon",
                             Description = "Precisa de muito espaço",
-                            Image = "/api/animal/img/Rage_animal_17.jpg",
+                            Image = "Rage_animal_17.jpg",
                             Name = "Rage",
                             Size = "70cm",
                             Status = "Para adoção",
@@ -317,11 +316,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 18,
-                            Age = "01/02/2019 00:00:00",
+                            Age = new DateTime(2019, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Não gosta de Crianças",
-                            Image = "/api/animal/img/Tally_animal_18.jpg",
+                            Image = "Tally_animal_18.jpg",
                             Name = "Tally",
                             Size = "20cm",
                             Status = "Para adoção",
@@ -331,11 +330,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 19,
-                            Age = "07/24/2016 00:00:00",
+                            Age = new DateTime(2016, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Labrador",
                             Description = "Adora água",
-                            Image = "/api/animal/img/Connor_animal_19.jpg",
+                            Image = "Connor_animal_19.jpg",
                             Name = "Connor",
                             Size = "50cm",
                             Status = "Para adoção",
@@ -345,11 +344,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 20,
-                            Age = "09/20/2019 00:00:00",
+                            Age = new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
                             Description = "bebe",
-                            Image = "/api/animal/img/Gaia_animal_20.jpg",
+                            Image = "Gaia_animal_20.jpg",
                             Name = "Gaia",
                             Size = "10cm",
                             Status = "Para adoção",
@@ -359,11 +358,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 21,
-                            Age = "11/08/2019 00:00:00",
+                            Age = new DateTime(2019, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Maine Coon",
                             Description = "Be",
-                            Image = "/api/animal/img/Palmer_animal_21.jpg",
+                            Image = "Palmer_animal_21.jpg",
                             Name = "Palmer",
                             Size = "5cm",
                             Status = "Para adoção",
@@ -373,11 +372,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 22,
-                            Age = "12/29/2018 00:00:00",
+                            Age = new DateTime(2018, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Gosta de Cães",
-                            Image = "/api/animal/img/Warp_animal_22.jpg",
+                            Image = "Warp_animal_22.jpg",
                             Name = "Warp",
                             Size = "15cm",
                             Status = "Para adoção",
@@ -387,11 +386,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 23,
-                            Age = "09/13/2019 00:00:00",
+                            Age = new DateTime(2019, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Bom para ter num apartamento",
-                            Image = "/api/animal/img/Rave_animal_23.jpg",
+                            Image = "Rave_animal_23.jpg",
                             Name = "Rave",
                             Size = "8cm",
                             Status = "Para adoção",
@@ -401,11 +400,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 24,
-                            Age = "11/28/2017 00:00:00",
+                            Age = new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Muito energetico",
-                            Image = "/api/animal/img/Linus_animal_24.jpg",
+                            Image = "Linus_animal_24.jpg",
                             Name = "Linus",
                             Size = "30cm",
                             Status = "Para adoção",
@@ -415,11 +414,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 25,
-                            Age = "08/10/2019 00:00:00",
+                            Age = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Gosta de Cães",
-                            Image = "/api/animal/img/Newton_animal_25.jpg",
+                            Image = "Newton_animal_25.jpg",
                             Name = "Newton",
                             Size = "15cm",
                             Status = "Para adoção",
@@ -429,11 +428,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 26,
-                            Age = "07/12/2018 00:00:00",
+                            Age = new DateTime(2018, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Lenny_animal_26.jpg",
+                            Image = "Lenny_animal_26.jpg",
                             Name = "Lenny",
                             Size = "10cm",
                             Status = "Para adoção",
@@ -443,11 +442,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 27,
-                            Age = "06/28/2018 00:00:00",
+                            Age = new DateTime(2018, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Lenny_animal_27.jpg",
+                            Image = "Lenny_animal_27.jpg",
                             Name = "Lenny",
                             Size = "26cm",
                             Status = "Para adoção",
@@ -457,11 +456,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 28,
-                            Age = "02/19/2016 00:00:00",
+                            Age = new DateTime(2016, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Shakira_animal_28.jpg",
+                            Image = "Shakira_animal_28.jpg",
                             Name = "Shakira",
                             Size = "20cm",
                             Status = "Para adoção",
@@ -471,11 +470,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 29,
-                            Age = "02/09/2018 00:00:00",
+                            Age = new DateTime(2018, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Bagel_animal_29.jpg",
+                            Image = "Bagel_animal_29.jpg",
                             Name = "Bagel",
                             Size = "25cm",
                             Status = "Para adoção",
@@ -485,11 +484,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 30,
-                            Age = "01/17/2018 00:00:00",
+                            Age = new DateTime(2018, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Bingo_animal_30.jpg",
+                            Image = "Bingo_animal_30.jpg",
                             Name = "Bingo",
                             Size = "20cm",
                             Status = "Para adoção",
@@ -499,11 +498,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 31,
-                            Age = "11/28/2017 00:00:00",
+                            Age = new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Basil_animal_31.jpg",
+                            Image = "Basil_animal_31.jpg",
                             Name = "Basil",
                             Size = "18cm",
                             Status = "Para adoção",
@@ -513,11 +512,11 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 32,
-                            Age = "05/17/2016 00:00:00",
+                            Age = new DateTime(2016, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
                             Description = "Desaparecido",
-                            Image = "/api/animal/img/Raisin_animal_32.jpg",
+                            Image = "Raisin_animal_32.jpg",
                             Name = "Raisin",
                             Size = "20cm",
                             Status = "Para adoção",
@@ -591,7 +590,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Adress = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = "02/04/2020 18:50:54",
+                            FoundationDate = "02/04/2020 23:00:08",
                             Iban = "28374659",
                             PhoneNumber = "291773357",
                             User_id = 4
@@ -663,7 +662,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "/api/animal/img/event/event_1.jpg",
+                            Image = "event/event_1.jpg",
                             Location = "No nosso recinto",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -676,7 +675,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Concentração Canina",
-                            Image = "/api/animal/img/event/event_2.jpg",
+                            Image = "event/event_2.jpg",
                             Location = "Funchal",
                             Price = 30m,
                             Title = "Concentração Canina",
@@ -689,7 +688,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "/api/animal/img/event/event_3.jpg",
+                            Image = "event/event_3.jpg",
                             Location = "Funchal",
                             Price = 30m,
                             Title = "Campanha de Vacinação",
@@ -702,7 +701,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "/api/animal/img/event/event_4.jpg",
+                            Image = "event/event_4.jpg",
                             Location = "Santa cruz",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -715,7 +714,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das adoções",
-                            Image = "/api/animal/img/event/event_8.jpg",
+                            Image = "event/event_8.jpg",
                             Location = "Machico",
                             Price = 25m,
                             Title = "Campanha de adoção",
@@ -728,7 +727,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mostre o potencial do seu melhor amigo",
-                            Image = "/api/animal/img/event/event_6.jpg",
+                            Image = "event/event_6.jpg",
                             Location = "Funchal",
                             Price = 10m,
                             Title = "Concurso Canino",
@@ -741,7 +740,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "/api/animal/img/event/event_5.jpg",
+                            Image = "event/event_5.jpg",
                             Location = "Santana",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -754,7 +753,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das adoções",
-                            Image = "/api/animal/img/event/event_7.jpg",
+                            Image = "event/event_7.jpg",
                             Location = "Ribeira Brava",
                             Price = 25m,
                             Title = "Campanha de adoção",
@@ -767,7 +766,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "/api/animal/img/event/event_9.jpg",
+                            Image = "event/event_9.jpg",
                             Location = "Machico",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -780,7 +779,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das adoções",
-                            Image = "/api/animal/img/event/event_10.jpg",
+                            Image = "event/event_10.jpg",
                             Location = "Funchal",
                             Price = 25m,
                             Title = "Campanha de adoção",
@@ -1005,7 +1004,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$zS5qufWsq.RTwLH7Oefih.iWCIPFb.s9hlC1g88ZHjYZCaMxghqi."
+                            Password = "$2a$11$7zFoYu96h67cSSP.h100Je70VEf6H5QWVdUb1JpGYMeHRzLnPo5t2"
                         },
                         new
                         {
@@ -1013,7 +1012,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$uc9suHe0ku.dnMtSUqG1luwKgacIZWj1MwqLkM1e6FSvcuFYacGDq"
+                            Password = "$2a$11$5RBGP.oBSBkkAhXGI4D2G.hZo3n4cXNfXgrz4az0cxPBu7ZgfTPC6"
                         },
                         new
                         {
@@ -1021,7 +1020,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$I1QVDwlxROOibKNnAs9TBOR1OQBxXIIKsRe5xrr053sE0jNjRWTVS"
+                            Password = "$2a$11$UnHMFFvNiv/6vXp/mJvmMOFRfUaG0ecGA0UIi2gyGL1fsJ93bZBvm"
                         },
                         new
                         {
@@ -1029,7 +1028,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$7KY7xvaaTHnfl.HZA.3KnOEn71QdOjGt.BGggBQ8EJ0Gf1cgXmzpy"
+                            Password = "$2a$11$FfCnhC1n5jG0H6NR7O4tE.y8ECMVChxAslIxpARqZhOax2bHTNQJa"
                         },
                         new
                         {
@@ -1037,7 +1036,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$Uqs2MUrv0XvYMfpjqsyEHOhgSiJinXX45CrHkA/m6Dh1drbzie7Sm"
+                            Password = "$2a$11$VqkEmGdRWaXyUantfeZ.QOGrO0wuywqu2c5ifXnGN5sCWvuvQzcPq"
                         });
                 });
 

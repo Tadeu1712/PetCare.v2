@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Models;
 using PetCareFinalVersion.Patterns.StateMachine;
@@ -21,7 +22,7 @@ namespace PetCareFinalVersion.Patterns
            {
                 Name = data["name"][0],
                 Description = data["description"][0],
-                Age = data["age"][0],
+                Age = DateTime.Parse(data["age"][0]),
                 Type = data["type"][0],
                 Weight = float.Parse(data["weight"][0]),
                 Size= data["size"][0],

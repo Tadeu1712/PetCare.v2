@@ -155,19 +155,19 @@ namespace PetCareFinalVersion.Controllers
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    //VER ESTADO DO OBJETO
-                    if (aAnimal.Status == "Adotado")
-                    {
-                        aAnimal.Status = aAnimal.StartAdopted();
-                    }
-                    else if (aAnimal.Status == "Perdido")
-                    {
-                        aAnimal.Status = aAnimal.StartLosted();
-                    }
-                    else
-                    {
-                        aAnimal.Status = aAnimal.StartToAdoption();
-                    }
+                    ////VER ESTADO DO OBJETO
+                    //if (aAnimal.Status == "Adotado")
+                    //{
+                    //    aAnimal.Status = aAnimal.StartAdopted();
+                    //}
+                    //else if (aAnimal.Status == "Perdido")
+                    //{
+                    //    aAnimal.Status = aAnimal.StartLosted();
+                    //}
+                    //else
+                    //{
+                    //    aAnimal.Status = aAnimal.StartToAdoption();
+                    //}
                     _context.Animals.Update(aAnimal);
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = aAnimal};
@@ -236,7 +236,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var animals = await _context.Animals.Where(obj => DateTime.Parse(obj.Age) >= endDate).OrderByDescending(b => DateTime.Parse(b.Age)).ToListAsync();
+                var animals = await _context.Animals.Where(obj => obj.Age >= endDate).OrderByDescending(b => b.Age).ToListAsync();
 
                 if (!animals.Any())
                 {

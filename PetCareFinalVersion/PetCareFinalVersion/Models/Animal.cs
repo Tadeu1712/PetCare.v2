@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PetCareFinalVersion.Data;
 
@@ -23,8 +24,7 @@ namespace PetCareFinalVersion.Models
         public override string Breed { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public override string Age { get; set; }
+        public override DateTime Age { get; set; }
 
         [Required]
         public override float Weight { get; set; }
