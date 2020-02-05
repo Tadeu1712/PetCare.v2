@@ -4,18 +4,18 @@
 ### João Santos[2095415], Leonardo Abreu[2067513], Ricardo Jardim[2040416], and Rúben Freitas[2041716]
 ##                                                             Universidade da Madeira, Madeira, PT
 
-**Abstract**. Este relatório procura documentar um projecto de desenvolvimento de uma aplicação web, desde a fase de escolha do tema até as decisões de implementação tomadas para o backend e frontend. Vamos inicialmente identificar o problema que pretendíamos resolver com a nossa aplicação. De seguida iremos explicar as decisões de implementação desde a base de dados,o UML da aplicação, a escolha e implementação dos desenhos padrões  até à interface da aplicação. Porúltimo iremos exemplificar a utilização e discutir a qualidade do produto final, nomeadamente em termos de vantagens/desvantagens para o utilizador.
+**Abstract**. Este relatório procura documentar um projecto de desenvolvimento de uma aplicação web, desde a fase de escolha do tema até as decisões de implementação tomadas para o backend e frontend. Vamos inicialmente identificar o problema que pretendíamos resolver com a nossa aplicação. De seguida iremos explicar as decisões de implementação desde a base de dados,o UML da aplicação, a escolha e implementação dos desenhos padrões até à interface da aplicação. Por último iremos exemplificar a utilização e discutir a qualidade do produto final, nomeadamente em termos de vantagens/desvantagens para o utilizador.
 
 
 ```
 Keywords: C# · Vue · Mysql
 ```
 
-
-
 ## **1-Introdução**
 
 Este projecto foi realizado no âmbito da cadeira de ”Desenho e Implementação de Software” e tem como objectivo introduzir aos alunos os conceitos fundamentais de desenho e arquitectura de software, os princípios fundamentais do desenho e como utilizar os padrões de desenho de software com a intenção de os aplicar de uma maneira pratica numa linguagem de programação orientada a objectos.
+
+Este relatório terá como objectivo documentar um projecto de desenvolvimento de uma aplicação web, desde de uma fase inicial onde iremos explciar qual o problema que estamos a tentar abordar e qual a solução decidimos que adotar.
 
 O tema escolhido não estava predefinido, mas sim proposto pelo grupo ao docente, tendo sido apresentado e consequentemente aprovado pelo mesmo. Os pontos referentes à descrição do mesmo e à explicação do problema que com ele pretendíamos resolver serão abordados na próxima secção deste relatório.
 
@@ -23,11 +23,19 @@ O tema escolhido não estava predefinido, mas sim proposto pelo grupo ao docente
 
 O problema que tentámos abordar com este projecto é o aumento constante das taxas de abandono animal e consequentemente a sobrelotação das associações de acolhimento dos mesmos. De acordo com a Associação Nacional de Médicos Veterinários dos Municípios, os números de animais que são recolhidos das ruas em Portugal, pelos centros de recolha oficiais, chegam a atingir valores de cerca de 50 mil por ano, sendo o número de adopções apenas de 17 mil animais anualmente.[3] 
 
+Depois de uma breve pesquisa concluimos que ao pesquisar Associações Protectoras de animais na RAM, observamos que a informação está muito dispersa, ou seja, se quisermos encontrar uma campanha de vacinação, adopção ou de esterilização é necessario navegar em inumeros sites para saber qual é a associação que estará a realizar tal campanha, sendo que, isto consome muito tempo.
+
+Até mesmo se quisermos encontrar um animal de estimação para adoptar com um certo tamanho,idade,cor ou personalidade teriamos que realizar inumeras pesquisas em diversos websites, onde a maioria desses sites não possuem nenhum tipo de feature que deixe pre-viziualizar os animais que estão disponiveis para adopção, muito menos qualquer tipo de informação acerca dos mesmos. 
+ 
+Uma das unicas opcções possiveis neste momento, é dirigir-se pessoalmente ao local da instituição.
+
 O tema escolhido por nós, face a este problema foi um Website que permite conectar todas as associações de protecção animal da região autónoma da Madeira numa só plataforma. Com isto, o objectivo seria criar uma ligação mais eficiente e intuitiva entre essas associações e os utentes, focando-se, essencialmente, em centralizar toda a informação das mesmas num só ponto.
 
-Uma plataforma que permite aos seus utentes obter informações de várias associações num só lugar. O que irá beneficiar as associações no sentido em que será mais fácil de divulgar campanhas de adopção,vacinação e de esterilização.
+Uma plataforma que permite aos seus utentes obter informações de várias associações e dos animais que cada uma possui para adopção num só lugar. O que irá beneficiar as associações no sentido em que será mais fácil de divulgar campanhas de adopção,vacinação e de esterilização.
 
 ## **3-Solução**
+A solução que chegamos perante ao problema abordado foi a criação do website PetCare que permitirá que todas as associações, numa fase inicial da Região Autonoma da Madeira, se registem e que partilhem todas as suas informações em relação a campanhas e animais para adoção só numa plataforma 
+
 
 Para a realização deste projecto, decidimos utilizar o esquema abaixo representado, para a construção da base de dados utilizando a abordagem code-first.
 Cada modelo contem o seu respectivo controller que irá realizar a interligação entre os dados e armazena-los na base de dados.
