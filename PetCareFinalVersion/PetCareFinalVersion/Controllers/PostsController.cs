@@ -87,11 +87,8 @@ namespace PetCareFinalVersion.Controllers
                 {
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-                    
                     var post = (Post)post_factory.CreatePostFromPostFactory(title, description);
-
                     post.Association_id = association.Id;
-                    post.Image = ImageSave.SaveImage(files, "post");
                     await _context.Posts.AddAsync(post);
                     await _context.SaveChangesAsync();
 

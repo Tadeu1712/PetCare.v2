@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using PetCareFinalVersion.Models;
-using PetCareFinalVersion.Patterns.Observer;
 
 namespace PetCareFinalVersion.Patterns.StateMachine
 {
-    public class Adoption : AbstractStatus, ISubject
+    public class Adoption : AbstractStatus
     {
         public override string LostTo()
         {
-            //Observer
-            notify((Animal)_context);
             return this._context.TransistionTo(new Lost());
         }
 
@@ -24,9 +21,6 @@ namespace PetCareFinalVersion.Patterns.StateMachine
             return "Adoção";
         }
 
-        public void notify(Animal animal)
-        {
-            
-        }
+       
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Patterns.StateMachine;
-using PetCareFinalVersion.Patterns.Observer;
+
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -45,7 +45,6 @@ namespace PetCareFinalVersion.Controllers
                   Association association = _context.Associations.Single(assoc => assoc.User_id == id);
                     
                   var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(data, association.Id);
-                  animal.Image = ImageSave.SaveImage(files, "animal");
                   await _context.Animals.AddAsync(animal);
                   await _context.SaveChangesAsync();
                   response = new {success = true, data = animal};
@@ -87,7 +86,7 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAnimal(int id)
         {
@@ -108,7 +107,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> DeleteAnimal(int id)
         {
@@ -147,7 +146,7 @@ namespace PetCareFinalVersion.Controllers
         [Consumes("application/json")]
         [HttpPut("update")]
         [Authorize]
-        public async Task<IActionResult> UpdateAssociation([FromBody]Animal aAnimal)
+        public async Task<IActionResult> UpdateAssociation(Animal aAnimal)
         {
             object response;
             var currentUser = HttpContext.User;
@@ -156,6 +155,7 @@ namespace PetCareFinalVersion.Controllers
             { 
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
+                    
                     AbstractStatus state= GetState(aAnimal.Id);
                     //////VER ESTADO DO OBJETO
                     //SetAnimalStatus(aAnimal);
@@ -174,7 +174,7 @@ namespace PetCareFinalVersion.Controllers
                     }
                     else
                     {
-                        response = new { sucess = false, data = "Valor para o Status inválido" };
+                        response = new { sucess = false,  data = "Valor para o Status inválido" };
                         return BadRequest(response);
                     }
                     _context.Entry(await _context.Animals.FirstOrDefaultAsync(x => x.Id == aAnimal.Id)).CurrentValues.SetValues(aAnimal);

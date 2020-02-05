@@ -38,6 +38,8 @@ namespace PetCareFinalVersion.Models
         public ICollection<Event> Events { get; set; }
 
         public ICollection<Animal> Animals { get; set; }
+
+        public string Image { get; set; }
     }
 
 

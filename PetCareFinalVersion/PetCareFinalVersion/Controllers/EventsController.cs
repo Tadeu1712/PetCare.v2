@@ -88,7 +88,6 @@ namespace PetCareFinalVersion.Controllers
 
                     var cEvent = (Event)event_factory.CreatePostFromPostFactory(title, description);
                     cEvent.Association_id = association.Id;
-                    cEvent.Image = ImageSave.SaveImage(files, "event");
                     cEvent.Location = location;
                     var initDate = DateTime.Parse(dateInit);
                     var endDate = DateTime.Parse(dateEnd);

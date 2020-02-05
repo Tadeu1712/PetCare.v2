@@ -26,6 +26,5 @@
     <Folder Include="Resources\images\lost_animal\" />
     <Folder Include="Resources\images\event\" />
     <Folder Include="Resources\images\animal\" />
-    <Folder Include="Patterns\Observer\" />
   </ItemGroup>
 </Project>

@@ -29,6 +29,10 @@ namespace PetCareFinalVersion.Controllers
                 try
                 {
                     var associationsList = await _context.Associations.ToListAsync();
+                    foreach (Association assoc in associationsList)
+                    {
+                        assoc.User = _context.Users.Find(assoc.User_id);
+                    }
                     if (!associationsList.Any())
                     {
                         response = new { success = false, message = "Não tem associações registados" };

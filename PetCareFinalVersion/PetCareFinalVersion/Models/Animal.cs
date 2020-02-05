@@ -37,7 +37,8 @@ namespace PetCareFinalVersion.Models
         [Required]
         [MaxLength(50)]
         public override string Status { get; set; }
-        
+
+        public override string Personality { get; set; }
 
 
         [Required]

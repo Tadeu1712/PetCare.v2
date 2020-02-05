@@ -8,13 +8,13 @@ using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 using System.IO;
 using System;
-using PetCareFinalVersion.Patterns.Observer;
+
 
 namespace PetCareFinalVersion.Controllers
 {
     [Route("api/lost")]
     [ApiController]
-    public class LostAnimalsController : ControllerBase, IObserver
+    public class LostAnimalsController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory lost_factory = LostAnimalFactory.Instance;
@@ -32,7 +32,7 @@ namespace PetCareFinalVersion.Controllers
             object response;
             try
             {
-                var lostAnimalsList = await _context.LostAnimalPosts.ToListAsync();
+                var lostAnimalsList = await _context.LostAnimalPosts.OrderByDescending(b => b.Id).ToListAsync();
                 if (!lostAnimalsList.Any())
                 {
                     response = new { success = false, message = "Nao existe animais perdidos" };
@@ -45,14 +45,13 @@ namespace PetCareFinalVersion.Controllers
             }
             catch
             {
-               
                 return BadRequest();
             }
 
         }
 
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> getLostAnimal(int id)
         {
@@ -81,7 +80,6 @@ namespace PetCareFinalVersion.Controllers
             try
             {
                 var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(title, description);
-                postLostAnimal.Image = ImageSave.SaveImage(files, "lost_animal");
                 postLostAnimal.Contact = contact;
                 postLostAnimal.Location = location;
                 postLostAnimal.Date = DateTime.Parse(date);
@@ -98,27 +96,5 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        // ROUTE GET POST IMAGES 
-        [HttpGet("img/{imgName}")]
-        [AllowAnonymous]
-
-        public async Task<IActionResult> GetImgAsync(string imgName)
-        {
-            var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
-                "Resources/images/lost_animal", imgName);
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                stream.CopyTo(memory);
-            }
-            memory.Position = 0;
-            return Ok(memory);
-        }
-
-        public void update(Animal aAnimal)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

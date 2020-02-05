@@ -9,7 +9,7 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200204230008_final")]
+    [Migration("20200205225403_final")]
     partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,7 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Age")
-                        .HasColumnType("datetime(6)")
-                        .HasMaxLength(50);
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("Association_id")
                         .HasColumnType("int");
@@ -49,6 +48,9 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Personality")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Size")
                         .IsRequired()
@@ -85,7 +87,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Napoleão_animal_1.jpg",
                             Name = "Napoleão",
                             Size = "30cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -99,7 +101,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Bolinhas_animal_2.jpg",
                             Name = "Bolinhas",
                             Size = "180 metros",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 150f
                         },
@@ -113,7 +115,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Bob_animal_3.jpg",
                             Name = "Bob",
                             Size = "1.20m",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 25f
                         },
@@ -127,7 +129,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Belinha_animal_4.jpg",
                             Name = "Belinha",
                             Size = "25 cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -141,7 +143,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Duke_animal_5.jpg",
                             Name = "Duke",
                             Size = "50cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 18f
                         },
@@ -155,7 +157,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Grey_animal_6.jpg",
                             Name = "Grey",
                             Size = "50cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 27f
                         },
@@ -169,7 +171,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Leão_animal_7.jpg",
                             Name = "Leão",
                             Size = "15cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 2f
                         },
@@ -183,7 +185,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Faisca_animal_8.jpg",
                             Name = "Faisca",
                             Size = "15cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 1f
                         },
@@ -197,7 +199,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Toby_animal_9.jpg",
                             Name = "Toby",
                             Size = "10cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -211,7 +213,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Pipsy_animal_10.jpg",
                             Name = "Pipsy",
                             Size = "20cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -225,7 +227,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Quirk_animal_11.jpg",
                             Name = "Quirk",
                             Size = "10cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -239,7 +241,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Odie_animal_12.jpg",
                             Name = "Odie",
                             Size = "72cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 40f
                         },
@@ -253,7 +255,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Barkley_animal_13.jpg",
                             Name = "Barkley",
                             Size = "50cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 20f
                         },
@@ -267,7 +269,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Maverick_animal_14.jpg",
                             Name = "Maverick",
                             Size = "15cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -281,7 +283,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Kobe_animal_15.jpg",
                             Name = "Kobe",
                             Size = "40cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 30f
                         },
@@ -295,7 +297,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Dorito_animal_16.jpg",
                             Name = "Dorito",
                             Size = "20cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -309,7 +311,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Rage_animal_17.jpg",
                             Name = "Rage",
                             Size = "70cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 5f
                         },
@@ -323,7 +325,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Tally_animal_18.jpg",
                             Name = "Tally",
                             Size = "20cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -337,7 +339,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Connor_animal_19.jpg",
                             Name = "Connor",
                             Size = "50cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 30f
                         },
@@ -351,7 +353,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Gaia_animal_20.jpg",
                             Name = "Gaia",
                             Size = "10cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 1f
                         },
@@ -365,7 +367,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Palmer_animal_21.jpg",
                             Name = "Palmer",
                             Size = "5cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 1f
                         },
@@ -379,7 +381,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Warp_animal_22.jpg",
                             Name = "Warp",
                             Size = "15cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -393,7 +395,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Rave_animal_23.jpg",
                             Name = "Rave",
                             Size = "8cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 1f
                         },
@@ -407,7 +409,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Linus_animal_24.jpg",
                             Name = "Linus",
                             Size = "30cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 5f
                         },
@@ -421,7 +423,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Newton_animal_25.jpg",
                             Name = "Newton",
                             Size = "15cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -435,7 +437,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Lenny_animal_26.jpg",
                             Name = "Lenny",
                             Size = "10cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -449,7 +451,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Lenny_animal_27.jpg",
                             Name = "Lenny",
                             Size = "26cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -463,7 +465,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Shakira_animal_28.jpg",
                             Name = "Shakira",
                             Size = "20cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 4f
                         },
@@ -477,7 +479,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Bagel_animal_29.jpg",
                             Name = "Bagel",
                             Size = "25cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 5f
                         },
@@ -491,7 +493,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Bingo_animal_30.jpg",
                             Name = "Bingo",
                             Size = "20cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 3f
                         },
@@ -505,7 +507,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Basil_animal_31.jpg",
                             Name = "Basil",
                             Size = "18cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Gato",
                             Weight = 3f
                         },
@@ -519,7 +521,7 @@ namespace PetCareFinalVersion.Migrations
                             Image = "Raisin_animal_32.jpg",
                             Name = "Raisin",
                             Size = "20cm",
-                            Status = "Para adoção",
+                            Status = "Adoção",
                             Type = "Cão",
                             Weight = 9f
                         });
@@ -549,6 +551,9 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(32) CHARACTER SET utf8mb4")
                         .HasMaxLength(32);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -590,7 +595,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Adress = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = "02/04/2020 23:00:08",
+                            FoundationDate = "02/05/2020 22:54:02",
                             Iban = "28374659",
                             PhoneNumber = "291773357",
                             User_id = 4
@@ -675,7 +680,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Concentração Canina",
-                            Image = "event/event_2.jpg",
+                            Image = "event_2.jpg",
                             Location = "Funchal",
                             Price = 30m,
                             Title = "Concentração Canina",
@@ -688,7 +693,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "event/event_3.jpg",
+                            Image = "event_3.jpg",
                             Location = "Funchal",
                             Price = 30m,
                             Title = "Campanha de Vacinação",
@@ -701,7 +706,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "event/event_4.jpg",
+                            Image = "event_4.jpg",
                             Location = "Santa cruz",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -714,7 +719,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das adoções",
-                            Image = "event/event_8.jpg",
+                            Image = "event_8.jpg",
                             Location = "Machico",
                             Price = 25m,
                             Title = "Campanha de adoção",
@@ -727,7 +732,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mostre o potencial do seu melhor amigo",
-                            Image = "event/event_6.jpg",
+                            Image = "event_6.jpg",
                             Location = "Funchal",
                             Price = 10m,
                             Title = "Concurso Canino",
@@ -740,7 +745,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "event/event_5.jpg",
+                            Image = "event_5.jpg",
                             Location = "Santana",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -753,7 +758,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das adoções",
-                            Image = "event/event_7.jpg",
+                            Image = "event_7.jpg",
                             Location = "Ribeira Brava",
                             Price = 25m,
                             Title = "Campanha de adoção",
@@ -766,7 +771,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das vacinas",
-                            Image = "event/event_9.jpg",
+                            Image = "event_9.jpg",
                             Location = "Machico",
                             Price = 25m,
                             Title = "Campanha de Vacinação",
@@ -779,7 +784,7 @@ namespace PetCareFinalVersion.Migrations
                             DateEnd = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInit = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Promoção no preço das adoções",
-                            Image = "event/event_10.jpg",
+                            Image = "event_10.jpg",
                             Location = "Funchal",
                             Price = 25m,
                             Title = "Campanha de adoção",
@@ -797,10 +802,8 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -829,7 +832,7 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 1,
                             Contact = "291987123",
-                            Date = "2020-01-29",
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1990),
                             Description = "Por favor ajudem me a encontrar a minha cadela numero:925789365",
                             Image = "",
                             Location = "Avenida do mar",
@@ -839,7 +842,7 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 2,
                             Contact = "291987123",
-                            Date = "2020-01-15",
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2004),
                             Description = "Ajude-me a encontar o meu gato numero:925789365",
                             Image = "",
                             Location = "Rua da carreira",
@@ -849,7 +852,7 @@ namespace PetCareFinalVersion.Migrations
                         {
                             Id = 3,
                             Contact = "291987123",
-                            Date = "2020-01-01",
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2018),
                             Description = "numero:925789365",
                             Image = "",
                             Location = "Rua das Pretas",
@@ -1004,7 +1007,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$7zFoYu96h67cSSP.h100Je70VEf6H5QWVdUb1JpGYMeHRzLnPo5t2"
+                            Password = "$2a$11$YYcMhhyRnSz/Po24qfD1n.WWUA74a3G5Eq432DWpP/fFU.oA4YNH."
                         },
                         new
                         {
@@ -1012,7 +1015,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$5RBGP.oBSBkkAhXGI4D2G.hZo3n4cXNfXgrz4az0cxPBu7ZgfTPC6"
+                            Password = "$2a$11$mndRST8..kAEXYTdWg03l.zXz42i5Bc.hQtucGtKRzPZbY8okgPjm"
                         },
                         new
                         {
@@ -1020,7 +1023,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$UnHMFFvNiv/6vXp/mJvmMOFRfUaG0ecGA0UIi2gyGL1fsJ93bZBvm"
+                            Password = "$2a$11$BjIIUCXP794kKcsEHdkzPegZUqr3.m78Ypq2sbNPUBP5l11Rr2qqu"
                         },
                         new
                         {
@@ -1028,7 +1031,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$FfCnhC1n5jG0H6NR7O4tE.y8ECMVChxAslIxpARqZhOax2bHTNQJa"
+                            Password = "$2a$11$fhHwln15t6A/kpQAqXiTLu0VdAElUqtivXXIzGESCThHPBKWONEI6"
                         },
                         new
                         {
@@ -1036,7 +1039,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$VqkEmGdRWaXyUantfeZ.QOGrO0wuywqu2c5ifXnGN5sCWvuvQzcPq"
+                            Password = "$2a$11$LPty9nYD2T./ae1lIH/3g.31iH3VpN.O7irXcBjN14CAwjYJGClqS"
                         });
                 });
 
