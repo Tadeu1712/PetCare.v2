@@ -5,7 +5,7 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Patterns.FactoryPost
 {
    
-    public sealed class LostAnimalFactory : AbstractPostsFactory
+    public sealed class LostAnimalFactory : AbstractPostsFactory 
     {
         private static readonly LostAnimalFactory mInstance = new LostAnimalFactory();
 

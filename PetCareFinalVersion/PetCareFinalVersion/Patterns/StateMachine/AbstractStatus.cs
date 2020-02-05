@@ -16,7 +16,6 @@ namespace PetCareFinalVersion.Patterns.StateMachine
         public virtual string ToAdoption() { return null; }
 
         public abstract string GetTypeOf();
-
     }
 
     

@@ -6,7 +6,7 @@ namespace PetCareFinalVersion.Data
 {
     public abstract class AbstractAnimal
     {
-        private AbstractStatus _state ; 
+        private AbstractStatus _state; 
         public abstract int Id { get; set; }
         public abstract string Name { get; set; }
         public abstract string Type { get; set; }
@@ -31,20 +31,23 @@ namespace PetCareFinalVersion.Data
         }
 
         //AÇÃO REQUEST1
-        public string StartLosted()
+        public string StartLosted(AbstractStatus aCurrentStatus)
         {
+            _state = aCurrentStatus;
             return this._state.LostTo();
         }
 
         //AÇÃO REQUEST2
-        public string StartToAdoption()
+        public string StartToAdoption(AbstractStatus aCurrentStatus)
         {
-           return this._state.AdoptedTo();
+            _state = aCurrentStatus;
+            return this._state.AdoptedTo();
         }
 
-        public string  StartAdopted()
+        public string  StartAdopted(AbstractStatus aCurrentStatus)
         {
-           return this._state.ToAdoption();
+            _state = aCurrentStatus;
+            return this._state.ToAdoption();
         }
 
     }

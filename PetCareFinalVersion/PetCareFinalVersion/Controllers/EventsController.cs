@@ -181,14 +181,14 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetImgAsync(string imgName)
         {
-           var path = "Resources/images/event"+ imgName;
+           var path = "Resources/images/event/"+ imgName;
            var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
             {
                 stream.CopyTo(memory);
             }
             memory.Position = 0;
-            return Ok(path);
+            return Ok(memory);
         }
     }
 }
