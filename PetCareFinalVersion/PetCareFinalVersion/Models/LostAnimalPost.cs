@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using PetCareFinalVersion.Data;
 
 namespace PetCareFinalVersion.Models
@@ -18,8 +19,7 @@ namespace PetCareFinalVersion.Models
         public string Location { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
         public string Contact { get; set; }

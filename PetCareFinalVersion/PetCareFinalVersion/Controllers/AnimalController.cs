@@ -8,6 +8,7 @@ using PetCareFinalVersion.Models;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
 using PetCareFinalVersion.Data;
+using PetCareFinalVersion.Patterns.StateMachine;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -155,19 +156,21 @@ namespace PetCareFinalVersion.Controllers
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
+                    var previus_animal = await _context.Animals.FindAsync(aAnimal.Id);
+                    AbstractStatus state= GetState(previus_animal.Status);
                     ////VER ESTADO DO OBJETO
-                    //if (aAnimal.Status == "Adotado")
-                    //{
-                    //    aAnimal.Status = aAnimal.StartAdopted();
-                    //}
-                    //else if (aAnimal.Status == "Perdido")
-                    //{
-                    //    aAnimal.Status = aAnimal.StartLosted();
-                    //}
-                    //else
-                    //{
-                    //    aAnimal.Status = aAnimal.StartToAdoption();
-                    //}
+                    if (aAnimal.Status == "Adotado")
+                    {
+                        aAnimal.Status = aAnimal.StartAdopted(state);
+                    }
+                    else if (aAnimal.Status == "Perdido")
+                    {
+                        aAnimal.Status = aAnimal.StartLosted(state);
+                    }
+                    else
+                    {
+                        aAnimal.Status = aAnimal.StartToAdoption(state);
+                    }
                     _context.Animals.Update(aAnimal);
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = aAnimal};
@@ -267,6 +270,25 @@ namespace PetCareFinalVersion.Controllers
             }
             memory.Position = 0;
             return Ok(memory);
+        }
+
+        public AbstractStatus GetState(string aCurrentState)
+        {
+            AbstractStatus status;
+            if(aCurrentState== "Perdido")
+            {
+                status = new Lost();
+            }
+            else if(aCurrentState == "Adotado")
+            {
+                status = new Adopted();
+            }
+            else
+            {
+                status = new Adoption();
+            }
+
+            return status;
         }
     }
 

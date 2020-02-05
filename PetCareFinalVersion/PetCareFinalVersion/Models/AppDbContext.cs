@@ -791,7 +791,7 @@ namespace PetCareFinalVersion.Models
                     Image = "",
                     Contact= "291987123",
                     Location ="Avenida do mar",
-                    Date = "2020-01-29"
+                    Date = new DateTime(2020 -01-29)
                 },
                 new LostAnimalPost
                 {
@@ -801,7 +801,7 @@ namespace PetCareFinalVersion.Models
                     Image = "",
                     Contact = "291987123",
                     Location = "Rua da carreira",
-                    Date = "2020-01-15"
+                    Date = new DateTime(2020-01-15)
                 },
                 new LostAnimalPost
                 {
@@ -811,9 +811,9 @@ namespace PetCareFinalVersion.Models
                     Image = "",
                     Contact = "291987123",
                     Location = "Rua das Pretas",
-                    Date = "2020-01-01"
+                    Date = new DateTime(2020 -01-01)
                 }
-                );
+                );;
         }
 
     }

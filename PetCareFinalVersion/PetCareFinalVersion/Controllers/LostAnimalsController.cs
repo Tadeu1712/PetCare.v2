@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 using System.IO;
+using System;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -82,7 +83,7 @@ namespace PetCareFinalVersion.Controllers
                 postLostAnimal.Image = ImageSave.SaveImage(files, "lost_animal");
                 postLostAnimal.Contact = contact;
                 postLostAnimal.Location = location;
-                postLostAnimal.Date = date;
+                postLostAnimal.Date = DateTime.Parse(date);
                 await _context.LostAnimalPosts.AddAsync(postLostAnimal);
                 await _context.SaveChangesAsync();
 

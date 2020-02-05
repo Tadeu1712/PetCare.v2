@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PetCareFinalVersion.Data;
+using PetCareFinalVersion.Patterns.StateMachine;
 
 namespace PetCareFinalVersion.Models
 {
@@ -36,6 +37,8 @@ namespace PetCareFinalVersion.Models
         [Required]
         [MaxLength(50)]
         public override string Status { get; set; }
+        //public AbstractStatus _state { get; set; }
+
 
         [Required]
         [MaxLength(250)]

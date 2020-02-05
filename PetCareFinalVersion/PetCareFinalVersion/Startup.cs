@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PetCareFinalVersion
 {
@@ -46,9 +47,9 @@ namespace PetCareFinalVersion
            });
             //// Objects JSON
 
-            //services.AddMvc(option => option.EnableEndpointRouting = false)
-            //    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-            //    .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             ////
 
@@ -68,7 +69,7 @@ namespace PetCareFinalVersion
             }
 
             //Token Auth
-           
+
             app.UseAuthentication();
             
 
@@ -83,7 +84,7 @@ namespace PetCareFinalVersion
                 endpoints.MapControllers();
             });
 
-            
+
         }
     }
 }
