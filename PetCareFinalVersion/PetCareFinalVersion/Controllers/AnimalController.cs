@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Patterns.StateMachine;
+using PetCareFinalVersion.Patterns.Observer;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -19,7 +20,6 @@ namespace PetCareFinalVersion.Controllers
     {
         private readonly AppDbContext _context;
         private readonly AbstractAnimalFactory animal_factory = AnimalFactory.Instance;
-
         public AnimalController(AppDbContext context)
         {
             _context = context;
@@ -151,14 +151,15 @@ namespace PetCareFinalVersion.Controllers
         {
             object response;
             var currentUser = HttpContext.User;
-
+            
             try
-            {
+            { 
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    var previus_animal = await _context.Animals.FindAsync(aAnimal.Id);
-                    AbstractStatus state= GetState(previus_animal.Status);
-                    ////VER ESTADO DO OBJETO
+                    AbstractStatus state= GetState(aAnimal.Id);
+                    //////VER ESTADO DO OBJETO
+                    //SetAnimalStatus(aAnimal);
+
                     if (aAnimal.Status == "Adotado")
                     {
                         aAnimal.Status = aAnimal.StartAdopted(state);
@@ -167,11 +168,16 @@ namespace PetCareFinalVersion.Controllers
                     {
                         aAnimal.Status = aAnimal.StartLosted(state);
                     }
-                    else
+                    else if(aAnimal.Status == "Adoção")
                     {
                         aAnimal.Status = aAnimal.StartToAdoption(state);
                     }
-                    _context.Animals.Update(aAnimal);
+                    else
+                    {
+                        response = new { sucess = false, data = "Valor para o Status inválido" };
+                        return BadRequest(response);
+                    }
+                    _context.Entry(await _context.Animals.FirstOrDefaultAsync(x => x.Id == aAnimal.Id)).CurrentValues.SetValues(aAnimal);
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = aAnimal};
 
@@ -272,14 +278,15 @@ namespace PetCareFinalVersion.Controllers
             return Ok(memory);
         }
 
-        public AbstractStatus GetState(string aCurrentState)
+        public AbstractStatus GetState(int aAnimalId)
         {
+            var previus_animal =  _context.Animals.Find(aAnimalId);
             AbstractStatus status;
-            if(aCurrentState== "Perdido")
+            if(previus_animal.Status== "Perdido")
             {
                 status = new Lost();
             }
-            else if(aCurrentState == "Adotado")
+            else if(previus_animal.Status == "Adotado")
             {
                 status = new Adopted();
             }

@@ -11,9 +11,9 @@ namespace PetCareFinalVersion.Patterns.StateMachine
         }
 
         //AÇÕES POSSIVEIS NA MAQUINA DE ESTADOS
-        public virtual string LostTo(){ return null; }
-        public virtual string AdoptedTo(){ return null; }
-        public virtual string ToAdoption() { return null; }
+        public virtual string LostTo(){ return "Perdido"; }
+        public virtual string AdoptedTo(){ return "Adotado"; }
+        public virtual string ToAdoption() { return "Adoção"; }
 
         public abstract string GetTypeOf();
     }

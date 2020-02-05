@@ -1,8 +1,10 @@
 ﻿using System;
+using PetCareFinalVersion.Models;
+
 namespace PetCareFinalVersion.Patterns.Observer
 {
     public interface IObserver
     {
-        void update(string title, string description, string location, string contact, string image);
+        void update(Animal aAnimal);
     }
 }

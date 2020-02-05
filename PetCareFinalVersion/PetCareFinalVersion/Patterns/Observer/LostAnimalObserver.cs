@@ -14,11 +14,12 @@ namespace PetCareFinalVersion.Patterns.Observer
             _context = aContext;
         }
 
-        public void update(string title, string description ,string location, string contact, string image)
+        public void update(Animal aAnimal)
         {
-            var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(title, description);
-            postLostAnimal.Contact = contact;
-            postLostAnimal.Location = location;
+            var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aAnimal.Name, aAnimal.Description);
+            var assoc = _context.Associations.Find(aAnimal.Association_id);
+            postLostAnimal.Contact = assoc.PhoneNumber;
+            postLostAnimal.Location = assoc.Adress;
             postLostAnimal.Date = DateTime.Now;
             _context.LostAnimalPosts.AddAsync(postLostAnimal);
             _context.SaveChangesAsync();

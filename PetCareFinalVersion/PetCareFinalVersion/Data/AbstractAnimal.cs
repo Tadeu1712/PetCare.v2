@@ -34,6 +34,7 @@ namespace PetCareFinalVersion.Data
         public string StartLosted(AbstractStatus aCurrentStatus)
         {
             _state = aCurrentStatus;
+            this._state.SetContext(this);
             return this._state.LostTo();
         }
 
@@ -41,13 +42,16 @@ namespace PetCareFinalVersion.Data
         public string StartToAdoption(AbstractStatus aCurrentStatus)
         {
             _state = aCurrentStatus;
-            return this._state.AdoptedTo();
+            this._state.SetContext(this);
+            return this._state.ToAdoption();
         }
 
         public string  StartAdopted(AbstractStatus aCurrentStatus)
         {
+
             _state = aCurrentStatus;
-            return this._state.ToAdoption();
+            this._state.SetContext(this);
+            return this._state.AdoptedTo(); 
         }
 
     }

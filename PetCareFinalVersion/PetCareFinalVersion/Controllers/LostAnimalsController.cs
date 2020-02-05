@@ -8,12 +8,13 @@ using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 using System.IO;
 using System;
+using PetCareFinalVersion.Patterns.Observer;
 
 namespace PetCareFinalVersion.Controllers
 {
     [Route("api/lost")]
     [ApiController]
-    public class LostAnimalsController : ControllerBase
+    public class LostAnimalsController : ControllerBase, IObserver
     {
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory lost_factory = LostAnimalFactory.Instance;
@@ -115,6 +116,9 @@ namespace PetCareFinalVersion.Controllers
             return Ok(memory);
         }
 
-
+        public void update(Animal aAnimal)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

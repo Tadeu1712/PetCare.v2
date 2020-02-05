@@ -37,7 +37,7 @@ namespace PetCareFinalVersion.Models
         [Required]
         [MaxLength(50)]
         public override string Status { get; set; }
-        //public AbstractStatus _state { get; set; }
+        
 
 
         [Required]
