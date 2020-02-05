@@ -1,17 +1,16 @@
 
 # **DIS Trabalho Prático: Aplicação Web do PetCare**
----------------------------
+
 ### João Santos[2095415], Leonardo Abreu[2067513], Ricardo Jardim[2040416], and Rúben Freitas[2041716]
 ##                                                             Universidade da Madeira, Madeira, PT
-------------------------------------------
+
 **Abstract**. Este relatório procura documentar um projecto de desenvolvimento de uma aplicação web, desde a fase de escolha do tema até as decisões de implementação tomadas para o backend e frontend. Vamos inicialmente identificar o problema que pretendíamos resolver com a nossa aplicação. De seguida iremos explicar as decisões de implementação desde a base de dados,o UML da aplicação, a escolha e implementação dos desenhos padrões  até à interface da aplicação. Porúltimo iremos exemplificar a utilização e discutir a qualidade do produto final, nomeadamente em termos de vantagens/desvantagens para o utilizador.
 
-------------------------------
+
 ```
 Keywords: C# · Vue · Mysql
 ```
 
----------------------------------------
 
 ## **1-Introdução**
 ---------------------------
@@ -28,7 +27,7 @@ O tema escolhido por nós, face a este problema foi um Website que permite conec
 Uma plataforma que permite aos seus utentes obter informações de várias associações num só lugar. O que irá beneficiar as associações no sentido em que será mais fácil de divulgar campanhas de adopção,vacinação e de esterilização.
 
 ## **3-Solução**
------------------------------------
+---------------------------------
 Para a realização deste projecto, decidimos utilizar o esquema abaixo representado, para a construção da base de dados utilizando a abordagem code-first.
 Cada modelo contem o seu respectivo controller que irá realizar a interligação entre os dados e armazena-los na base de dados.
 
