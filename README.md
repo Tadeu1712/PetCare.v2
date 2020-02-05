@@ -12,14 +12,15 @@ Keywords: C# · Vue · Mysql
 ```
 
 
+
 ## **1-Introdução**
----------------------------
+
 Este projecto foi realizado no âmbito da cadeira de ”Desenho e Implementação de Software” e tem como objectivo introduzir aos alunos os conceitos fundamentais de desenho e arquitectura de software, os princípios fundamentais do desenho e como utilizar os padrões de desenho de software com a intenção de os aplicar de uma maneira pratica numa linguagem de programação orientada a objectos.
 
 O tema escolhido não estava predefinido, mas sim proposto pelo grupo ao docente, tendo sido apresentado e consequentemente aprovado pelo mesmo. Os pontos referentes à descrição do mesmo e à explicação do problema que com ele pretendíamos resolver serão abordados na próxima secção deste relatório.
 
 ## **2-Problema**
-----------------------------
+
 O problema que tentámos abordar com este projecto é o aumento constante das taxas de abandono animal e consequentemente a sobrelotação das associações de acolhimento dos mesmos. De acordo com a Associação Nacional de Médicos Veterinários dos Municípios, os números de animais que são recolhidos das ruas em Portugal, pelos centros de recolha oficiais, chegam a atingir valores de cerca de 50 mil por ano, sendo o número de adopções apenas de 17 mil animais anualmente.[3] 
 
 O tema escolhido por nós, face a este problema foi um Website que permite conectar todas as associações de protecção animal da região autónoma da Madeira numa só plataforma. Com isto, o objectivo seria criar uma ligação mais eficiente e intuitiva entre essas associações e os utentes, focando-se, essencialmente, em centralizar toda a informação das mesmas num só ponto.
@@ -27,7 +28,7 @@ O tema escolhido por nós, face a este problema foi um Website que permite conec
 Uma plataforma que permite aos seus utentes obter informações de várias associações num só lugar. O que irá beneficiar as associações no sentido em que será mais fácil de divulgar campanhas de adopção,vacinação e de esterilização.
 
 ## **3-Solução**
----------------------------------
+
 Para a realização deste projecto, decidimos utilizar o esquema abaixo representado, para a construção da base de dados utilizando a abordagem code-first.
 Cada modelo contem o seu respectivo controller que irá realizar a interligação entre os dados e armazena-los na base de dados.
 
@@ -36,7 +37,6 @@ Fig. 1.Diagrama da Base de Dados
 ```
 
 ### **3.1-Tecnologias**
----------------------------------
 Nesta secção iremos abordar as tecnologias usadas para a realização deste trabalho, explicando o motivo por as termos escolhido e como é que as utilizamos.
 
 #### **3.1.1-Entity Framework Core**
@@ -93,18 +93,15 @@ Finalmente para finalizar a secção relativa a padrões no no lado do cliente, 
 Os componentes VueJs seguem um protocolo de comunicação unilateral com componentes vizinhas, que consiste na utilização de eventos no sentido superior e props no sentido inferior. Estes últimos são dados reactivos de leitura, ou seja componentes filhos não conseguem alterar os seus valores, mas quando estes alteram, os componentes filhos que os utilizam são novamente renderizados. Os componentes filhos poderão enviar pedidos de alteração de valores dos props através da emissão de eventos para o componente pai, de modo a que este altere os dados em questão mapeados no componente filho [2].
 
 ## **4-Utilização**
---------------------------------------
 A plataforma web desenvolvida está diferenciada através de duas secções distintas, nomeadamente as páginas acessíveis para todos os visitantes
 onde é possível encontrar todas as funcionalidades básicas e um painel administrativos para associações e administrador.
 
 ### **4.1- Painel administrativo**
----------------------------------------
 Através do painel administrativo o administrador poderá executar as acções CRUD (criação, consulta, actualização e destruição de dados) sobre os utilizadores registados na plataforma, comparativamente as associações poderão executar estas mesmas acções CRUD sobre os animais, eventos e novidades pertencentes a esta associação em questão. Adicionalmente é ainda possível à associação actualizar o seu próprio perfil.
 ```
 PRINTS
 ```
 ### **4.2- Animais**
-----------------------------------------
 Os animais inseridos na plataforma poderão ser acedidos em diversas páginas da interface. Ao explorar o website poderemos encontrar na página inicial uma listagem ”infinita” de todos os animais, de todas as associações ordenados por ordem de colocação na plataforma do mais recente. Esta abordagem foi escolhida de modo a captar de formai mais rápida possível a atenção do visitante.
 
 Cada animal é apresentado em formato carta fornecendo assim individualização e independência que poderão cá possíveis utilizadores. Adicionalmente poderemos ainda carregar em qualquer animal para visualizar dados mais detalhados como por exemplo peso, porte, idade, entre outros..
@@ -119,7 +116,6 @@ PRINTS
 ````
 
 ### **4.3- Eventos**
-------------------------------
 De forma semelhante à página principal descrita anteriormente, os eventos possuem também uma secção dedicada à sua apresentação.E também utilizada ́ uma listagem ”infinita” ordenada por eventos com data de inicialização mais próxima, não sendo apresentados eventos que já tinham acontecido. Os eventos estão também presentes no perfil público duma dada associação e no seu painel administrativo.
 
 ```
@@ -127,7 +123,6 @@ PRINTS
 ````
 
 ### **4.4- Perdidos**
-------------------------------
 A página para animais perdidos é um pouco diferente das descritas anteriormente, pois esta tem como objectivo a inserção de dados por qualquer visitante da plataforma, não estando associada com qualquer tipo de utilizador ou associação.
 
 A página é constituída por um formulário que qualquer utilizador poderá preencher com o objectivo de dar como perdido um dado animal, onde são
@@ -138,16 +133,13 @@ PRINTS
 ````
 
 ### **4.5- Amiguinhos**
---------------------------------------------
 Para finalizar esta última secção visa dinamizar e cativar um grande vertente dos utilizadores, jovens. Aqui são apresentados de forma muito mais infantil e dinâmica os animais bebés (e.x ¡1 ano) com auxílio de animações e efeitos visuais.
 
 ## **5-Discussão**
-------------------------------
 Nesta secção iremos abordar as vantagens e as desvantagens da nossa aplicação web do ponto de vista da utilização do utente.
 
 
 ### **5.1- Vantagens**
----------------------------------
 - Reúne todas as informações de todas as principais associações de protecção
     animal num sitio só. O que permite aos utilizadores uma maior facilidade ao
     navegar pelas associações.
@@ -155,20 +147,17 @@ Nesta secção iremos abordar as vantagens e as desvantagens da nossa aplicaçã
 - Facilidade que publicar um post para um animal perdido.
 
 ### **5.2- Desvantagens**
------------------------------------
 - Não possui de opção directa de doação a uma associação, mas fornecemos
     dados para tal.
 -
 
 ## **6-Conclusão**
-------------------------------------
 Como já tínhamos referido anteriormente, achamos que os principais critérios a ter em conta ao avaliar o produto final são as vantagens/desvantagens do ponto de vista do utilizador, e se a aplicação realmente resolve o problema que se propôs a resolver. Nomeadamente, voltar a comparar a solução com outros sites/ferramentas que ofereçam ao utente a mesma função. Nesse aspecto, penso que tentamos responder a todas as questões que levantamos no problema.
 O único problema que antecipamos é a possibilidade de existir utentes não familiarizados com aplicações informáticas que possam ter dificuldades em utilizar o sistema. Esse problema não pode ser efectivamente resolvido, mas tentamos sempre minimiza-lo procurando simplificar ao máximo a interface da aplicação.
 
 
 
 ##  **References**
----------------------------
 1. EF. 2020. Entity Framework Core. (2020).
     https://www.entityframeworktutorial.net/efcore/entity-framework-core.aspx.
 2. Vue Patterns. 2020. Vue Patterns. (2020). https://learn-vuejs.github.io/vue-
