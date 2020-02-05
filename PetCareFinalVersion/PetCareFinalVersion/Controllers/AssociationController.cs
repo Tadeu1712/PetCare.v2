@@ -32,6 +32,7 @@ namespace PetCareFinalVersion.Controllers
                     foreach (Association assoc in associationsList)
                     {
                         assoc.User = _context.Users.Find(assoc.User_id);
+                        assoc.User.Password = "";
                     }
                     if (!associationsList.Any())
                     {
