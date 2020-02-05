@@ -75,27 +75,30 @@ namespace PetCareFinalVersion.Models
                     Adress = "R. do Matadouro 10, 9050-100 Funchal",
                     PhoneNumber = "291220852",
                     Description = "Intervenção Activa na Protecção, Bem-estar e Saúde Animal",
-                    FoundationDate = new DateTime(1897, 6, 30).ToString()
+                    FoundationDate = new DateTime(1897, 6, 30).ToString(),
+                    Image = "spad.png"
                },
                new Association
                  {
                     User_id = 3,
                     Id = 2,
-                    Iban = "233924194",
+                    Iban = "PT50000702430012359000733",
                     Adress = "Santa cruz",
                     PhoneNumber = "961133214",
                     Description = "A Associação PATA – Porque os Animais Também se Amam",
-                    FoundationDate = new DateTime(2006, 5, 8).ToString()
+                    FoundationDate = new DateTime(2006, 5, 8).ToString(),
+                    Image = "PATA.JPG"
                },
                new Association
                 {
                     User_id = 4,
                     Id = 3,
-                    Iban = "28374659",
+                    Iban = "PT50000702430012359000733",
                     Adress = "Funchal",
                     PhoneNumber = "291773357",
                     Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                    FoundationDate = DateTime.Now.ToString()
+                    FoundationDate = DateTime.Now.ToString(),
+                    Image = "Canil_Municipal_Funchal.jpg"
                },
                new Association
                 {
@@ -105,7 +108,8 @@ namespace PetCareFinalVersion.Models
                     Adress = "Rua Cidade de Oakland 1 Funchal",
                     PhoneNumber = "966295555",
                     Description = "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados",
-                    FoundationDate = new DateTime(2012, 1, 2).ToString()
+                    FoundationDate = new DateTime(2012, 1, 2).ToString(),
+                    Image = "AMAW.jpg"
                }
             );
 
@@ -571,40 +575,40 @@ namespace PetCareFinalVersion.Models
                 {
                     Id = 1,
                     Association_id = 1,
-                    Title = "SPAD - Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
-                    Description = "Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
+                    Title = "Ajude a nossa associação a angariar fundos para poder aumentar o espaço",
+                    Description = "Queremos pedir ajuda dos nossos sócios e amigos para angariar fundos para aumentar a nossa capacidade abrigar cães",
                     Image = ""
                 },
                 new Post
                 {
                     Id = 2,
                     Association_id = 1,
-                    Title = "SPAD - Ajude a nossa associação doando comida de animal",
-                    Description = "Ajude a nossa associação doando comida de animal",
+                    Title = "Ajude a nossa associação doando comida de animal",
+                    Description = "Queremos pedir ajuda dos nossos sócios e amigos para angariar comida para os nossos animais.",
                     Image = ""
                 },
                 new Post
                 {
                     Id = 3,
                     Association_id = 1,
-                    Title = "SPAD - Estamos a ficar sem espaços disponíveis",
-                    Description = "Estamos a ficar sem espaços disponíveis",
+                    Title = "Estamos a ficar sem espaços disponíveis",
+                    Description = "Viemos por este meio anunciar que estamos completamente sobrelotados.",
                     Image = ""
                 },
                 new Post
                 {
                     Id = 4,
                     Association_id = 2,
-                    Title = "PATA - Numero de animais aumenta no ultimo ano",
-                    Description = "Numero de animais aumenta no ultimo ano",
+                    Title = "Numero de animais aumenta no ultimo ano",
+                    Description = "Governo Português vem a publico dizer que a taxa de animais abandonados aumentou por 20%.",
                     Image = ""
                 },
                 new Post
                 {
                      Id = 5,
                      Association_id = 2,
-                     Title = "PATA - Precisamos de doações de ração",
-                     Description = "Precisamos de doações de ração",
+                     Title = "Precisamos de doações de ração",
+                     Description = "Queremos pedir ajuda dos nossos sócios e amigos para angariar ração para os nossos animais.",
                      Image = ""
                 },
                 new Post
@@ -612,7 +616,7 @@ namespace PetCareFinalVersion.Models
                     Id = 6,
                     Association_id = 3,
                     Title = "Ano record a nivel de adoção",
-                    Description = "Ano record a nivel de adoção",
+                    Description = "Este ano batemos o record em numero de animais adotados",
                     Image = ""
                 },
                 new Post
@@ -620,15 +624,15 @@ namespace PetCareFinalVersion.Models
                     Id = 7,
                     Association_id = 3,
                     Title = "Um obrigado a todos os que ajudaram",
-                    Description = "Um obrigado a todos os que ajudaram",
+                    Description = "Venho por este meio agradeçer a todos pela vossa ajuda.",
                     Image = ""
                 },
                 new Post
                 {
                      Id = 8,
                      Association_id = 4,
-                     Title = "",
-                     Description = "Precismos de doações de ração",
+                     Title = "Ajude a nossa associação doando comida de animal",
+                     Description = "Queremos pedir ajuda dos nossos sócios e amigos para angariar ração para os nossos animais.",
                      Image = ""
                 },
                 new Post
@@ -636,15 +640,15 @@ namespace PetCareFinalVersion.Models
                      Id = 9,
                      Association_id = 4,
                      Title = "Estamos a ficar sem espaços disponíveis",
-                     Description = "Estamos a ficar sem espaços disponíveis",
+                     Description = "Gostariamos de informar que estamos a ficar sem espaço disponível para abrigar mais animais",
                      Image = ""
                 },
                 new Post
                 {
                      Id = 10,
                      Association_id = 4,
-                     Title = "Estamos a ficar sem espaços disponíveis",
-                     Description = "Estamos a ficar sem espaços disponíveis",
+                     Title = "Precisamos de doações de ração",
+                     Description = "Queremos pedir ajuda dos nossos sócios e amigos para angariar ração para os nossos animais.",
                      Image = ""
                 }
            );
