@@ -1,20 +1,20 @@
 
 # **DIS Trabalho Prático: Aplicação Web do PetCare**
----------------------------
+
 ### João Santos[2095415], Leonardo Abreu[2067513], Ricardo Jardim[2040416], and Rúben Freitas[2041716]
 ##                                                             Universidade da Madeira, Madeira, PT
-------------------------------------------
+
 **Abstract**. Este relatório procura documentar um projecto de desenvolvimento de uma aplicação web, desde a fase de escolha do tema até as decisões de implementação tomadas para o backend e frontend. Vamos inicialmente identificar o problema que pretendíamos resolver com a nossa aplicação. De seguida iremos explicar as decisões de implementação desde a base de dados,o UML da aplicação, a escolha e implementação dos desenhos padrões  até à interface da aplicação. Porúltimo iremos exemplificar a utilização e discutir a qualidade do produto final, nomeadamente em termos de vantagens/desvantagens para o utilizador.
 
-------------------------------
+
 ```
 Keywords: C# · Vue · Mysql
 ```
 
----------------------------------------
+
 
 ## **1-Introdução**
----------------------------
+
 Este projecto foi realizado no âmbito da cadeira de ”Desenho e Implementação de Software” e tem como objectivo introduzir aos alunos os conceitos fundamentais de desenho e arquitectura de software, os princípios fundamentais do desenho e como utilizar os padrões de desenho de software com a intenção de os aplicar de uma maneira pratica numa linguagem de programação orientada a objectos.
 
 O tema escolhido não estava predefinido, mas sim proposto pelo grupo ao docente, tendo sido apresentado e consequentemente aprovado pelo mesmo. Os pontos referentes à descrição do mesmo e à explicação do problema que com ele pretendíamos resolver serão abordados na próxima secção deste relatório.
