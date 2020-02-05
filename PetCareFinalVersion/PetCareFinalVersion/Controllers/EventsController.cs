@@ -9,6 +9,7 @@ using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 using System.IO;
 
+
 namespace PetCareFinalVersion.Controllers
 {
     [Route("api/events")]
@@ -178,19 +179,16 @@ namespace PetCareFinalVersion.Controllers
         // ROUTE GET POST IMAGES 
         [HttpGet("img/{imgName}")]
         [AllowAnonymous]
-
         public async Task<IActionResult> GetImgAsync(string imgName)
         {
-            var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
-                "Resources/images/event", imgName);
-            var memory = new MemoryStream();
+           var path = "Resources/images/event"+ imgName;
+           var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
             {
                 stream.CopyTo(memory);
             }
             memory.Position = 0;
-            return Ok(memory);
+            return Ok(path);
         }
     }
 }

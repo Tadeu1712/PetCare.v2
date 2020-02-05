@@ -674,7 +674,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 5, 20),
                     Type = "",
                     Price = 30,
-                    Image = "event/event_2.jpg"
+                    Image = "event_2.jpg"
                 },
                 new Event
                 {
@@ -687,7 +687,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 30,
-                    Image = "event/event_3.jpg"
+                    Image = "event_3.jpg"
                 },
                 new Event
                 {
@@ -700,7 +700,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = "event/event_4.jpg"
+                    Image = "event_4.jpg"
                 },
                 new Event
                  {
@@ -713,7 +713,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = "event/event_8.jpg"
+                     Image = "event_8.jpg"
                 },
                 new Event
                  {
@@ -726,7 +726,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 10,
-                     Image = "event/event_6.jpg"
+                     Image = "event_6.jpg"
                 },
                 new Event
                  {
@@ -739,7 +739,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = "event/event_5.jpg"
+                     Image = "event_5.jpg"
                 },
                 new Event
                  {
@@ -752,7 +752,7 @@ namespace PetCareFinalVersion.Models
                      DateEnd = new DateTime(2020, 10, 20),
                      Type = "",
                      Price = 25,
-                     Image = "event/event_7.jpg"
+                     Image = "event_7.jpg"
                 },
                 new Event
                 {
@@ -765,7 +765,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = "event/event_9.jpg"
+                    Image = "event_9.jpg"
                 },
                 new Event
                 {
@@ -778,7 +778,7 @@ namespace PetCareFinalVersion.Models
                     DateEnd = new DateTime(2020, 10, 20),
                     Type = "",
                     Price = 25,
-                    Image = "event/event_10.jpg"
+                    Image = "event_10.jpg"
                 }
                 );
 
