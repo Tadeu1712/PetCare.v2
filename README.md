@@ -20,7 +20,7 @@ Este projecto foi realizado no âmbito da cadeira de ”Desenho e Implementaçã
 O tema escolhido não estava predefinido, mas sim proposto pelo grupo ao docente, tendo sido apresentado e consequentemente aprovado pelo mesmo. Os pontos referentes à descrição do mesmo e à explicação do problema que com ele pretendíamos resolver serão abordados na próxima secção deste relatório.
 
 ## **2-Problema**
-----------------------------
+
 O problema que tentámos abordar com este projecto é o aumento constante das taxas de abandono animal e consequentemente a sobrelotação das associações de acolhimento dos mesmos. De acordo com a Associação Nacional de Médicos Veterinários dos Municípios, os números de animais que são recolhidos das ruas em Portugal, pelos centros de recolha oficiais, chegam a atingir valores de cerca de 50 mil por ano, sendo o número de adopções apenas de 17 mil animais anualmente.[3] 
 
 O tema escolhido por nós, face a este problema foi um Website que permite conectar todas as associações de protecção animal da região autónoma da Madeira numa só plataforma. Com isto, o objectivo seria criar uma ligação mais eficiente e intuitiva entre essas associações e os utentes, focando-se, essencialmente, em centralizar toda a informação das mesmas num só ponto.
@@ -28,7 +28,7 @@ O tema escolhido por nós, face a este problema foi um Website que permite conec
 Uma plataforma que permite aos seus utentes obter informações de várias associações num só lugar. O que irá beneficiar as associações no sentido em que será mais fácil de divulgar campanhas de adopção,vacinação e de esterilização.
 
 ## **3-Solução**
------------------------------------
+
 Para a realização deste projecto, decidimos utilizar o esquema abaixo representado, para a construção da base de dados utilizando a abordagem code-first.
 Cada modelo contem o seu respectivo controller que irá realizar a interligação entre os dados e armazena-los na base de dados.
 
