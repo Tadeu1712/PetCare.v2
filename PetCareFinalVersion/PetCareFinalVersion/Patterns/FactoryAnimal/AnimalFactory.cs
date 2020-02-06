@@ -28,9 +28,13 @@ namespace PetCareFinalVersion.Patterns
                 Size= aAnimal.Size,
                 Breed = aAnimal.Breed,
                 Association_id = aAnimal.Association_id,
+                Energy = aAnimal.Energy,
+                Funny = aAnimal.Funny,
+                TroubleMaker= aAnimal.TroubleMaker,
+                Chill = aAnimal.Chill
             };
            animal.Status= animal.TransistionTo(new Adoption());
-            
+           
            return animal;
         }
     }

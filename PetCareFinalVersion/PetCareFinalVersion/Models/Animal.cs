@@ -39,7 +39,13 @@ namespace PetCareFinalVersion.Models
         public override string Status { get; set; }
 
         [Required]
-        public override string Personality { get; set; }
+        public override int Funny { get; set; }
+        [Required]
+        public override int Chill { get; set; }
+        [Required]
+        public override int TroubleMaker { get; set; }
+        [Required]
+        public override int Energy { get; set; }
 
 
         [Required]

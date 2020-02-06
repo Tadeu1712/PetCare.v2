@@ -14,13 +14,13 @@ namespace PetCareFinalVersion.Patterns.FactoryPost
 
         public static LostAnimalFactory Instance => mInstance;
 
-        public override IPost CreatePost(string aTitle, string aDescription)
+        public override IPost CreatePost(IPost aPost)
         {
 
             var Post = new LostAnimalPost()
             {
-                Title = aTitle,
-                Description = aDescription
+                Title = aPost.Title,
+                Description = aPost.Description
             };
 
             return Post;

@@ -52,7 +52,7 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> getPost(int id)
         {
@@ -75,10 +75,9 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreatePost([FromForm] string title, [FromForm] string description)
+        public async Task<IActionResult> CreatePost(Post aPost)
         {
             object response;
-            var files = Request.Form.Files;
             var currentUser = HttpContext.User;
             int id;
             try
@@ -87,7 +86,7 @@ namespace PetCareFinalVersion.Controllers
                 {
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-                    var post = (Post)post_factory.CreatePostFromPostFactory(title, description);
+                    var post = (Post)post_factory.CreatePostFromPostFactory(aPost);
                     post.Association_id = association.Id;
                     await _context.Posts.AddAsync(post);
                     await _context.SaveChangesAsync();
@@ -108,7 +107,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
@@ -120,11 +119,26 @@ namespace PetCareFinalVersion.Controllers
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                     var post = await _context.Posts.FindAsync(id);
-                    _context.Posts.Remove(post);
-                    await _context.SaveChangesAsync();
+                    var id_log = int.Parse(currentUser.Claims.First(c => c.Type == "id").Value);
+                    var association = _context.Associations.Where(assoc => assoc.User_id == id_log).Single();
+                    if (post.Association_id == association.Id)
+                    {
+                        _context.Posts.Remove(post);
+                        await _context.SaveChangesAsync();
+                        response = new { success = true, message = $"O post com o id:{id} foi apagado com sucesso" };
+                        return Ok(response);
 
-                    response = new {success = true, message = $"O post com o id:{id} foi apagado com sucesso"};
-                    return Ok(response);
+                    }
+                    else
+                    {
+                        response = new { success = false, message = $"O Post que tentou apagar não pertence à sua associação" };
+                        return Ok(response);
+                    }
+                }
+                else
+                {
+                    response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                    return NotFound(response);
                 }
             }
             catch
@@ -133,8 +147,7 @@ namespace PetCareFinalVersion.Controllers
                 return NotFound(rs);
                
             }
-            response = new { success = false, message = "Utilizador não se encontra autenticado" };
-            return NotFound(response);
+            
         }
 
 
@@ -142,7 +155,7 @@ namespace PetCareFinalVersion.Controllers
         [Consumes("application/json")]
         [HttpPut("update")]
         [Authorize]
-        public async Task<IActionResult> UpdateAssociation([FromBody]Post aPost)
+        public async Task<IActionResult> UpdateAssociation(Post aPost)
         {
             object response;
             var currentUser = HttpContext.User;
@@ -167,23 +180,7 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        // ROUTE GET POST IMAGES 
-        [HttpGet("img/{imgName}")]
-        [AllowAnonymous]
-
-        public async Task<IActionResult> GetImgAsync(string imgName)
-        {
-            var path = Path.Combine(
-                     Directory.GetCurrentDirectory(),
-                     "Resources/images/post", imgName);
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                stream.CopyTo(memory);
-            }
-            memory.Position = 0;
-            return Ok(memory);
-        }
+        
 
     }
 

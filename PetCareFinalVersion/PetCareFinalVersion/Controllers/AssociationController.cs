@@ -52,7 +52,7 @@ namespace PetCareFinalVersion.Controllers
 
         //DEVOLVER UMA ASSOCIAÇÂO
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> Association(int id)
         {
@@ -81,7 +81,7 @@ namespace PetCareFinalVersion.Controllers
         //ELIMINAR UMA ASSOCIAÇÂO
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")] 
+        [HttpDelete("{id}")] 
         [Authorize]
         public async Task<IActionResult> DeleteAssociation(int id)
         {
