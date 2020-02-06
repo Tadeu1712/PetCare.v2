@@ -89,6 +89,7 @@ namespace PetCareFinalVersion.Controllers
                     cEvent.DateEnd = aEvent.DateEnd;
                     cEvent.Price = aEvent.Price;
                     cEvent.Type = aEvent.Type;
+                    cEvent.Image = aEvent.Image;
                     await _context.Events.AddAsync(cEvent);
                     await _context.SaveChangesAsync();
 

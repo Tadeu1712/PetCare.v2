@@ -29,6 +29,7 @@ namespace PetCareFinalVersion.Patterns.FactoryAssoc
                 PhoneNumber = aAssociation.PhoneNumber,
                 Description = aAssociation.Description,
                 FoundationDate = aAssociation.FoundationDate,
+                Image = aAssociation.Image,
                 User = user
             };
 

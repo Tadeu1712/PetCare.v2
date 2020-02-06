@@ -31,7 +31,8 @@ namespace PetCareFinalVersion.Patterns
                 Energy = aAnimal.Energy,
                 Funny = aAnimal.Funny,
                 TroubleMaker= aAnimal.TroubleMaker,
-                Chill = aAnimal.Chill
+                Chill = aAnimal.Chill,
+                Image = aAnimal.Image
             };
            animal.Status= animal.TransistionTo(new Adoption());
            
