@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetCareFinalVersion.Models;
 using Microsoft.AspNetCore.Authorization;
+using PetCareFinalVersion.Patterns.TemplateMethod;
 
 
 namespace PetCareFinalVersion.Controllers
@@ -13,6 +14,8 @@ namespace PetCareFinalVersion.Controllers
     public class AssociationController : Controller
     {
         private readonly AppDbContext _context;
+        protected AbstractTemplate ok = new ConcreteOk();
+        protected AbstractTemplate notFound = new ConcreteNotFound();
 
         public AssociationController(AppDbContext context)
         {
@@ -25,7 +28,7 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> AllAssociations()
           {
-              object response;
+              
                 try
                 {
                     var associationsList = await _context.Associations.ToListAsync();
@@ -36,12 +39,10 @@ namespace PetCareFinalVersion.Controllers
                     }
                     if (!associationsList.Any())
                     {
-                        response = new { success = false, message = "Não tem associações registados" };
-                        return NotFound(response);
-
+                        return NotFound(notFound.TemplateResponse("Não tem associações registados"));
                     }
 
-                    response = new {success = true, data = associationsList};
+                    object response = new {success = true, data = associationsList};
                     return Ok(response);
                 }
                 catch
@@ -56,7 +57,6 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Association(int id)
         {
-            object response;
             try
             {
                 Association assoc = await _context.Associations.FindAsync(id);
@@ -66,14 +66,12 @@ namespace PetCareFinalVersion.Controllers
                 assoc.Animals = _context.Animals.Where(animal => animal.Association_id == id).ToList();
                 assoc.Events = _context.Events.Where(e => e.Association_id == id).ToList();
 
-                response = new {success = true, data = assoc};
+                object response = new {success = true, data = assoc};
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
-                return NotFound(response);
-
+                return NotFound(notFound.TemplateResponse($"Nao foi possivel encontrar a associação com o id {id}"));
             }
         }
 
@@ -87,7 +85,6 @@ namespace PetCareFinalVersion.Controllers
         {
 
             var currentUser = HttpContext.User;
-            object response;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id") && bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value))
@@ -97,17 +94,15 @@ namespace PetCareFinalVersion.Controllers
                     _context.Users.Remove(association.User);
                     _context.Associations.Remove(association);
                     await _context.SaveChangesAsync();
-                    response = new {success = true, message = $"Associação com o id {id} foi eliminada "};
-                    return Ok(response);
+                   
+                    return Ok(ok.TemplateResponse($"Associação com o id {id} foi eliminada "));
                 }
-               
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                response = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {id}" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao foi possivel encontrar a associação com o id {id}"));
             }
         }
 
@@ -120,7 +115,6 @@ namespace PetCareFinalVersion.Controllers
         {
 
             var currentUser = HttpContext.User;
-            object response;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
@@ -128,18 +122,15 @@ namespace PetCareFinalVersion.Controllers
 
                     _context.Associations.Update(aAssociation);
                     await _context.SaveChangesAsync();
-                    response = new {success = true, data = aAssociation};
+                    object response = new {success = true, data = aAssociation};
                     return Ok(response);
                 }
-                
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
                 
             }
             catch
             {
-                response = new { success = false, message = $"Nao foi possivel encontrar a associação com o id {aAssociation.Id}" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao foi possivel encontrar a associação com o id {aAssociation.Id}"));
             }
         }
     }

@@ -8,6 +8,7 @@ using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 using System.IO;
 using System;
+using PetCareFinalVersion.Patterns.TemplateMethod;
 
 
 namespace PetCareFinalVersion.Controllers
@@ -18,6 +19,8 @@ namespace PetCareFinalVersion.Controllers
     {
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory lost_factory = LostAnimalFactory.Instance;
+        protected AbstractTemplate ok = new ConcreteOk();
+        protected AbstractTemplate notFound = new ConcreteNotFound();
 
         public LostAnimalsController(AppDbContext aContext)
         {
@@ -29,17 +32,16 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> getAllLostAnimals()
         {
-            object response;
+           
             try
             {
                 var lostAnimalsList = await _context.LostAnimalPosts.OrderByDescending(b => b.Id).ToListAsync();
                 if (!lostAnimalsList.Any())
                 {
-                    response = new { success = false, message = "Nao existe animais perdidos" };
-                    return NotFound(response);
+                    return NotFound(notFound.TemplateResponse("Nao existe animais perdidos"));
                 }
 
-                response = new {success= true, data = lostAnimalsList };
+                object response = new {success= true, data = lostAnimalsList };
 
                 return Ok(response);
             }
@@ -55,18 +57,16 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> getLostAnimal(int id)
         {
-            object response;
+        
             try
             {
                 LostAnimalPost lostAnimal = await _context.LostAnimalPosts.FindAsync(id);
-
-                response = new { success = true, data = lostAnimal };
+                object response = new { success = true, data = lostAnimal };
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Nao existe o post com o id {id}" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao existe o post com o id {id}"));
             }
         }
 
@@ -75,7 +75,6 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create(LostAnimalPost aLostAnimalPost)
         {
-            object response;
             try
             {
                 var postLostAnimal = (LostAnimalPost)lost_factory.CreatePostFromPostFactory(aLostAnimalPost);
@@ -86,13 +85,12 @@ namespace PetCareFinalVersion.Controllers
                 await _context.LostAnimalPosts.AddAsync(postLostAnimal);
                 await _context.SaveChangesAsync();
 
-                response = new { sucess = true, data = postLostAnimal };
+                object response = new { sucess = true, data = postLostAnimal };
                 return Ok(response);
             }
             catch
             {
-                response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
-                return BadRequest(response);
+                return BadRequest(notFound.TemplateResponse("Não foi possivel realizar a sua ação"));
             }
         }
 
