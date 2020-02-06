@@ -68,16 +68,16 @@ A abordagem escolhida para este projecto foi a code-first uma vez que nós foi r
 #### **3.1.2-Vue.js Framework**
 Vue é uma estrutura progressiva para a construção de user interfaces. Ao contrário de outras frameworks, Vue é desenhado desde o início para ser incrementalmente adaptável. A biblioteca principal foca-se apenas na camada da view, o que torna simples integrar outras bibliotecas ou projectos existentes. Evan You criou o Vue com a ajuda de centenas de membros da comunidade, e os desenvolvedores usaram o framework em quase 1,2 milhões de projetos, de acordo com dados do GitHub.
 
-Devido ao seu rápido crescimento e resultados positivos, decidimos encorporar esta framework neste projecto. Assim conseguimos adquirir um novo conhecimento.
+Devido ao seu rápido crescimento e resultados positivos, decidimos incorporar esta framework neste projeto. Assim conseguimos adquirir um novo conhecimento.
 
 
 ### **3.3-Padrões de desenho**
+Padrões de desenho são uma solução para um problema num certo contexto, onde tal contexto é a situação para a qual se aplica um desenho(deve ser uma situação recorrente). O problema é o objetivo que pretendemos alcançar mais os constrangimentos que ocorrem no contexto.A solução é um desenho geral que podemos aplicar de forma a resolver os objetivos e os constrangimentos
 
 #### **3.3.1-Factory Method**
-Um factory method consiste num padrão de desenho do tipo criação, que permite uma abstração para criar tipos de objetos em que deixe as subclasses decidirem que class sera instanciada. A partir deste padrão é possivel evitar um acopulamento rigido entre o criador e os produtos em concreto, em que respeita o Princípio da responsabilidade única, Princípio Aberto-Fechado e Princípio da inversão da dependência.
+Um factory method consiste num padrão de desenho do tipo criação, que permite uma abstração para criar tipos de objetos em que deixe as subclasses decidirem que class será instanciada. A partir deste padrão é possível evitar um acoplamento rígido entre o criador e os produtos em concreto, em que respeita o Princípio da responsabilidade única, Princípio Aberto-Fechado e Princípio da inversão da dependência.
 
-Utilizamos este padrão no nosso projecto sempre que queremos instaciar algum tipo de objecto. 
-
+Utilizamos este padrão no nosso projecto sempre que queremos instanciar algum tipo de objeto.
 
 #### **3.3.2-State**
 É um padrão de desenho do tipo comportamental que permite que um objecto altere o seu comportamento quando o seu estado interno muda. Parece que o objecto modificou a sua classe. Utilizamos este padrão para facilitar a gestão do estado em que o animal se encontra.
@@ -88,7 +88,8 @@ Qualquer animal pertencente a uma associação pode ter um destes 3 estados :
 - Perdido.
 
 #### **3.3.3-Singleton**
-É um padrão de desenho do tipo criação que garante que uma classe tenha apenas uma instância, ao mesmo tempo que lhe proporciona um ponto de acesso global a essa instância.
+O singleton padrão de desenho do tipo criação que resolve 2 problemas ao mesmo tempo, assegura que a classe irá ter apenas uma instancia e fornecer um acesso global a essa instancia , no entanto viola o Principio da responsabilidade única.
+
 Este padrão de desenho é utilizado em todas as factories, uma vez que só queremos instanciar uma única vez esse objecto.
 
 #### **3.3.4-Single File Components**
@@ -179,11 +180,9 @@ O único problema que antecipamos é a possibilidade de existir utilizadores nã
 ##  **References**
 1. EF. 2020. Entity Framework Core. (2020).
     https://www.entityframeworktutorial.net/efcore/entity-framework-core.aspx.
-2. Vue Patterns. 2020. Vue Patterns. (2020). https://learn-vuejs.github.io/vue-
-    patterns/patterns/component-declaration.
+2. Vue Patterns. 2020. Vue Patterns. (2020). https://learn-vuejs.github.io/vue-patterns/patterns/#component-declaration.
 3. TVI24. 2019. Cerca de 50 mil animais abandonados são resgatados das ruas por-
-    tuguesas por ano. (2019). https://tvi24.iol.pt/sociedade/abandono/cerca-de-50-
-    mil-animais-abandonados-sao-recolhidos-das-ruas-portuguesas-por-ano.
+    tuguesas por ano. (2019). https://tvi24.iol.pt/sociedade/abandono/cerca-de-50-mil-animais-abandonados-sao-recolhidos-das-ruas-portuguesas-por-ano.
 
 ## 7 Anexos
 
