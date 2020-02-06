@@ -91,7 +91,7 @@ namespace PetCareFinalVersion.Controllers
                 {
 
                     var association = await _context.Associations.FindAsync(id);
-                    _context.Users.Remove(association.User);
+                    //_context.Users.Remove(association.User);
                     _context.Associations.Remove(association);
                     await _context.SaveChangesAsync();
                    
