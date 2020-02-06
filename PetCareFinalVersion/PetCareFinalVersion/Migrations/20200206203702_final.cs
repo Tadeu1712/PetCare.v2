@@ -86,7 +86,7 @@ namespace PetCareFinalVersion.Migrations
                     Energy = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
                     Association_id = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(maxLength: 10000, nullable: false)
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -163,11 +163,11 @@ namespace PetCareFinalVersion.Migrations
                 columns: new[] { "Id", "Admin", "Email", "Name", "Password" },
                 values: new object[,]
                 {
-                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$KowpzaTx0aAto1Yh1/WBUe9h42tMbDnhKjSHNvUuBNjH3d8t0wiba" },
-                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$uZIKQZF9HCLIfQbjxehNjuWx9HwdvErNedB9fWeV/DMI69.Ai9qXy" },
-                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$Q3xYXqjqUXsKCVI1M3ZVEOriGKPvuj8sYnBrT2xrac8.yiS9k7Tim" },
-                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$UdQPQ4QWiZYSJIJO91mEVOd0ul2HQy7usxZVngmJrlFSUmqoGgiZe" },
-                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$tBM3eaoiXIeherh3jYfSKOYbJmsJrSu0sqQGOFlrFY4uWjulh2Kfy" }
+                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$Lrdp285EB8mngBZWE6e2nurmDacVr/K2zpokG/wy1GhELco/vr.gm" },
+                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$9H7hnfucWygyMLXQ.lGiAOcUl4J71UgrKs2faYnobE.9FlSWyqLoa" },
+                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$w0v4yvLXTztVm4ilKDHO8usdvkwI8N8mbT0p6b5dJVX0vdYBCn1Bq" },
+                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$qw251eDs7JTNuJcRWNTPTeAdRnbF7CfTWHHyMtpRss4disZxfKyqG" },
+                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$t8Mn2aEsbAWela7CKGZ.q.iJUSFOyp1rfhA5IFXSgg.C88cbu2fcy" }
                 });
 
             migrationBuilder.InsertData(
@@ -177,7 +177,7 @@ namespace PetCareFinalVersion.Migrations
                 {
                     { 1, "R. do Matadouro 10, 9050-100 Funchal", "Intervenção Activa na Protecção, Bem-estar e Saúde Animal", "06/30/1897 00:00:00", "PT50000702430012359000733", "spad.png", "291220852", 2 },
                     { 2, "Santa cruz", "A Associação PATA – Porque os Animais Também se Amam", "05/08/2006 00:00:00", "PT50000702430012359000733", "PATA.JPG", "961133214", 3 },
-                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/06/2020 20:21:38", "PT50000702430012359000733", "Canil_Municipal_Funchal.jpg", "291773357", 4 },
+                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/06/2020 20:37:01", "PT50000702430012359000733", "Canil_Municipal_Funchal.jpg", "291773357", 4 },
                     { 4, "Rua Cidade de Oakland 1 Funchal", "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados", "01/02/2012 00:00:00", "PT50 0007 0000 0008 4526 8682 3", "AMAW.jpg", "966295555", 5 }
                 });
 

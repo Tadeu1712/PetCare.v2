@@ -9,7 +9,7 @@ using PetCareFinalVersion.Models;
 namespace PetCareFinalVersion.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200206202138_final")]
+    [Migration("20200206203702_final")]
     partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,9 +51,7 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4")
-                        .HasMaxLength(10000);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -736,7 +734,7 @@ namespace PetCareFinalVersion.Migrations
                             Id = 3,
                             Address = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = "02/06/2020 20:21:38",
+                            FoundationDate = "02/06/2020 20:37:01",
                             Iban = "PT50000702430012359000733",
                             Image = "Canil_Municipal_Funchal.jpg",
                             PhoneNumber = "291773357",
@@ -1150,7 +1148,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$KowpzaTx0aAto1Yh1/WBUe9h42tMbDnhKjSHNvUuBNjH3d8t0wiba"
+                            Password = "$2a$11$Lrdp285EB8mngBZWE6e2nurmDacVr/K2zpokG/wy1GhELco/vr.gm"
                         },
                         new
                         {
@@ -1158,7 +1156,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$uZIKQZF9HCLIfQbjxehNjuWx9HwdvErNedB9fWeV/DMI69.Ai9qXy"
+                            Password = "$2a$11$9H7hnfucWygyMLXQ.lGiAOcUl4J71UgrKs2faYnobE.9FlSWyqLoa"
                         },
                         new
                         {
@@ -1166,7 +1164,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$Q3xYXqjqUXsKCVI1M3ZVEOriGKPvuj8sYnBrT2xrac8.yiS9k7Tim"
+                            Password = "$2a$11$w0v4yvLXTztVm4ilKDHO8usdvkwI8N8mbT0p6b5dJVX0vdYBCn1Bq"
                         },
                         new
                         {
@@ -1174,7 +1172,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$UdQPQ4QWiZYSJIJO91mEVOd0ul2HQy7usxZVngmJrlFSUmqoGgiZe"
+                            Password = "$2a$11$qw251eDs7JTNuJcRWNTPTeAdRnbF7CfTWHHyMtpRss4disZxfKyqG"
                         },
                         new
                         {
@@ -1182,7 +1180,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$tBM3eaoiXIeherh3jYfSKOYbJmsJrSu0sqQGOFlrFY4uWjulh2Kfy"
+                            Password = "$2a$11$t8Mn2aEsbAWela7CKGZ.q.iJUSFOyp1rfhA5IFXSgg.C88cbu2fcy"
                         });
                 });
 
