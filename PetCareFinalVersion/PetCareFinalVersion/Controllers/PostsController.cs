@@ -127,6 +127,7 @@ namespace PetCareFinalVersion.Controllers
                         await _context.SaveChangesAsync();
                         response = new { success = true, message = $"O post com o id:{id} foi apagado com sucesso" };
                         return Ok(response);
+
                     }
                     else
                     {
@@ -146,8 +147,7 @@ namespace PetCareFinalVersion.Controllers
                 return NotFound(rs);
                
             }
-            response = new { success = false, message = "Utilizador não se encontra autenticado" };
-            return NotFound(response);
+            
         }
 
 
