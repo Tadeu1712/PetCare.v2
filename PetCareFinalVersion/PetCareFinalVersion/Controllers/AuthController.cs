@@ -113,17 +113,15 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [Authorize]
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAssociation()
+        public async Task<IActionResult> RegisterAssociation(Association aAssociation)
         {
             object response;
             var currentUser = HttpContext.User;
-         //   var files = Request.Form.Files;
-            var data = Request.Form;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id") && bool.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "admin").Value))
                 {
-                    var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(data);
+                    var newUser = (Association)assoc_factory.CreateAssociationFromAssocFactory(aAssociation);
 
                     await _context.Associations.AddAsync(newUser);
                     await _context.SaveChangesAsync();
