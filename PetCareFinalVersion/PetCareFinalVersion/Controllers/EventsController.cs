@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns.FactoryPost;
 using PetCareFinalVersion.Data;
 using System.IO;
+using PetCareFinalVersion.Patterns.TemplateMethod;
 
 
 namespace PetCareFinalVersion.Controllers
@@ -18,6 +19,8 @@ namespace PetCareFinalVersion.Controllers
     {
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory event_factory = EventFactory.Instance;
+        protected AbstractTemplate ok = new ConcreteOk();
+        protected AbstractTemplate notFound = new ConcreteNotFound();
 
         public EventsController(AppDbContext aContext)
         {
@@ -29,17 +32,16 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> getAllEvents()
         {
-            object response;
             try
             {
                 var eventsList = await _context.Events.OrderBy(b => b.DateInit).ToListAsync();
                 if (!eventsList.Any())
                 {
-                    response = new { success = true, message = "Não existem posts registados" };
-                    return NotFound(response);
+                   
+                    return NotFound(notFound.TemplateResponse("Não existem posts registados"));
                 }
 
-                response = new { success = true, data = eventsList };
+                object response = new { success = true, data = eventsList };
                 return Ok(response);
             }
             catch
@@ -54,19 +56,17 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> getEvents(int id)
         {
-            object response;
             try
             {
                 Event singleEvent = await _context.Events.FindAsync(id);
                 singleEvent.Association = await _context.Associations.FindAsync(singleEvent.Association_id);
 
-                response = new { success = true, data = singleEvent };
+                object response = new { success = true, data = singleEvent };
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Nao existe o post com o id {id}" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao existe o post com o id {id}"));
             }
         }
 
@@ -75,9 +75,7 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> CreateEvent(Event aEvent)
         {
-            object response;
             var currentUser = HttpContext.User;
-            
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
@@ -95,16 +93,15 @@ namespace PetCareFinalVersion.Controllers
                     await _context.SaveChangesAsync();
 
 
-                    response = new {sucess = true, data = cEvent};
+                    object response = new {sucess = true, data = cEvent};
                     return Ok(response);
                 }
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+               
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
-                return BadRequest(response);
+                return BadRequest(notFound.TemplateResponse("Não foi possivel realizar a sua ação"));
             }
         }
 
@@ -114,9 +111,7 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
-            object response;
             var currentUser = HttpContext.User;
-           
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
@@ -129,24 +124,19 @@ namespace PetCareFinalVersion.Controllers
                         _context.Events.Remove(aEvent);
                         await _context.SaveChangesAsync();
 
-                        response = new { success = true, message = $"O evento com o id:{id} foi apagado" };
-                        return Ok(response);
+                      
+                        return Ok(ok.TemplateResponse($"O evento com o id:{id} foi apagado"));
                     }
                     else
                     {
-                        response = new { success = false, message = $"O Evento que tentou apagar não pertence à sua associação" };
-                        return Ok(response);
+                        return Ok(notFound.TemplateResponse($"O Evento que tentou apagar não pertence à sua associação"));
                     }
                 }
-
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao existe o evento com o id {id}" };
-                return NotFound(rs);
-
+                return NotFound(notFound.TemplateResponse($"Nao existe o evento com o id {id}"));
             }
         }
 
@@ -157,9 +147,7 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Event aEvent)
         {
-            object response;
             var currentUser = HttpContext.User;
-
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
@@ -167,17 +155,14 @@ namespace PetCareFinalVersion.Controllers
                     _context.Events.Update(aEvent);
                     await _context.SaveChangesAsync();
 
-                    response = new { success = true, data = aEvent };
+                    object response = new { success = true, data = aEvent };
                     return Ok(response);
                 }
-
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao foi possivel atualizar o post com o id {aEvent.Id}" };
-                return NotFound(rs);
+                return NotFound(notFound.TemplateResponse($"Nao foi possivel atualizar o post com o id {aEvent.Id}"));
             }
         }
         

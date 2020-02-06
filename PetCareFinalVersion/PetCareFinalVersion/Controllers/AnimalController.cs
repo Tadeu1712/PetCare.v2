@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Patterns;
 using PetCareFinalVersion.Data;
 using PetCareFinalVersion.Patterns.StateMachine;
+using PetCareFinalVersion.Patterns.TemplateMethod;
 
 
 namespace PetCareFinalVersion.Controllers
@@ -20,6 +21,10 @@ namespace PetCareFinalVersion.Controllers
     {
         private readonly AppDbContext _context;
         private readonly AbstractAnimalFactory animal_factory = AnimalFactory.Instance;
+
+        protected AbstractTemplate ok = new ConcreteOk();
+        protected AbstractTemplate notFound = new ConcreteNotFound();
+
         public AnimalController(AppDbContext context)
         {
             _context = context;
@@ -32,13 +37,17 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> Create(Animal aAnimal)
         {
+<<<<<<< HEAD
             var files = Request.Form.Files;
             object response;
+=======
+>>>>>>> master
             var currentUser = HttpContext.User;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
+<<<<<<< HEAD
                     int id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
                     var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
@@ -47,9 +56,17 @@ namespace PetCareFinalVersion.Controllers
                     await _context.SaveChangesAsync();
                     response = new {success = true, data = animal};
                     return Ok(response);
+=======
+                  int id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                  Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                  var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
+                  await _context.Animals.AddAsync(animal);
+                  await _context.SaveChangesAsync();
+                  object response = new {success = true, data = animal};
+                  return Ok(response);
+>>>>>>> master
                 }
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
@@ -63,15 +80,12 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAllAnimals()
         {
-            object response;
             try
             {
                 var animals = await _context.Animals.OrderByDescending(b =>b.Id).ToListAsync();
                 if (!animals.Any())
                 {
-                    response = new { success = false,message = "Não tem animais registados" }; 
-                    return NotFound(response);
-
+                    return NotFound(notFound.TemplateResponse("Não tem animais registados"));
                 }
                 foreach(Animal animal in animals)
                 {
@@ -79,7 +93,7 @@ namespace PetCareFinalVersion.Controllers
                     animal.Association.User = await _context.Users.FindAsync(animal.Association.User_id);
                     animal.Association.Animals = null;
                 }
-                response = new { success = true, data = animals };
+                object response = new { success = true, data = animals };
                 return Ok(response);
             }
             catch
@@ -94,19 +108,17 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAnimal(int id)
         {
-            object response;
             try
             {
                 Animal animal = await _context.Animals.FindAsync(id);
                 animal.Association = await _context.Associations.FindAsync(animal.Association_id);
                 animal.Association.User = await _context.Users.FindAsync(animal.Association.User_id);
-                response = new {success = true, data = animal};
+                object response = new {success = true, data = animal};
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Animal com o id {id} nao encontrado!" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Animal com o id {id} nao encontrado!"));
             }
         }
 
@@ -116,9 +128,7 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteAnimal(int id)
         {
-            object response;
             var currentUser = HttpContext.User;
-
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
@@ -129,22 +139,18 @@ namespace PetCareFinalVersion.Controllers
                     if (animal.Association_id == association.Id) {
                         _context.Animals.Remove(animal);
                         await _context.SaveChangesAsync();
-                        response = new { success = true, message = $"Animal com o id {id} foi eliminado!" };
-                        return Ok(response);
+                        return Ok(ok.TemplateResponse($"Animal com o id {id} foi eliminado!"));
                     }
                     else
                     {
-                        response = new { success = false, message = "Este animal não pertence à sua associação" };
-                        return BadRequest(response);
+                        return BadRequest(notFound.TemplateResponse("Este animal não pertence à sua associação"));
                     }
                 }
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                response = new { success = false, message = $"Animal com o id {id} nao encontrado!" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Animal com o id {id} nao encontrado!"));
             }
         }
 
@@ -154,7 +160,6 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateAssociation(Animal aAnimal)
         {
-            object response;
             var currentUser = HttpContext.User;
             
             try
@@ -163,9 +168,7 @@ namespace PetCareFinalVersion.Controllers
                 {
                     
                     AbstractStatus state= GetState(aAnimal.Id);
-                    //////VER ESTADO DO OBJETO
-                    //SetAnimalStatus(aAnimal);
-
+                 
                     if (aAnimal.Status == "Adotado")
                     {
                         aAnimal.Status = aAnimal.StartAdopted(state);
@@ -180,22 +183,18 @@ namespace PetCareFinalVersion.Controllers
                     }
                     else
                     {
-                        response = new { sucess = false,  data = "Valor para o Status inválido" };
-                        return BadRequest(response);
+                        return BadRequest(notFound.TemplateResponse("Valor para o Status inválido"));
                     }
                     _context.Entry(await _context.Animals.FirstOrDefaultAsync(x => x.Id == aAnimal.Id)).CurrentValues.SetValues(aAnimal);
                     await _context.SaveChangesAsync();
-                    response = new {success = true, data = aAnimal};
-
+                   object response = new {success = true, data = aAnimal};
                     return Ok(response);
                 }
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                response = new { success = false, message = $"Nao foi possivel atualizar o animal com o id {aAnimal.Id}" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao foi possivel atualizar o animal com o id {aAnimal.Id}"));
             }
         }
 
@@ -205,17 +204,16 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetStateAnimals(string state)
         {
-            object response;
+           
             try
             {
                 var animalList = await _context.Animals.Where(animal => animal.Status == state).ToListAsync();
-                response = new { success = true, data = animalList };
+                object response = new { success = true, data = animalList };
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Nao tem animais com o estado {state}!" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao tem animais com o estado {state}!"));
             }
         }
 
@@ -226,17 +224,15 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetStateAnimalsByAssoc(string state, int id)
         {
-            object response;
             try
             {
                 var animalList = await _context.Animals.Where(animal => animal.Status == state).Where(animals => animals.Association_id == id).ToListAsync();
-                response = new { success = true, data = animalList };
+                object response = new { success = true, data = animalList };
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Nao tem animais com o estado {state}!" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao tem animais com o estado {state}!"));
             }
         }
 
@@ -245,20 +241,17 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetBabies()
         {
-            
             var endDate = DateTime.Now.AddYears(-2);
-          
-            object response;
+            
             try
             {
                 var animals = await _context.Animals.Where(obj => obj.Age >= endDate).OrderByDescending(b => b.Age).ToListAsync();
 
                 if (!animals.Any())
                 {
-                    response = new { success = false, message = "Não tem animais registados" };
-                    return NotFound(response);
+                    return NotFound(notFound.TemplateResponse("Não tem animais registados"));
                 }
-                response = new { success = true, data = animals };
+                object response = new { success = true, data = animals };
                 return Ok(response);
             }
             catch

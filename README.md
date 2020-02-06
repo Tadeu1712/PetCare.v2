@@ -68,11 +68,10 @@ A abordagem escolhida para este projecto foi a code-first uma vez que nós foi r
 #### **3.1.2-Vue.js Framework**
 Vue é uma estrutura progressiva para a construção de user interfaces. Ao contrário de outras frameworks, Vue é desenhado desde o início para ser incrementalmente adaptável. A biblioteca principal foca-se apenas na camada da view, o que torna simples integrar outras bibliotecas ou projectos existentes. Evan You criou o Vue com a ajuda de centenas de membros da comunidade, e os desenvolvedores usaram o framework em quase 1,2 milhões de projetos, de acordo com dados do GitHub.
 
-Devido ao seu rápido crescimento e resultados positivos, decidimos incorporar esta framework neste projeto. Assim conseguimos adquirir um novo conhecimento.
-
+Devido ao seu rápido crescimento e resultados positivos, decidimos incorporar esta framework neste projeto.
 
 ### **3.3-Padrões de desenho**
-Padrões de desenho são uma solução para um problema num certo contexto, onde tal contexto é a situação para a qual se aplica um desenho(deve ser uma situação recorrente). O problema é o objetivo que pretendemos alcançar mais os constrangimentos que ocorrem no contexto.A solução é um desenho geral que podemos aplicar de forma a resolver os objetivos e os constrangimentos
+Padrões de desenho são uma solução para um problema num certo contexto, onde tal contexto é a situação para a qual se aplica um desenho(deve ser uma situação recorrente). O problema é o objetivo que pretendemos alcançar mais os constrangimentos que ocorrem no contexto. A solução é um desenho geral que podemos aplicar de forma a resolver os objetivos e os constrangimentos.
 
 #### **3.3.1-Factory Method**
 Um factory method consiste num padrão de desenho do tipo criação, que permite uma abstração para criar tipos de objetos em que deixe as subclasses decidirem que class será instanciada. A partir deste padrão é possível evitar um acoplamento rígido entre o criador e os produtos em concreto, em que respeita o Princípio da responsabilidade única, Princípio Aberto-Fechado e Princípio da inversão da dependência.
@@ -91,6 +90,13 @@ Qualquer animal pertencente a uma associação pode ter um destes 3 estados :
 O singleton padrão de desenho do tipo criação que resolve 2 problemas ao mesmo tempo, assegura que a classe irá ter apenas uma instancia e fornecer um acesso global a essa instancia , no entanto viola o Principio da responsabilidade única.
 
 Este padrão de desenho é utilizado em todas as factories, uma vez que só queremos instanciar uma única vez esse objecto.
+
+#### **3.3.3-Template Method**
+Permite que as subclasses definam certos passos de um algoritmo sem alterar a estrutura desses algoritmos.
+
+```
+Explica ricardo
+```
 
 #### **3.3.4-Single File Components**
 O padrão Single File Components (SFC)é um padrão desenho utilizado no lado do cliente, ou seja este é utilizado na framework javascript Vuejs de modo a organizar e optimizar o desenvolvimento do mesmo.
