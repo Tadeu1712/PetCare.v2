@@ -131,7 +131,7 @@ namespace PetCareFinalVersion.Models
                    TroubleMaker = 20,
                    Description = "Mancha no centro da testa",
                    Association_id = 1,
-                   Image = "Napoleão_animal_1.jpg",
+                   Image = "Napoleao_animal_1.jpg",
 
                },
                new Animal

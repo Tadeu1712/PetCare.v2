@@ -86,7 +86,7 @@ namespace PetCareFinalVersion.Migrations
                     Energy = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false),
                     Association_id = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(nullable: true)
+                    Image = table.Column<string>(maxLength: 10000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -163,11 +163,11 @@ namespace PetCareFinalVersion.Migrations
                 columns: new[] { "Id", "Admin", "Email", "Name", "Password" },
                 values: new object[,]
                 {
-                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$HAlpNLrasJBsQi1yTBrRkOf5X.IHSqogs7LFtA4OGFqWlpuVLw/qi" },
-                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$JISAp.bNdzt3vifDL3hnEupTFHGzJisRL6aKaDVd6IH.vlwr3aLmC" },
-                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$5uMAdtiLnYHqs3CMQfghQ.z1HnctweorVHggFog8VBoreDVxMRAnC" },
-                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$u6VnJP95SFhHK5F08KEgreiEYKTd0dDEsJTmYf/vJY.iIxNOBX9dC" },
-                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$jAuwm7spb14yZM.eeCTFUe7/mUJ9C4QSez56bxmuSnfTbqnk.yiBS" }
+                    { 1, true, "Admin@admin.com", "Admin", "$2a$11$KowpzaTx0aAto1Yh1/WBUe9h42tMbDnhKjSHNvUuBNjH3d8t0wiba" },
+                    { 2, false, "spadfnc@gmail.com", "Spad", "$2a$11$uZIKQZF9HCLIfQbjxehNjuWx9HwdvErNedB9fWeV/DMI69.Ai9qXy" },
+                    { 3, false, "pata@pata.pt", "PATA", "$2a$11$Q3xYXqjqUXsKCVI1M3ZVEOriGKPvuj8sYnBrT2xrac8.yiS9k7Tim" },
+                    { 4, false, "CMF@cmf.com", "Canil Municipal do Funchal", "$2a$11$UdQPQ4QWiZYSJIJO91mEVOd0ul2HQy7usxZVngmJrlFSUmqoGgiZe" },
+                    { 5, false, "amaw@madeiraanimalwelfare.org", "Associação Madeira Animal Welfare", "$2a$11$tBM3eaoiXIeherh3jYfSKOYbJmsJrSu0sqQGOFlrFY4uWjulh2Kfy" }
                 });
 
             migrationBuilder.InsertData(
@@ -177,7 +177,7 @@ namespace PetCareFinalVersion.Migrations
                 {
                     { 1, "R. do Matadouro 10, 9050-100 Funchal", "Intervenção Activa na Protecção, Bem-estar e Saúde Animal", "06/30/1897 00:00:00", "PT50000702430012359000733", "spad.png", "291220852", 2 },
                     { 2, "Santa cruz", "A Associação PATA – Porque os Animais Também se Amam", "05/08/2006 00:00:00", "PT50000702430012359000733", "PATA.JPG", "961133214", 3 },
-                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/06/2020 11:38:03", "PT50000702430012359000733", "Canil_Municipal_Funchal.jpg", "291773357", 4 },
+                    { 3, "Funchal", "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados", "02/06/2020 20:21:38", "PT50000702430012359000733", "Canil_Municipal_Funchal.jpg", "291773357", 4 },
                     { 4, "Rua Cidade de Oakland 1 Funchal", "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados", "01/02/2012 00:00:00", "PT50 0007 0000 0008 4526 8682 3", "AMAW.jpg", "966295555", 5 }
                 });
 
@@ -186,35 +186,35 @@ namespace PetCareFinalVersion.Migrations
                 columns: new[] { "Id", "Age", "Association_id", "Breed", "Chill", "Description", "Energy", "Funny", "Image", "Name", "Size", "Status", "TroubleMaker", "Type", "Weight" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2018, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Mancha no centro da testa", 40, 50, "Napoleão_animal_1.jpg", "Napoleão", "Médio", "Adoção", 20, "Gato", 2f },
-                    { 8, new DateTime(2019, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 60, "Perfeito para apartamentos", 40, 50, "Faisca_animal_8.jpg", "Faisca", "Pequeno", "Adoção", 20, "Gato", 1f },
-                    { 18, new DateTime(2019, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 60, "Não gosta de Crianças", 40, 50, "Tally_animal_18.jpg", "Tally", "Pequeno", "Adoção", 20, "Gato", 2f },
-                    { 22, new DateTime(2018, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 60, "Gosta de Cães", 40, 50, "Warp_animal_22.jpg", "Warp", "Pequeno", "Adoção", 20, "Gato", 2f },
-                    { 29, new DateTime(2018, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 60, "Não gosta de gatos", 40, 50, "Bagel_animal_29.jpg", "Bagel", "Médio", "Adoção", 20, "Cão", 5f },
+                    { 1, new DateTime(2018, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 40, "Mancha no centro da testa", 30, 80, "Napoleao_animal_1.jpg", "Napoleão", "Médio", "Adoção", 20, "Gato", 2f },
+                    { 8, new DateTime(2019, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 50, "Perfeito para apartamentos", 100, 80, "Faisca_animal_8.jpg", "Faisca", "Pequeno", "Adoção", 40, "Gato", 1f },
+                    { 18, new DateTime(2019, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 20, "Não gosta de Crianças", 40, 80, "Tally_animal_18.jpg", "Tally", "Pequeno", "Adoção", 60, "Gato", 2f },
+                    { 22, new DateTime(2018, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 100, "Gosta de Cães", 30, 20, "Warp_animal_22.jpg", "Warp", "Pequeno", "Adoção", 60, "Gato", 2f },
+                    { 29, new DateTime(2018, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 50, "Não gosta de gatos", 80, 80, "Bagel_animal_29.jpg", "Bagel", "Médio", "Adoção", 60, "Cão", 5f },
                     { 31, new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 60, "Adoro apanhar sol", 40, 50, "Basil_animal_31.jpg", "Basil", "Médio", "Adoção", 20, "Gato", 3f },
-                    { 9, new DateTime(2018, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Rafeiro", 60, "Perfeito para apartamentos", 40, 50, "Toby_animal_9.jpg", "Toby", "Pequeno", "Adoção", 20, "Gato", 2f },
+                    { 9, new DateTime(2018, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Rafeiro", 40, "Perfeito para apartamentos", 20, 70, "Toby_animal_9.jpg", "Toby", "Pequeno", "Adoção", 60, "Gato", 2f },
                     { 10, new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Rafeiro", 60, "Perfeito para apartamentos", 40, 50, "Pipsy_animal_10.jpg", "Pipsy", "Pequeno", "Adoção", 20, "Cão", 10f },
-                    { 7, new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Pastor Alemão", 60, "Não gosta de gatos", 40, 50, "Leão_animal_7.jpg", "Leão", "Grande", "Adoção", 20, "Cão", 2f },
-                    { 11, new DateTime(2018, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Rafeiro", 60, "Não têm pelo", 40, 50, "Quirk_animal_11.jpg", "Quirk", "Pequeno", "Adoção", 20, "Gato", 2f },
-                    { 19, new DateTime(2016, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Labrador", 60, "Adora água", 40, 50, "Connor_animal_19.jpg", "Connor", "Grande", "Adoção", 20, "Cão", 30f },
+                    { 7, new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Pastor Alemão", 80, "Não gosta de gatos", 100, 70, "Leão_animal_7.jpg", "Leão", "Grande", "Adoção", 80, "Cão", 2f },
+                    { 11, new DateTime(2018, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Rafeiro", 30, "Não têm pelo", 50, 90, "Quirk_animal_11.jpg", "Quirk", "Pequeno", "Adoção", 60, "Gato", 2f },
+                    { 19, new DateTime(2016, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Labrador", 100, "Adora água", 50, 80, "Connor_animal_19.jpg", "Connor", "Grande", "Adoção", 30, "Cão", 30f },
                     { 32, new DateTime(2016, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Rafeiro", 60, "Sempre a correr em circulos.", 40, 50, "Raisin_animal_32.jpg", "Raisin", "Médio", "Adoção", 20, "Cão", 9f },
                     { 13, new DateTime(2016, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 60, "Gosta de crianças", 40, 50, "Barkley_animal_13.jpg", "Barkley", "Grande", "Adoção", 20, "Cão", 20f },
                     { 14, new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 60, "Não gosta de gato", 40, 50, "Maverick_animal_14.jpg", "Maverick", "Pequeno", "Adoção", 20, "Cão", 10f },
                     { 15, new DateTime(2015, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 60, "Precisa de muito espaço", 40, 50, "Kobe_animal_15.jpg", "Kobe", "Grande", "Adoção", 20, "Cão", 30f },
-                    { 16, new DateTime(2019, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 60, "Gosta de Crianças", 40, 50, "Dorito_animal_16.jpg", "Dorito", "Pequeno", "Adoção", 20, "Gato", 2f },
-                    { 20, new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 60, "É muito fofinho.", 40, 50, "Gaia_animal_20.jpg", "Gaia", "Pequeno", "Adoção", 20, "Cão", 1f },
+                    { 16, new DateTime(2019, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 70, "Gosta de Crianças", 70, 100, "Dorito_animal_16.jpg", "Dorito", "Pequeno", "Adoção", 80, "Gato", 2f },
+                    { 20, new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rafeiro", 100, "É muito fofinho.", 50, 80, "Gaia_animal_20.jpg", "Gaia", "Pequeno", "Adoção", 30, "Cão", 1f },
                     { 12, new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Doberman", 60, "Precisa de muito espaço", 40, 50, "Odie_animal_12.jpg", "Odie", "Grande", "Adoção", 20, "Cão", 40f },
                     { 6, new DateTime(2016, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Shar-pei", 60, "Gosta de comer comida húmida", 40, 50, "Grey_animal_6.jpg", "Grey", "Médio", "Adoção", 20, "Cão", 27f },
                     { 30, new DateTime(2018, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rafeiro", 60, "Bom para apartamentos", 40, 50, "Bingo_animal_30.jpg", "Bingo", "Médio", "Adoção", 20, "Gato", 3f },
                     { 24, new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Muito energetico", 40, 50, "Linus_animal_24.jpg", "Linus", "Médio", "Adoção", 20, "Cão", 5f },
-                    { 21, new DateTime(2019, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Maine Coon", 60, "Muito bom com crianças.", 40, 50, "Palmer_animal_21.jpg", "Palmer", "Pequeno", "Adoção", 20, "Gato", 1f },
-                    { 3, new DateTime(2016, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Boxer", 60, "Cão com muita força e energia", 40, 50, "Bob_animal_3.jpg", "Bob", "Grande", "Adoção", 20, "Cão", 25f },
-                    { 2, new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Bom cão guarda", 40, 50, "Bolinhas_animal_2.jpg", "Bolinhas", "Grande", "Adoção", 20, "Cão", 150f },
-                    { 23, new DateTime(2019, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Bom para ter num apartamento", 40, 50, "Rave_animal_23.jpg", "Rave", "Pequeno", "Adoção", 20, "Gato", 1f },
+                    { 21, new DateTime(2019, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Maine Coon", 80, "Muito bom com crianças.", 90, 70, "Palmer_animal_21.jpg", "Palmer", "Pequeno", "Adoção", 70, "Gato", 1f },
+                    { 3, new DateTime(2016, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Boxer", 40, "Cão com muita força e energia", 70, 58, "Bob_animal_3.jpg", "Bob", "Grande", "Adoção", 60, "Cão", 25f },
+                    { 2, new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 55, "Bom cão guarda", 40, 60, "Bolinhas_animal_2.jpg", "Bolinhas", "Grande", "Adoção", 50, "Cão", 150f },
+                    { 23, new DateTime(2019, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 100, "Bom para ter num apartamento", 40, 90, "Rave_animal_23.jpg", "Rave", "Pequeno", "Adoção", 50, "Gato", 1f },
                     { 5, new DateTime(2017, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Pastor Alemão", 60, "Dá-se bem com crianças", 40, 50, "Duke_animal_5.jpg", "Duke", "Grande", "Adoção", 20, "Cão", 18f },
-                    { 25, new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Gosta de Cães", 40, 50, "Newton_animal_25.jpg", "Newton", "Médio", "Adoção", 20, "Gato", 2f },
-                    { 26, new DateTime(2018, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Gosta de bolas.", 40, 50, "Lenny_animal_26.jpg", "Lenny", "Pequeno", "Adoção", 20, "Cão", 10f },
-                    { 27, new DateTime(2018, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Gosta de brincar com crianças.", 40, 50, "Lenny_animal_27.jpg", "Lenny", "Médio", "Adoção", 20, "Cão", 10f },
+                    { 25, new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 20, "Gosta de Cães", 50, 50, "Newton_animal_25.jpg", "Newton", "Médio", "Adoção", 90, "Gato", 2f },
+                    { 26, new DateTime(2018, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 80, "Gosta de bolas.", 80, 80, "Lenny_animal_26.jpg", "Lenny", "Pequeno", "Adoção", 60, "Cão", 10f },
+                    { 27, new DateTime(2018, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 30, "Gosta de brincar com crianças.", 100, 100, "Lenny_animal_27.jpg", "Lenny", "Médio", "Adoção", 80, "Cão", 10f },
                     { 17, new DateTime(2017, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Maine Coon", 60, "Precisa de muito espaço", 40, 50, "Rage_animal_17.jpg", "Rage", "Grande", "Adoção", 20, "Gato", 5f },
                     { 28, new DateTime(2016, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rafeiro", 60, "Nunca está parado", 40, 50, "Shakira_animal_28.jpg", "Shakira", "Médio", "Adoção", 20, "Gato", 4f },
                     { 4, new DateTime(2017, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Ragdoll", 60, "Gosta de morder", 40, 50, "Belinha_animal_4.jpg", "Belinha", "Médio", "Adoção", 20, "Gato", 2f }

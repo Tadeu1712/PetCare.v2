@@ -56,7 +56,8 @@ namespace PetCareFinalVersion.Models
         public override int Association_id { get; set; }
         public override Association Association { get; set; }
 
-
+        [Required]
+        [MaxLength(10000)]
         public override string Image { get; set; }
 
 
