@@ -50,7 +50,7 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> getEvents(int id)
         {
@@ -73,29 +73,24 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreateEvent([FromForm] string title, [FromForm] string description, [FromForm] string location, [FromForm] string dateInit, [FromForm] string dateEnd, [FromForm] decimal price, [FromForm] string type)
+        public async Task<IActionResult> CreateEvent(Event aEvent)
         {
             object response;
             var currentUser = HttpContext.User;
-            var files = Request.Form.Files;
-            int id;
+            
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                    int id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-
-                    var cEvent = (Event)event_factory.CreatePostFromPostFactory(title, description);
+                    var cEvent = (Event)event_factory.CreatePostFromPostFactory(aEvent);
                     cEvent.Association_id = association.Id;
-                    cEvent.Location = location;
-                    var initDate = DateTime.Parse(dateInit);
-                    var endDate = DateTime.Parse(dateEnd);
-                    cEvent.DateInit = initDate;
-                    cEvent.DateEnd = endDate;
-                    cEvent.Price = price;
-                    cEvent.Type = "Concentração de Cães";
-                    cEvent.Type = type;
+                    cEvent.Location = aEvent.Location;
+                    cEvent.DateInit = aEvent.DateInit;
+                    cEvent.DateEnd = aEvent.DateEnd;
+                    cEvent.Price = aEvent.Price;
+                    cEvent.Type = aEvent.Type;
                     await _context.Events.AddAsync(cEvent);
                     await _context.SaveChangesAsync();
 
@@ -115,7 +110,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
@@ -175,19 +170,6 @@ namespace PetCareFinalVersion.Controllers
                 return NotFound(rs);
             }
         }
-        // ROUTE GET POST IMAGES 
-        [HttpGet("img/{imgName}")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetImgAsync(string imgName)
-        {
-           var path = "Resources/images/event/"+ imgName;
-           var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                stream.CopyTo(memory);
-            }
-            memory.Position = 0;
-            return Ok(memory);
-        }
+        
     }
 }

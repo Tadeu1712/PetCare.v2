@@ -52,7 +52,7 @@ namespace PetCareFinalVersion.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet("find/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> getPost(int id)
         {
@@ -75,10 +75,9 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> CreatePost([FromForm] string title, [FromForm] string description)
+        public async Task<IActionResult> CreatePost(Post aPost)
         {
             object response;
-            var files = Request.Form.Files;
             var currentUser = HttpContext.User;
             int id;
             try
@@ -87,7 +86,7 @@ namespace PetCareFinalVersion.Controllers
                 {
                     id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                     Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-                    var post = (Post)post_factory.CreatePostFromPostFactory(title, description);
+                    var post = (Post)post_factory.CreatePostFromPostFactory(aPost);
                     post.Association_id = association.Id;
                     await _context.Posts.AddAsync(post);
                     await _context.SaveChangesAsync();
@@ -108,7 +107,7 @@ namespace PetCareFinalVersion.Controllers
 
         [Produces("application/json")]
         [Consumes("application/json")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {

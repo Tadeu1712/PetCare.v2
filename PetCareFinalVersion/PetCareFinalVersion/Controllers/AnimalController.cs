@@ -123,7 +123,7 @@ namespace PetCareFinalVersion.Controllers
                 {
                     var animal = await _context.Animals.FindAsync(id);
                     var id_log = int.Parse(currentUser.Claims.First(c => c.Type == "id").Value);
-                    var association = _context.Associations.Where(association => association.User_id == id_log).Single();
+                    var association = _context.Associations.Where(assoc => assoc.User_id == id_log).Single();
                     if (animal.Association_id == association.Id) {
                         _context.Animals.Remove(animal);
                         await _context.SaveChangesAsync();
