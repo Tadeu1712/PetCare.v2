@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using PetCareFinalVersion.Data;
+using PetCareFinalVersion.Models;
 
 namespace PetCareFinalVersion.Patterns
 {
     public abstract class AbstractAnimalFactory
     {
-        public AbstractAnimal CreateAnimalFromAnimalFactory(IFormCollection data, int assoc_id)
+        public AbstractAnimal CreateAnimalFromAnimalFactory(Animal aAnimal)
         {
-            AbstractAnimal animal = CreateAnimal(data, assoc_id);
+            AbstractAnimal animal = CreateAnimal(aAnimal);
             return animal;
 
         }
-        public abstract AbstractAnimal CreateAnimal(IFormCollection data, int assoc_id);
+        public abstract AbstractAnimal CreateAnimal(Animal aAnimal);
     }
 }
 

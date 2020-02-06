@@ -30,21 +30,17 @@ namespace PetCareFinalVersion.Controllers
         [Produces("application/json")]
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(Animal aAnimal)
         {
-            var files = Request.Form.Files;
-            var data = Request.Form;
-            int id;
             object response;
             var currentUser = HttpContext.User;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                  id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                  int id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
                   Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-                    
-                  var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(data, association.Id);
+                  var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
                   await _context.Animals.AddAsync(animal);
                   await _context.SaveChangesAsync();
                   response = new {success = true, data = animal};
@@ -75,6 +71,12 @@ namespace PetCareFinalVersion.Controllers
                     return NotFound(response);
 
                 }
+                foreach(Animal animal in animals)
+                {
+                    animal.Association = await _context.Associations.FindAsync(animal.Association_id);
+                    animal.Association.User = await _context.Users.FindAsync(animal.Association.User_id);
+                    animal.Association.Animals = null;
+                }
                 response = new { success = true, data = animals };
                 return Ok(response);
             }
@@ -95,6 +97,7 @@ namespace PetCareFinalVersion.Controllers
             {
                 Animal animal = await _context.Animals.FindAsync(id);
                 animal.Association = await _context.Associations.FindAsync(animal.Association_id);
+                animal.Association.User = await _context.Users.FindAsync(animal.Association.User_id);
                 response = new {success = true, data = animal};
                 return Ok(response);
             }
@@ -120,7 +123,8 @@ namespace PetCareFinalVersion.Controllers
                 {
                     var animal = await _context.Animals.FindAsync(id);
                     var id_log = int.Parse(currentUser.Claims.First(c => c.Type == "id").Value);
-                    if (animal.Association_id == id_log) {
+                    var association = _context.Associations.Where(association => association.User_id == id_log).Single();
+                    if (animal.Association_id == association.Id) {
                         _context.Animals.Remove(animal);
                         await _context.SaveChangesAsync();
                         response = new { success = true, message = $"Animal com o id {id} foi eliminado!" };
