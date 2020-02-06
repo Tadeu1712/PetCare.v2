@@ -14,13 +14,13 @@ namespace PetCareFinalVersion.Patterns.FactoryUser
         public static UserFactory Instance => mInstance;
 
 
-        public override IUser CreateUser(IFormCollection data)
+        public override IUser CreateUser(IUser aUser)
         {
             var user = new User() 
             {
-                Name = data["name"][0],
-                Email = data["email"][0],
-                Password = BCrypt.Net.BCrypt.EnhancedHashPassword(data["password"][0]),
+                Name = aUser.Name,
+                Email = aUser.Email,
+                Password = BCrypt.Net.BCrypt.EnhancedHashPassword(aUser.Password),
                 Admin = false,
             };
 
