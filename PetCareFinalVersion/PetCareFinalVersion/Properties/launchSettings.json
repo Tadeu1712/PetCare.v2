@@ -10,18 +10,16 @@
   },
   "profiles": {
     "PetCareFinalVersion": {
-        "commandName": "Project",
-        "launchBrowser": true,
-        "launchUrl": "",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
-        },
-        "applicationUrl": "https://192.168.43.193;http://192.168.43.193"
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://192.168.43.193;http://192.168.43.193"
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

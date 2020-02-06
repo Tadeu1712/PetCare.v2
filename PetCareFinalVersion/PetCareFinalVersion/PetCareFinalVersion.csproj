@@ -27,7 +27,4 @@
     <Folder Include="Resources\images\event\" />
     <Folder Include="Resources\images\animal\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Controllers\AnimalController.cs" />
-  </ItemGroup>
 </Project>
