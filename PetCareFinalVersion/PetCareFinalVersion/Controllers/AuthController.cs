@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PetCareFinalVersion.Data;
 using Microsoft.Extensions.Configuration;
 using PetCareFinalVersion.Patterns.FactoryAssoc;
+using PetCareFinalVersion.Patterns.TemplateMethod;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -16,7 +17,8 @@ namespace PetCareFinalVersion.Controllers
         private readonly AppDbContext _context;
         private IConfiguration _config;
         private readonly AbstractAssocFactory assoc_factory = AssociationFactory.Instance;
-
+        protected AbstractTemplate ok = new ConcreteOk();
+        protected AbstractTemplate notFound = new ConcreteNotFound();
 
         // UserController Constructor
         public AuthController(AppDbContext context, IConfiguration config)
@@ -32,30 +34,23 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser(Login aLogin)
         {
-            object response;
             try
             {
-               
                 var user = Auth.Login(aLogin.email, aLogin.password, _context);
                 if (user != null)
                 {
-        
                     var tokenString = Auth.GenerateJSONWebToken(user, _config);
-                    response = new {data = user, token = tokenString};
-
+                    object response = new {data = user, token = tokenString};
                     return  Ok(response);
                 }
                 else
                 {
-                    response = new { success = false, message = "Wrong password" };
-                    return NotFound(response);
+                    return NotFound(notFound.TemplateResponse("Wrong password"));
                 }
-
             }
             catch
             {
-                response = new { success = false, message = "Wrong email" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Wrong email"));
             }
         }
 
@@ -65,7 +60,6 @@ namespace PetCareFinalVersion.Controllers
         public async Task<IActionResult> GetActual()
         {
             var currentUser = HttpContext.User;
-            object response;
             int id;
 
             try
@@ -81,7 +75,7 @@ namespace PetCareFinalVersion.Controllers
                     association.Animals = _context.Animals.Where(animal => animal.Association_id == association.Id).ToList();
                     association.Events = _context.Events.Where(e => e.Association_id == association.Id).ToList();
 
-                    response = new { success = true, data = association };
+                    object response = new { success = true, data = association };
                     return Ok(response);
 
                 }
@@ -93,15 +87,13 @@ namespace PetCareFinalVersion.Controllers
                     user = await _context.Users.FindAsync(id);
                     user.Password = null;
 
-                    response = new { success = true, data = user };
+                    object response = new { success = true, data = user };
                     return Ok(response);
                 }
-
             }
             catch
             {
-                response = new { success = false, message = "Nao foi possivel encontrar o utilizador atual" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Nao foi possivel encontrar o utilizador atual"));
             }
            
 
@@ -115,7 +107,6 @@ namespace PetCareFinalVersion.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAssociation(Association aAssociation)
         {
-            object response;
             var currentUser = HttpContext.User;
             try
             {
@@ -127,17 +118,14 @@ namespace PetCareFinalVersion.Controllers
                     await _context.SaveChangesAsync();
 
                     newUser.User.Password = null;
-                    response = new {success = true, data = newUser};
+                    object response = new {success = true, data = newUser};
                     return Ok(response);
                 }
-                
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                response = new { success = false, message = "Nao foi possivel criar um novo registo" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Nao foi possivel criar um novo registo"));
             }
             
         }
