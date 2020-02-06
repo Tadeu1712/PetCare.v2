@@ -34,10 +34,19 @@ namespace PetCareFinalVersion.Migrations
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
+                    b.Property<int>("Chill")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
+
+                    b.Property<int>("Energy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Funny")
+                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -46,10 +55,6 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
-
-                    b.Property<string>("Personality")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Size")
                         .IsRequired()
@@ -60,6 +65,9 @@ namespace PetCareFinalVersion.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
+
+                    b.Property<int>("TroubleMaker")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -82,12 +90,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Mancha no centro da testa",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Napoleão_animal_1.jpg",
                             Name = "Napoleão",
-                            Personality = "Amoroso",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -97,12 +108,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Bom cão guarda",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Bolinhas_animal_2.jpg",
                             Name = "Bolinhas",
-                            Personality = "Calmo",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 150f
                         },
@@ -112,12 +126,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2016, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Boxer",
+                            Chill = 60,
                             Description = "Cão com muita força e energia",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Bob_animal_3.jpg",
                             Name = "Bob",
-                            Personality = "Energético",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 25f
                         },
@@ -127,12 +144,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Ragdoll",
+                            Chill = 60,
                             Description = "Gosta de morder",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Belinha_animal_4.jpg",
                             Name = "Belinha",
-                            Personality = "Arisco",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -142,12 +162,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Pastor Alemão",
+                            Chill = 60,
                             Description = "Dá-se bem com crianças",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Duke_animal_5.jpg",
                             Name = "Duke",
-                            Personality = "Protector",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 18f
                         },
@@ -157,12 +180,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2016, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Shar-pei",
+                            Chill = 60,
                             Description = "Gosta de comer comida húmida",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Grey_animal_6.jpg",
                             Name = "Grey",
-                            Personality = "Calmo",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 27f
                         },
@@ -172,12 +198,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Pastor Alemão",
+                            Chill = 60,
                             Description = "Não gosta de gatos",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Leão_animal_7.jpg",
                             Name = "Leão",
-                            Personality = "Agressivo",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 2f
                         },
@@ -187,12 +216,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Perfeito para apartamentos",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Faisca_animal_8.jpg",
                             Name = "Faisca",
-                            Personality = "Energético",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 1f
                         },
@@ -202,12 +234,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Perfeito para apartamentos",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Toby_animal_9.jpg",
                             Name = "Toby",
-                            Personality = "Feliz",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -217,12 +252,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Perfeito para apartamentos",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Pipsy_animal_10.jpg",
                             Name = "Pipsy",
-                            Personality = "Brincalhão",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -232,12 +270,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Não têm pelo",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Quirk_animal_11.jpg",
                             Name = "Quirk",
-                            Personality = "Calmo",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -247,12 +288,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Doberman",
+                            Chill = 60,
                             Description = "Precisa de muito espaço",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Odie_animal_12.jpg",
                             Name = "Odie",
-                            Personality = "Calmo",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 40f
                         },
@@ -262,12 +306,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2016, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Gosta de crianças",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Barkley_animal_13.jpg",
                             Name = "Barkley",
-                            Personality = "Energético",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 20f
                         },
@@ -277,12 +324,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Não gosta de gato",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Maverick_animal_14.jpg",
                             Name = "Maverick",
-                            Personality = "Feliz",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -292,12 +342,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2015, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Precisa de muito espaço",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Kobe_animal_15.jpg",
                             Name = "Kobe",
-                            Personality = "Curioso",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 30f
                         },
@@ -307,12 +360,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Gosta de Crianças",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Dorito_animal_16.jpg",
                             Name = "Dorito",
-                            Personality = "Feliz",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -322,12 +378,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Maine Coon",
+                            Chill = 60,
                             Description = "Precisa de muito espaço",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Rage_animal_17.jpg",
                             Name = "Rage",
-                            Personality = "Calmo",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 5f
                         },
@@ -337,12 +396,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Não gosta de Crianças",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Tally_animal_18.jpg",
                             Name = "Tally",
-                            Personality = "Agressivo",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -352,12 +414,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2016, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Labrador",
+                            Chill = 60,
                             Description = "Adora água",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Connor_animal_19.jpg",
                             Name = "Connor",
-                            Personality = "Brincalhão",
                             Size = "Grande",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 30f
                         },
@@ -367,12 +432,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 4,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "É muito fofinho.",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Gaia_animal_20.jpg",
                             Name = "Gaia",
-                            Personality = "Energético",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 1f
                         },
@@ -382,12 +450,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Maine Coon",
+                            Chill = 60,
                             Description = "Muito bom com crianças.",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Palmer_animal_21.jpg",
                             Name = "Palmer",
-                            Personality = "Brincalhão",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 1f
                         },
@@ -397,12 +468,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Gosta de Cães",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Warp_animal_22.jpg",
                             Name = "Warp",
-                            Personality = "Energético",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -412,12 +486,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Bom para ter num apartamento",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Rave_animal_23.jpg",
                             Name = "Rave",
-                            Personality = "Calmo",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 1f
                         },
@@ -427,12 +504,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Muito energetico",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Linus_animal_24.jpg",
                             Name = "Linus",
-                            Personality = "Calmo",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 5f
                         },
@@ -442,12 +522,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Gosta de Cães",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Newton_animal_25.jpg",
                             Name = "Newton",
-                            Personality = "Brincalhão",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 2f
                         },
@@ -457,12 +540,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Gosta de bolas.",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Lenny_animal_26.jpg",
                             Name = "Lenny",
-                            Personality = "Feliz",
                             Size = "Pequeno",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -472,12 +558,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Gosta de brincar com crianças.",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Lenny_animal_27.jpg",
                             Name = "Lenny",
-                            Personality = "Protector",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 10f
                         },
@@ -487,12 +576,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2016, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 1,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Nunca está parado",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Shakira_animal_28.jpg",
                             Name = "Shakira",
-                            Personality = "Energético",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 4f
                         },
@@ -502,12 +594,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Não gosta de gatos",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Bagel_animal_29.jpg",
                             Name = "Bagel",
-                            Personality = "Brincalhão",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 5f
                         },
@@ -517,12 +612,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2018, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Bom para apartamentos",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Bingo_animal_30.jpg",
                             Name = "Bingo",
-                            Personality = "Calmo",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 3f
                         },
@@ -532,12 +630,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2017, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 2,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Adoro apanhar sol",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Basil_animal_31.jpg",
                             Name = "Basil",
-                            Personality = "Feliz",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Gato",
                             Weight = 3f
                         },
@@ -547,12 +648,15 @@ namespace PetCareFinalVersion.Migrations
                             Age = new DateTime(2016, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Association_id = 3,
                             Breed = "Rafeiro",
+                            Chill = 60,
                             Description = "Sempre a correr em circulos.",
+                            Energy = 40,
+                            Funny = 50,
                             Image = "Raisin_animal_32.jpg",
                             Name = "Raisin",
-                            Personality = "Energético",
                             Size = "Médio",
                             Status = "Adoção",
+                            TroubleMaker = 20,
                             Type = "Cão",
                             Weight = 9f
                         });
@@ -564,7 +668,7 @@ namespace PetCareFinalVersion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
@@ -604,7 +708,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 1,
-                            Adress = "R. do Matadouro 10, 9050-100 Funchal",
+                            Address = "R. do Matadouro 10, 9050-100 Funchal",
                             Description = "Intervenção Activa na Protecção, Bem-estar e Saúde Animal",
                             FoundationDate = "06/30/1897 00:00:00",
                             Iban = "PT50000702430012359000733",
@@ -615,7 +719,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 2,
-                            Adress = "Santa cruz",
+                            Address = "Santa cruz",
                             Description = "A Associação PATA – Porque os Animais Também se Amam",
                             FoundationDate = "05/08/2006 00:00:00",
                             Iban = "PT50000702430012359000733",
@@ -626,9 +730,9 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 3,
-                            Adress = "Funchal",
+                            Address = "Funchal",
                             Description = "Canil/Gatil Municipal do Funchal que tem como objectivo principal a recolha e alojamento de animais de companhia que se encontrem abandonados",
-                            FoundationDate = "02/06/2020 08:56:42",
+                            FoundationDate = "02/06/2020 11:38:03",
                             Iban = "PT50000702430012359000733",
                             Image = "Canil_Municipal_Funchal.jpg",
                             PhoneNumber = "291773357",
@@ -637,7 +741,7 @@ namespace PetCareFinalVersion.Migrations
                         new
                         {
                             Id = 4,
-                            Adress = "Rua Cidade de Oakland 1 Funchal",
+                            Address = "Rua Cidade de Oakland 1 Funchal",
                             Description = "Madeira Animal Welfare tem por objetivo controlar a reprodução de canídeos e felideos abandonados",
                             FoundationDate = "01/02/2012 00:00:00",
                             Iban = "PT50 0007 0000 0008 4526 8682 3",
@@ -1042,7 +1146,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = true,
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "$2a$11$wzyd3qcS6MV8rmjOdpnvGemCXM62YXGLz681eOq.Ydu3dwmPkbjzm"
+                            Password = "$2a$11$HAlpNLrasJBsQi1yTBrRkOf5X.IHSqogs7LFtA4OGFqWlpuVLw/qi"
                         },
                         new
                         {
@@ -1050,7 +1154,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "spadfnc@gmail.com",
                             Name = "Spad",
-                            Password = "$2a$11$guTR0IuYgYYxHQEo.rKR6e2m9Nhm2xrfn7H2J.lnUQOKLX4H4YPeG"
+                            Password = "$2a$11$JISAp.bNdzt3vifDL3hnEupTFHGzJisRL6aKaDVd6IH.vlwr3aLmC"
                         },
                         new
                         {
@@ -1058,7 +1162,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "pata@pata.pt",
                             Name = "PATA",
-                            Password = "$2a$11$BEiGRgHgNwZlqMhbXRJu1ePH0sFC78Qkz887AEt/R0rJ8QKgclKOu"
+                            Password = "$2a$11$5uMAdtiLnYHqs3CMQfghQ.z1HnctweorVHggFog8VBoreDVxMRAnC"
                         },
                         new
                         {
@@ -1066,7 +1170,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "CMF@cmf.com",
                             Name = "Canil Municipal do Funchal",
-                            Password = "$2a$11$VQ6Y28yZt4VCOQYyxObn5OuwXONKKzbvqyyB3ZcIOBMiMIIPpPMYa"
+                            Password = "$2a$11$u6VnJP95SFhHK5F08KEgreiEYKTd0dDEsJTmYf/vJY.iIxNOBX9dC"
                         },
                         new
                         {
@@ -1074,7 +1178,7 @@ namespace PetCareFinalVersion.Migrations
                             Admin = false,
                             Email = "amaw@madeiraanimalwelfare.org",
                             Name = "Associação Madeira Animal Welfare",
-                            Password = "$2a$11$oNK2YjS8v2uycnpUmL7rHOGOizoFg/Os8cQOFS4LrWou1fHvu/47W"
+                            Password = "$2a$11$jAuwm7spb14yZM.eeCTFUe7/mUJ9C4QSez56bxmuSnfTbqnk.yiBS"
                         });
                 });
 

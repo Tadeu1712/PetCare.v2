@@ -18,7 +18,7 @@ namespace PetCareFinalVersion.Models
         public string Iban { get; set; }
         [Required]
         [MaxLength(255)]
-        public string Adress { get; set; }
+        public string Address { get; set; }
         [Required]
         [MaxLength(9)]
         public string PhoneNumber { get; set; }

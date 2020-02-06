@@ -9,7 +9,7 @@ namespace PetCareFinalVersion.Data
         
         string Iban { get; set; }
   
-        string Adress { get; set; }
+        string Address { get; set; }
      
         string PhoneNumber { get; set; }
 

@@ -25,7 +25,7 @@ namespace PetCareFinalVersion.Patterns.FactoryAssoc
             var association = new Association() 
             {
                 Iban = data["iban"][0],
-                Adress = data["adress"][0],
+                Address = data["adress"][0],
                 PhoneNumber = data["phoneNumber"][0],
                 Description = data["description"][0],
                 FoundationDate = data["foundationDate"][0],
