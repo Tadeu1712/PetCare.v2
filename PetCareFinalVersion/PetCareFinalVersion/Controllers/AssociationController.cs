@@ -113,7 +113,7 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateAssociation([FromBody]Association aAssociation)
         {
-
+            
             var currentUser = HttpContext.User;
             try
             {

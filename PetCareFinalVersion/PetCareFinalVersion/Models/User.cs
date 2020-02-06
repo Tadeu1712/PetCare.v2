@@ -14,8 +14,7 @@ namespace PetCareFinalVersion.Models
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
-        [MinLength(8)]
+        
         public string Password { get; set; }
         [Required]
         public bool Admin { get; set; }
