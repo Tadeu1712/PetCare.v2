@@ -32,19 +32,21 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> Create(Animal aAnimal)
         {
+            var files = Request.Form.Files;
             object response;
             var currentUser = HttpContext.User;
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                  int id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
-                  Association association = _context.Associations.Single(assoc => assoc.User_id == id);
-                  var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
-                  await _context.Animals.AddAsync(animal);
-                  await _context.SaveChangesAsync();
-                  response = new {success = true, data = animal};
-                  return Ok(response);
+                    int id = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == "id").Value);
+                    Association association = _context.Associations.Single(assoc => assoc.User_id == id);
+                    var animal  = (Animal)animal_factory.CreateAnimalFromAnimalFactory(aAnimal);
+                    animal.Image = ImageSave.SaveImage(files, "event");
+                    await _context.Animals.AddAsync(animal);
+                    await _context.SaveChangesAsync();
+                    response = new {success = true, data = animal};
+                    return Ok(response);
                 }
                 response = new { success = false, message = "Utilizador não se encontra autenticado" };
                 return NotFound(response);
