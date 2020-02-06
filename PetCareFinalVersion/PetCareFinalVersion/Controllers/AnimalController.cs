@@ -247,24 +247,7 @@ namespace PetCareFinalVersion.Controllers
                 return BadRequest();
             }
         }
-        // ROUTE GET POST IMAGES 
-        [HttpGet("img/{imgName}")]
-        [AllowAnonymous]
-
-        public async Task<IActionResult> GetImgAsync(string imgName)
-        {
-            var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
-                "Resources/images/animal", imgName);
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                stream.CopyTo(memory);
-            }
-            memory.Position = 0;
-            return Ok(memory);
-        }
-
+        
         public AbstractStatus GetState(int aAnimalId)
         {
             var previus_animal = _context.Animals.Find(aAnimalId);
