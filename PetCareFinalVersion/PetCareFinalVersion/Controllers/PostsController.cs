@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using PetCareFinalVersion.Data;
+using PetCareFinalVersion.Patterns.TemplateMethod;
 
 namespace PetCareFinalVersion.Controllers
 {
@@ -18,7 +19,8 @@ namespace PetCareFinalVersion.Controllers
         IWebHostEnvironment _environment;
         private readonly AppDbContext _context;
         private readonly AbstractPostsFactory post_factory = PostFactory.Instance;
-        
+        protected AbstractTemplate ok = new ConcreteOk();
+        protected AbstractTemplate notFound = new ConcreteNotFound();
 
         public PostController(AppDbContext aContext, IWebHostEnvironment aEnvironment)
         {
@@ -31,17 +33,15 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> getAllPosts()
         {
-            object response;
             try
             {
                 var postsList = await _context.Posts.ToListAsync();
                 if (!postsList.Any())
                 {
-                    response = new { success = true, message = "Não existem posts registados" };
-                    return NotFound(response);
+                    return NotFound(notFound.TemplateResponse("Não existem posts registados"));
                 }
 
-                response = new { success = true, data = postsList };
+                object response = new { success = true, data = postsList };
                 return Ok(response);
             }
             catch
@@ -56,19 +56,16 @@ namespace PetCareFinalVersion.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> getPost(int id)
         {
-            object response;
             try
             {
                 Post post = await _context.Posts.FindAsync(id);
                 post.Association = await _context.Associations.FindAsync(post.Association_id);
-
-                response = new { success = true, data = post };
+                object response = new { success = true, data = post };
                 return Ok(response);
             }
             catch
             {
-                response = new { success = false, message = $"Nao existe o post com o id {id}" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse($"Nao existe o post com o id {id}"));
             }
         }
 
@@ -77,7 +74,6 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> CreatePost(Post aPost)
         {
-            object response;
             var currentUser = HttpContext.User;
             int id;
             try
@@ -91,16 +87,14 @@ namespace PetCareFinalVersion.Controllers
                     await _context.Posts.AddAsync(post);
                     await _context.SaveChangesAsync();
 
-                    response = new {sucess = true, data = post};
+                    object response = new {sucess = true, data = post};
                     return Ok(response);
                 }
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                response = new { sucess = false, message = "Não foi possivel realizar a sua ação" };
-                return BadRequest(response);
+                return BadRequest(notFound.TemplateResponse("Não foi possivel realizar a sua ação"));
             }
         }
 
@@ -111,7 +105,6 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
-            object response;
             var currentUser = HttpContext.User;
 
             try
@@ -125,27 +118,18 @@ namespace PetCareFinalVersion.Controllers
                     {
                         _context.Posts.Remove(post);
                         await _context.SaveChangesAsync();
-                        response = new { success = true, message = $"O post com o id:{id} foi apagado com sucesso" };
-                        return Ok(response);
-
+                        return Ok(ok.TemplateResponse($"O post com o id:{id} foi apagado com sucesso"));
                     }
                     else
                     {
-                        response = new { success = false, message = $"O Post que tentou apagar não pertence à sua associação" };
-                        return Ok(response);
+                        return Ok(notFound.TemplateResponse($"O Post que tentou apagar não pertence à sua associação"));
                     }
                 }
-                else
-                {
-                    response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                    return NotFound(response);
-                }
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao existe o post com o id {id}" };
-                return NotFound(rs);
-               
+                return NotFound(notFound.TemplateResponse($"Nao existe o post com o id {id}"));
             }
             
         }
@@ -157,9 +141,7 @@ namespace PetCareFinalVersion.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateAssociation(Post aPost)
         {
-            object response;
             var currentUser = HttpContext.User;
-
             try
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
@@ -167,16 +149,14 @@ namespace PetCareFinalVersion.Controllers
                     _context.Posts.Update(aPost);
                     await _context.SaveChangesAsync();
 
-                    response = new {success = true, data = aPost};
+                    object response = new {success = true, data = aPost};
                     return Ok(response);
                 }
-                response = new { success = false, message = "Utilizador não se encontra autenticado" };
-                return NotFound(response);
+                return NotFound(notFound.TemplateResponse("Utilizador não se encontra autenticado"));
             }
             catch
             {
-                var rs = new { success = false, message = $"Nao foi possivel atualizar o post com o id {aPost.Id}" };
-                return NotFound(rs);
+                return NotFound(notFound.TemplateResponse($"Nao foi possivel atualizar o post com o id {aPost.Id}"));
             }
         }
 
