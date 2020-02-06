@@ -121,12 +121,22 @@ namespace PetCareFinalVersion.Controllers
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    var dEvent = await _context.Events.FindAsync(id);
-                    _context.Events.Remove(dEvent);
-                    await _context.SaveChangesAsync();
+                    var aEvent = await _context.Events.FindAsync(id);
+                    var id_log = int.Parse(currentUser.Claims.First(c => c.Type == "id").Value);
+                    var association = _context.Associations.Where(assoc => assoc.User_id == id_log).Single();
+                    if (aEvent.Association_id == association.Id)
+                    {
+                        _context.Events.Remove(aEvent);
+                        await _context.SaveChangesAsync();
 
-                    response = new { success = true, message = $"O evento com o id:{id} foi apagado" };
-                    return Ok(response);
+                        response = new { success = true, message = $"O evento com o id:{id} foi apagado" };
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        response = new { success = false, message = $"O Evento que tentou apagar não pertence à sua associação" };
+                        return Ok(response);
+                    }
                 }
 
                 response = new { success = false, message = "Utilizador não se encontra autenticado" };

@@ -119,11 +119,25 @@ namespace PetCareFinalVersion.Controllers
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
                     var post = await _context.Posts.FindAsync(id);
-                    _context.Posts.Remove(post);
-                    await _context.SaveChangesAsync();
-
-                    response = new {success = true, message = $"O post com o id:{id} foi apagado com sucesso"};
-                    return Ok(response);
+                    var id_log = int.Parse(currentUser.Claims.First(c => c.Type == "id").Value);
+                    var association = _context.Associations.Where(assoc => assoc.User_id == id_log).Single();
+                    if (post.Association_id == association.Id)
+                    {
+                        _context.Posts.Remove(post);
+                        await _context.SaveChangesAsync();
+                        response = new { success = true, message = $"O post com o id:{id} foi apagado com sucesso" };
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        response = new { success = false, message = $"O Post que tentou apagar não pertence à sua associação" };
+                        return Ok(response);
+                    }
+                }
+                else
+                {
+                    response = new { success = false, message = "Utilizador não se encontra autenticado" };
+                    return NotFound(response);
                 }
             }
             catch
@@ -141,7 +155,7 @@ namespace PetCareFinalVersion.Controllers
         [Consumes("application/json")]
         [HttpPut("update")]
         [Authorize]
-        public async Task<IActionResult> UpdateAssociation([FromBody]Post aPost)
+        public async Task<IActionResult> UpdateAssociation(Post aPost)
         {
             object response;
             var currentUser = HttpContext.User;
@@ -166,23 +180,7 @@ namespace PetCareFinalVersion.Controllers
             }
         }
 
-        // ROUTE GET POST IMAGES 
-        [HttpGet("img/{imgName}")]
-        [AllowAnonymous]
-
-        public async Task<IActionResult> GetImgAsync(string imgName)
-        {
-            var path = Path.Combine(
-                     Directory.GetCurrentDirectory(),
-                     "Resources/images/post", imgName);
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                stream.CopyTo(memory);
-            }
-            memory.Position = 0;
-            return Ok(memory);
-        }
+        
 
     }
 
