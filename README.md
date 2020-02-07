@@ -164,8 +164,7 @@ Como mencionado anteriomente, achamos que os principais critérios a ter em cont
 
 O único problema que antecipamos é a possibilidade de existir utilizadores não familiarizados com aplicações informáticas que possuam dificuldades em utilizar o sistema. Esse problema não pode ser ,efetivamente, resolvido mas tentamos sempre minimiza-lo procurando simplificar ao máximo a interface da aplicação.
 
-Como trabalho futuro podemos apontar que temos como objetivo otimizar o nosso backend, pois este poderia ser melhorado, mas de forma geral cumpre os requisitos a que tinhamos estabelecido para o PetCare, também gostariamos de utilizar outro tipo de armazenamento de ficheiro como por exemplo o Azure Storage account pois por questões financeiras não foi possivel utilizar, achamos também que também a nível de feedback dado ao utilizador nas suas ações com o website poderiam estar melhores mas por falta de tempo, não foi possivel melhorar esse aspeto.
-
+Como trabalho futuro podemos apontar que temos como objetivo otimizar o nosso backend, pois este poderia ser melhorado, mas de forma geral cumpre os requisitos a que tínhamos estabelecido para o PetCare, também gostaríamos de utilizar outro tipo de armazenamento de ficheiro como por exemplo o Azure Storage account pois por questões financeiras não foi possível utilizar, achamos também que também a nível de feedback dado ao utilizador nas suas ações com o website poderiam estar melhores mas por falta de tempo, não foi possível melhorar esse aspeto.
 
 
 ##  **References**
