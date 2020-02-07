@@ -111,29 +111,25 @@ onde é possível encontrar todas as funcionalidades básicas e um painel admini
 
 ### **4.1- Painel administrativo**
 Através do painel administrativo o administrador poderá executar as ações CRUD (criação, consulta, atualização e destruição de dados) sobre os utilizadores registados na plataforma, comparativamente as associações poderão executar estas mesmas ações CRUD sobre os animais, eventos e novidades pertencentes a esta associação em questão. Adicionalmente é ainda possível à associação atualizar o seu próprio perfil.
-```
-PRINTS
-```
+
+![Image of administrativo](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/Screenshot%20from%202020-02-07%2000-33-05.png)
+
 ### **4.2- Animais**
 Os animais inseridos na plataforma poderão ser acedidos em diversas páginas da interface. Ao explorar o website poderemos encontrar na página inicial uma listagem ”infinita” de todos os animais, de todas as associações ordenados por ordem de colocação na plataforma do mais recente. Esta abordagem foi escolhida de modo a captar de forma mais rápida possível a atenção do visitante.
 
 Cada animal é apresentado em formato carta fornecendo assim individualização e independência. Adicionalmente poderemos ainda carregar em qualquer animal para visualizar dados mais detalhados como por exemplo peso, porte, idade, entre outros.
 
-```
-PRINTS
-````
+![Image of Animais](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/Screenshot%20from%202020-02-07%2000-32-44.png)
+
+
 Poderão ainda ser visualizados animais pertencentes de uma dada associação através do perfil público dessa mesma associação, na página ”Amiguinhos” que será descrita numa sub-secção seguinte e numa tabela pertencente ao painel administrativo da associação em questão.
 
-```
-PRINTS
-````
+![Image of Amiguinhos](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/Screenshot%20from%202020-02-07%2000-34-25.png)
 
 ### **4.3- Eventos**
 De forma semelhante à página principal descrita anteriormente, os eventos possuem também uma secção dedicada à sua apresentação. E, também, utilizada ́uma listagem ordenada por eventos com data de inicialização mais próxima, não sendo apresentados eventos que já tenham acontecido. Os eventos estão também presentes no perfil público duma dada associação e no seu painel administrativo.
 
-```
-PRINTS
-````
+![Image of Eventos](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/Screenshot%20from%202020-02-07%2000-33-23.png)
 
 ### **4.4- Perdidos**
 A página para animais perdidos é um pouco diferente das descritas anteriormente, pois esta tem como objetivo a inserção de dados por qualquer visitante da plataforma, não estando associada com qualquer tipo de utilizador ou associação.
@@ -141,9 +137,7 @@ A página para animais perdidos é um pouco diferente das descritas anteriorment
 A página é constituída por um formulário que qualquer utilizador poderá preencher, com o objetivo de dar como perdido um animal, onde são
 fornecidos dados de contacto e descrições do animal em questão. Desta forma outros utilizadores que visitem a página poderão ajudar no que pode ser melhor caracterizado como ”perdidos & achados” baseado em animais domésticos.
 
-```
-PRINTS
-````
+![Image of Perdidos](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/Screenshot%20from%202020-02-07%2000-33-40.png)
 
 ### **4.5- Amiguinhos**
 Para finalizar, esta última secção visa dinamizar e cativar uma grande vertente de utilizadores jovens. Aqui são apresentados de forma muito mais infantil e dinâmica os animais bebés (e.x ¡1 ano) com auxílio de animações e efeitos visuais.
