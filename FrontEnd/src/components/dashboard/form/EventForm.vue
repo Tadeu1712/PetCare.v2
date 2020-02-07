@@ -60,6 +60,9 @@
 
           <image-compressor :done="getFiles" :scale="scale" :quality="quality"></image-compressor>
 
+          <img v-if="!post" :src="data.image" class="animal-image my-2" />
+          <img v-if="file && post" :src="file.base64" class="animal-image my-2" />
+
           <div class="d-flex justify-content-center">
             <button type="submit" @click="submitData()" class="btn btn-primary">Enviar</button>
           </div>
@@ -112,8 +115,7 @@ export default {
             }
           )
           .then(function(res) {
-            console.log("success");
-            
+            location.reload();
           })
           .catch(function(e) {
             console.log("error");
@@ -130,7 +132,7 @@ export default {
               location: data.location,
               type: data.type,
               price: data.price,
-              image: file.base64,
+              image: data.image,
               dateInit: data.init,
               dateEnd: data.end
             },
@@ -147,8 +149,8 @@ export default {
       }
     },
     getFiles(obj) {
-      console.log(obj.compressed.base64);
       this.file = obj.compressed;
+      this.data.image = obj.compressed.base64;
     }
   }
 };

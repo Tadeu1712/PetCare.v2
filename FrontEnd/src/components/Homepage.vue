@@ -42,7 +42,6 @@ import AnimalProfile from "./AnimalProfile.vue";
 
 const { url, external_url } = require("../../helper");
 
-console.log(external_url);
 
 export default {
   name: "homepage",

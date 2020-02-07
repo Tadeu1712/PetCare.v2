@@ -11,13 +11,18 @@
       <LostForm />
     </div>
     <div class="container h-100 my-5">
-      <div class="d-flex justify-content-center ">
+      <div class="d-flex justify-content-center">
         <SearchBar :search="search" />
       </div>
     </div>
     <div class="container">
       <div class="row lost-container my-5">
-        <div class="lost-card my-3 lost-search" v-for="animal in animals" v-bind:key="animal.id">
+        <div
+          :style="style(animal.image)"
+          class="lost-card my-3 lost-search"
+          v-for="animal in animals"
+          v-bind:key="animal.id"
+        >
           <div class="card-initial">
             <div class="card-info">
               <div class="lost-data">
@@ -31,7 +36,9 @@
                     </div>
                     <div class="info-icon">
                       <img src="/icon/date.svg" class="icon" />
-                      <p class="info lost-date">{{new Date(animal.date).toLocaleDateString("pt-PT")}}</p>
+                      <p
+                        class="info lost-date"
+                      >{{new Date(animal.date).toLocaleDateString("pt-PT")}}</p>
                     </div>
                   </div>
                 </div>
@@ -79,6 +86,11 @@ export default {
     axios.get(url + "/lost/all").then(res => {
       this.animals = res.data.data;
     });
+  },
+  methods: {
+    style(image) {
+      return "background-image: url(" + image + ");";
+    }
   }
 };
 </script>
@@ -89,7 +101,7 @@ export default {
 }
 .lost-header {
   position: relative;
-  margin-bottom: 200px;
+  margin-bottom: 250px;
 }
 .info-icon {
   display: flex;

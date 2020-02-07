@@ -165,7 +165,6 @@ export default {
     var windowsize = $window.width();
     if (windowsize < 768) this.collapsed = true;
     else this.collapsed = false;
-    console.log(this.admin);
   },
   methods: {
     collapseSidebar() {

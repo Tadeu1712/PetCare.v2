@@ -82,6 +82,7 @@ export default {
       this.event.description = e.description;
       this.event.location = e.location;
       this.event.type = e.type;
+      this.event.image = e.image;
       this.event.price = e.price;
       this.event.init = new Date(e.dateInit).toISOString().substr(0, 10);
       this.event.end = new Date(e.dateEnd).toISOString().substr(0, 10);
@@ -98,6 +99,7 @@ export default {
       this.event.price = null;
       this.event.init = null;
       this.event.end = null;
+      this.event.image = null;
 
       $("#eventsModal").modal("show");
     },

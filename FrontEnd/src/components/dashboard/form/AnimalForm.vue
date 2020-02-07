@@ -142,7 +142,8 @@
 
           <image-compressor :done="getFiles" :scale="scale" :quality="quality"></image-compressor>
 
-          <img v-if="file" :src="file.base64" class="animal-image my-2" />
+          <img v-if="!post" :src="data.image" class="animal-image my-2" />
+          <img v-if="file && post" :src="file.base64" class="animal-image my-2" />
 
           <div class="d-flex justify-content-center">
             <button type="submit" @click="submitData()" class="btn btn-primary">Enviar</button>
@@ -172,7 +173,7 @@ export default {
   components: {
     imageCompressor
   },
-  mounted() {
+  created() {
     this.file = this.data.image;
   },
   methods: {
@@ -228,7 +229,7 @@ export default {
               energy: data.energy,
               funny: data.funny,
               chill: data.chill,
-              image: file.base64,
+              image: data.image,
               troublemaker: data.troublemaker,
               association_id: this.association_id
             },
@@ -245,8 +246,8 @@ export default {
       }
     },
     getFiles(obj) {
-      console.log(obj.compressed.base64);
       this.file = obj.compressed;
+      this.data.image = obj.compressed.base64;
     }
   }
 };
@@ -254,9 +255,4 @@ export default {
 
 <style scoped>
 @import "/css/dashboard.css";
-.animal-image {
-  width: 50%;
-  margin: auto;
-  display: block;
-}
 </style>

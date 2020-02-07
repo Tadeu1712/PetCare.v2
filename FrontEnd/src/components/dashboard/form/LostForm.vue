@@ -43,6 +43,8 @@
         </div>
         <image-compressor :done="getFiles" :scale="scale" :quality="quality"></image-compressor>
 
+        <img v-if="file" :src="file.base64" class="animal-image my-2" />
+
         <center>
           <button type="submit" @click="submitData()" class="btn btn-light">Submit</button>
         </center>
@@ -95,7 +97,6 @@ export default {
           }
         )
         .then(function(res) {
-          vm.message = "success";
           location.reload();
         })
         .catch(function(e) {
@@ -103,7 +104,6 @@ export default {
         });
     },
     getFiles(obj) {
-      console.log(obj.compressed.base64);
       this.file = obj.compressed;
     }
   }
@@ -111,6 +111,9 @@ export default {
 </script>
 
 <style scoped>
+.animal-image{
+  width: 30px;
+}
 .lost-form {
   position: absolute;
   top: 250px;

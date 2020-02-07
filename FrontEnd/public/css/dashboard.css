@@ -87,3 +87,9 @@
     border: none;
     line-height: normal;
 }
+
+.animal-image {
+    width: 50%;
+    margin: auto;
+    display: block;
+}

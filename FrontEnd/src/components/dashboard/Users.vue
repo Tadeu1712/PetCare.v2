@@ -92,6 +92,7 @@ export default {
       this.user.phone = e.phoneNumber;
       this.user.address = e.address;
       this.user.iban = e.iban;
+      this.user.image = e.image;
       this.user.foundationDate = new Date(e.foundationDate)
         .toISOString()
         .substr(0, 10);
@@ -108,6 +109,7 @@ export default {
       this.user.address = null;
       this.user.iban = null;
       this.user.foundationDate = null;
+      this.user.image = null;
 
       $("#userModal").modal("show");
     },

@@ -85,9 +85,6 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log("nasceu");
-  }
 };
 </script>
 
