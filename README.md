@@ -45,9 +45,10 @@ Fig. 1.Diagrama da Base de Dados
 
 Em relação aos padrões de desenho, implementou-se com base nas aulas teóricas e práticas os seguintes: Factory Method, Template Method, Singleton e State Machine.
 
-```
-Fig. 2.UML
-```
+![Image of Database](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/DISUML.png)
+
+
+
 
 ### **3.2-Tecnologias**
 Nesta secção iremos abordar as tecnologias usadas para a realização deste trabalho, explicando o motivo por as termos escolhido e como é que as utilizamos.
@@ -88,7 +89,7 @@ Este padrão de desenho é utilizado em todas as factories, uma vez que só quer
 #### **3.3.3-Template Method**
 O padrão de desenho Template Method auxilia na definição de um algoritmo com partes do mesmo definidos por métodos abstratos. As suas sbuclasses devem ser responsáveis por estas partes abstratas, em que serão implementadas de várias formas, diferenciando um comportamento em cada subclasse. Este padrão fornece uma estrutura fixa, de um algoritmo, na qual está presente na superclasse.
 
-Este padrão é utilizado em todos os controllers, em que permite a construção de diferentes respostas aos pedidos HTTP, ou seja para o frontend. 
+Este padrão é utilizado em todos os controllers, em que permite a construção de diferentes respostas aos pedidos HTTP, ou seja para o frontend.
 
 #### **3.3.4-Single File Components**
 O padrão Single File Components (SFC)é um padrão desenho utilizado no lado do cliente, ou seja este é utilizado na framework javascript Vuejs de modo a organizar e otimizar o desenvolvimento do mesmo.
@@ -173,5 +174,3 @@ Como trabalho futuro podemos apontar que temos como objetivo otimizar o nosso ba
 2. Vue Patterns. 2020. Vue Patterns. (2020). https://learn-vuejs.github.io/vue-patterns/patterns/#component-declaration.
 3. TVI24. 2019. Cerca de 50 mil animais abandonados são resgatados das ruas por-
     tuguesas por ano. (2019). https://tvi24.iol.pt/sociedade/abandono/cerca-de-50-mil-animais-abandonados-sao-recolhidos-das-ruas-portuguesas-por-ano.
-
-
