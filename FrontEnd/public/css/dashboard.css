@@ -1,0 +1,89 @@
+.dashboard-modal .form-background {
+    background-image: url("/background/form-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dashboard-modal {
+    color: white;
+    max-width: 600px;
+}
+
+.dashboard-modal .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.596);
+    opacity: 1;
+}
+
+.dashboard-modal .modal-title {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.dashboard-modal .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.dashboard-modal .modal-header {
+    border-bottom: none;
+    position: relative;
+    justify-content: center;
+}
+
+.dashboard-modal h4 {
+    text-align: center;
+    font-size: 26px;
+}
+
+.dashboard-modal .form-group {
+    position: relative;
+    color: white;
+    margin: 3% 0;
+}
+
+.dashboard-modal .form-control {
+    color: white;
+    border-radius: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid lightgray;
+}
+
+.dashboard-modal .form-textarea {
+    padding-left: 10px;
+    border-top: 1px solid lightgray;
+}
+
+.modal-news .form-textarea:focus {
+    border-color: #ced4da;
+    box-shadow: 0px 0px 10px lightgray;
+    background-color: transparent;
+}
+
+.dashboard-modal .form-control:focus {
+    border-bottom: 2px solid lightgray;
+    box-shadow: none;
+}
+
+.dashboard-modal .btn {
+    min-height: 40px;
+    border-radius: 10px;
+}
+
+.dashboard-modal .hint-text {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.dashboard-modal .close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.dashboard-modal .btn {
+    border: none;
+    line-height: normal;
+}
