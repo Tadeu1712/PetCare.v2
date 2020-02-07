@@ -13,7 +13,7 @@ Keywords: C# · Vue · Mysql
 
 ## **1-Introdução**
 
-Este projeto foi realizado no âmbito da cadeira de ”Desenho e Implementação de Software” e tem como objetivo introduzir aos alunos os conceitos fundamentais de desenho e arquitetura de software, os princípios fundamentais do desenho e como utilizar os padrões de desenho de software com a intenção de os aplicar de uma maneira pratica numa linguagem de programação orientada a objetos.
+Este projeto foi realizado no âmbito da cadeira de ”Desenho e Implementação de Software” e tem como objetivo introduzir aos alunos os conceitos fundamentais de desenho e arquitetura de software, os princípios fundamentais do desenho e como utilizar os padrões de desenho de software com a intenção de os aplicar de uma maneira prática numa linguagem de programação orientada a objetos.
 
 Este relatório terá como objetivo documentar um projeto de desenvolvimento de uma aplicação web, desde de uma fase inicial onde iremos explicar o problema que estamos a tentar abordar e qual a solução que decidimos adotar.
 
@@ -38,11 +38,11 @@ Logo os utilizadores têm acesso a uma plataforma onde conseguem aceder a inform
 
 
 ### **3.1-Arquitectura**
-
+Para a implentação do website PetCare utilizamos uma Web API, para tal, realizou-se os seguintes passos, primeiramente desenhou-se uma base de dados relacional.
 ![Image of Database](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/PetCareDB.png)
 
 Fig. 1.Diagrama da Base de Dados
-
+Em relação aos padrões de desenho, implementou-se com base nas aulas teóricas e práticas os seguintes: Factory Method, Template Method, Singleton e State Machine.
 
 ```
 Fig. 2.UML
