@@ -160,14 +160,17 @@ Nesta secção iremos abordar as vantagens e as desvantagens da nossa aplicaçã
 
 ### **5.2- Desvantagens**
 - Não possui uma opção direta de doação a uma associação, mas fornecemos dados para tal.
--
+- Falta de Feedback
+- Guardar Imagens em Base64
+
 
 ## **6-Conclusão**
 
-Como supramencionado, achamos que os principais critérios a ter em conta ao avaliar o produto final são as vantagens/desvantagens do ponto de vista do utilizador e, se a aplicação contribui para a solução do problema proposto.
-
+Como mencionado anteriomente, achamos que os principais critérios a ter em conta ao avaliar o produto final são as vantagens/desvantagens do ponto de vista do utilizador e, se a aplicação contribui para a solução do problema proposto.
 
 O único problema que antecipamos é a possibilidade de existir utilizadores não familiarizados com aplicações informáticas que possuam dificuldades em utilizar o sistema. Esse problema não pode ser ,efetivamente, resolvido mas tentamos sempre minimiza-lo procurando simplificar ao máximo a interface da aplicação.
+
+Como trabalho futuro podemos apontar que temos como objetivo otimizar o nosso backend, pois este poderia ser melhorado, mas de forma geral cumpre os requisitos a que tinhamos estabelecido para o PetCare, também gostariamos de utilizar outro tipo de armazenamento de ficheiro como por exemplo o Azure Storage account pois por questões financeiras não foi possivel utilizar, achamos também que também a nível de feedback dado ao utilizador nas suas ações com o website poderiam estar melhores mas por falta de tempo, não foi possivel melhorar esse aspeto.
 
 
 
@@ -178,4 +181,4 @@ O único problema que antecipamos é a possibilidade de existir utilizadores nã
 3. TVI24. 2019. Cerca de 50 mil animais abandonados são resgatados das ruas por-
     tuguesas por ano. (2019). https://tvi24.iol.pt/sociedade/abandono/cerca-de-50-mil-animais-abandonados-sao-recolhidos-das-ruas-portuguesas-por-ano.
 
-## 7 Anexos
+
