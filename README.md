@@ -39,13 +39,10 @@ Logo os utilizadores têm acesso a uma plataforma onde conseguem aceder a inform
 
 ### **3.1-Arquitectura**
 
-```
-Explicar arquitectura
-```
+![Image of Database](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/PetCareDB.png)
 
-```
 Fig. 1.Diagrama da Base de Dados
-```
+
 
 ```
 Fig. 2.UML
