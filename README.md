@@ -42,6 +42,7 @@ Para a implentação do website PetCare utilizamos uma Web API, para tal, realiz
 ![Image of Database](https://raw.githubusercontent.com/Tadeu1712/PetCare.v2/master/Images/PetCareDB.png)
 
 Fig. 1.Diagrama da Base de Dados
+
 Em relação aos padrões de desenho, implementou-se com base nas aulas teóricas e práticas os seguintes: Factory Method, Template Method, Singleton e State Machine.
 
 ```
