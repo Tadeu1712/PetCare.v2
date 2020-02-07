@@ -119,7 +119,6 @@ namespace PetCareFinalVersion.Controllers
             {
                 if (currentUser.HasClaim(c => c.Type == "id"))
                 {
-                    _context.Users.Update(aAssociation.User);
                     _context.Associations.Update(aAssociation);
                     await _context.SaveChangesAsync();
                     object response = new {success = true, data = aAssociation};

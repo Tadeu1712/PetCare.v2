@@ -34,13 +34,16 @@ namespace PetCareFinalVersion.Controllers
         {
             try
             {
-                var eventsList = await _context.Events.OrderBy(b => b.DateInit).ToListAsync();
+                var eventsList = await _context.Events.OrderByDescending(b => b.Id).ToListAsync();
                 if (!eventsList.Any())
                 {
 
                     return NotFound(notFound.TemplateResponse("Não existem posts registados"));
                 }
-            
+                foreach(Event cEvent in eventsList)
+                {
+                    int result = DateTime.Compare(DateTime.Now, cEvent.DateEnd);
+                }
                 object response = new { success = true, data = eventsList };
                 return Ok(response);
             }
